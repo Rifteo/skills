@@ -5,6 +5,18 @@ description: Full JWT attack methodology — alg:none, RS256 to HS256 confusion,
 
 # JWT Attack Methodology
 
+## When to use
+
+Activate this skill when the user asks to:
+- test JWT tokens, authentication bypass, or token forgery
+- try `alg:none`, algorithm confusion, or weak secret brute-force
+- test `kid` injection, `jku`/`x5u` header injection, or embedded `jwk` injection
+- check if `exp`, `iss`, or `aud` claims are validated
+- bypass authentication on an API or web app
+- test a string that looks like a JWT (`xxxxx.yyyyy.zzzzz`)
+
+---
+
 JWT tokens look like: `header.payload.signature` (base64url-encoded, dot-separated).
 
 A JWT vulnerability means the server accepts a token it should reject — either because the signature check is weak, skipped, or bypassable.
