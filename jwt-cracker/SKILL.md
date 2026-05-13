@@ -1,7 +1,6 @@
 ---
 name: jwt-cracker
-description: >
-  JWT (JSON Web Token) vulnerability detection and exploitation methodology for web application security testing. Use this skill whenever the user asks to test JWT tokens, authentication bypass, token forgery, alg:none attacks, algorithm confusion (RS256 to HS256), weak secret brute-force, kid injection, JWK header injection, claim tampering, or any JWT misconfiguration. Also trigger when the user says things like "test the auth token", "bypass authentication", "forge a JWT", "test the Authorization header", or when they paste a string with two dots that looks like a JWT (xxxxx.yyyyy.zzzzz). This skill provides a complete, ordered methodology covering every known JWT attack class — always use it instead of guessing.
+description: Full JWT attack methodology — alg:none, RS256 to HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering
 ---
 
 # JWT Attack Methodology
