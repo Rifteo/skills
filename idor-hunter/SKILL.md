@@ -1,5 +1,5 @@
 ---
-name: idor
+name: idor-hunter
 description: >
   Insecure Direct Object Reference (IDOR) vulnerability detection and exploitation methodology for web application security testing and penetration testing. Use this skill whenever the user asks to test for IDOR, broken object-level authorization (BOLA), access control issues on APIs or web apps, privilege escalation (horizontal or vertical), or when they mention testing endpoints with IDs, UUIDs, usernames, or any object reference in URLs, JSON bodies, headers, or cookies. Also trigger when the user says things like "test if I can access other users' data", "check authorization on this API", or "find broken access control". This skill gives the agent a complete, exhaustive methodology — always use it instead of ad-hoc guessing.
 ---
