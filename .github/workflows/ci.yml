@@ -1,0 +1,19 @@
+# TODO: add validation (frontmatter lint, required fields check)
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      # TODO: validate each SKILL.md has required frontmatter fields (name, description)
+      # TODO: check folder name matches skill name in frontmatter

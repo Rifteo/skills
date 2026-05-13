@@ -1,0 +1,14 @@
+﻿{
+  "name": "agent-skills",
+  "version": "1.0.0",
+  "description": "AuditGuard agent skills for pentesters, auditors, and security practitioners",
+  "type": "module",
+  "scripts": {
+    "generate": "node .github/scripts/generate-find-skills.mjs"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AuditGuard-Community/agent-skills"
+  }
+}
