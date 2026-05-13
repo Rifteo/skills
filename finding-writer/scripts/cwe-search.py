@@ -21,7 +21,7 @@ def load_entries(path):
         with open(path) as f:
             for line in f:
                 line = line.strip()
-                if not line.startswith("|") or line.startswith("| ---") or line.startswith("| CWE"):
+                if not line.startswith("|") or "|---" in line or line.startswith("| CWE") or line.startswith("| OWASP"):
                     continue
                 cols = [c.strip() for c in line.strip("|").split("|")]
                 if len(cols) >= 3:
@@ -49,7 +49,7 @@ def print_results(results):
     for row in results:
         print(f"\n  {row[0]}")
         if len(row) >= 3:
-            print(f"  CWEs:     {row[1]}")
+            print(f"  IDs:      {row[1]}")
             print(f"  Examples: {row[2]}")
 
 

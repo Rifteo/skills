@@ -52,6 +52,12 @@ def roundup(value):
 
 
 def calculate(m):
+    required = {"AV", "AC", "PR", "UI", "S", "C", "I", "A"}
+    missing = required - set(m.keys())
+    if missing:
+        print(f"Error: missing metrics: {', '.join(sorted(missing))}", file=sys.stderr)
+        sys.exit(1)
+
     scope = m["S"]
     pr_weights = METRICS["PR"]["changed" if scope == "C" else "unchanged"]
 
@@ -71,7 +77,7 @@ def calculate(m):
         impact = 7.52 * (iss - 0.029) - 3.25 * ((iss - 0.02) ** 15)
 
     if impact <= 0:
-        return 0.0, "None"
+        return 0.0, "Informational"
 
     exploitability = 8.22 * av * ac * pr * ui
 
@@ -81,7 +87,7 @@ def calculate(m):
         base = roundup(min(1.08 * (impact + exploitability), 10))
 
     if base == 0.0:
-        rating = "None"
+        rating = "Informational"
     elif base < 4.0:
         rating = "Low"
     elif base < 7.0:
@@ -117,9 +123,13 @@ def interactive():
 
 
 def main():
-    if len(sys.argv) == 3 and sys.argv[1] == "--json":
+    if "--json" in sys.argv:
+        idx = sys.argv.index("--json")
+        if idx + 1 >= len(sys.argv):
+            print("Error: --json requires a JSON argument", file=sys.stderr)
+            sys.exit(1)
         try:
-            m = json.loads(sys.argv[2])
+            m = json.loads(sys.argv[idx + 1])
             m = {k: v.upper() for k, v in m.items()}
         except json.JSONDecodeError as e:
             print(f"Error parsing JSON: {e}", file=sys.stderr)

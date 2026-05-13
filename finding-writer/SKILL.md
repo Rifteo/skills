@@ -3,7 +3,7 @@ name: finding-writer
 description: Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report
 license: MIT
 metadata:
-  version: "1.1.0"
+  version: "0.0.1"
   author: AuditGuard
   tags: ["pentest", "audit", "security", "findings", "reporting"]
 ---
@@ -34,6 +34,8 @@ Convert raw pentest notes, log snippets, vulnerability descriptions, or any unst
 
 **Severity:** Critical / High / Medium / Low / Informational
 *Justification: one sentence explaining the rating based on exploitability and impact*
+
+**CVSS:** `CVSS:3.1/AV:_/AC:_/PR:_/UI:_/S:_/C:_/I:_/A:_` — [score] ([rating])
 
 **Description:** What the vulnerability is, where it was found, and why it matters. 2–4 sentences, technical but readable by a non-specialist.
 
