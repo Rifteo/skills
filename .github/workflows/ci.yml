@@ -1,4 +1,3 @@
-# TODO: add validation (frontmatter lint, required fields check)
 name: CI
 
 on:
@@ -15,5 +14,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      # TODO: validate each SKILL.md has required frontmatter fields (name, description)
-      # TODO: check folder name matches skill name in frontmatter
+      - name: Validate skill structure
+        run: node .github/scripts/validate-skills.mjs
