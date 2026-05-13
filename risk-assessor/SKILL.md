@@ -1,6 +1,6 @@
 ---
 name: risk-assessor
-description: Classifies vulnerability risk using a likelihood × impact matrix with CIA triad analysis, CVSS correlation, and SLA-bound remediation urgency — produces a complete, self-contained risk assessment
+description: Scores a vulnerability using likelihood × impact, CIA triad, CVSS correlation, and SLA-bound remediation urgency
 ---
 
 # Risk Assessor
