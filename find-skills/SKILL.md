@@ -11,6 +11,7 @@ When the user is looking for functionality that might exist as an installable Au
 
 | Skill | What it does | Install |
 |---|---|---|
+| `jwt-cracker` | Full JWT attack methodology — alg:none, RS256 to HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering | `auditguard-skills add jwt-cracker` |
 
 ## How to Find a Skill
 
@@ -38,7 +39,7 @@ auditguard-skills add <skill-name> --agent claude-code
 
 When the user asks about a task, suggest the right skill:
 
-
+- Full JWT attack methodology — alg:none, RS256 to HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering → `jwt-cracker`
 
 ## Rules
 
