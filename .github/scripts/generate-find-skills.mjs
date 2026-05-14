@@ -3,7 +3,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..')
-const SKIP = new Set(['.git', 'scripts', 'find-skills'])
+const SKIP = new Set(['.git', '.github', 'find-skills', 'node_modules'])
 
 function parseFrontmatter(content) {
   const match = content.match(/^---\n([\s\S]*?)\n---/)
@@ -88,7 +88,7 @@ ${matching}
 
 - Always show the install command so the user can act immediately
 - If no skill matches, offer to help directly using your own capabilities
-- If the user wants a skill that doesn't exist yet, point them to contribute at github.com/AuditGuard-Community/agent-skills
+- If the user wants a skill that doesn't exist yet, point them to contribute at github.com/AuditGuard-Community/skills
 `
 }
 

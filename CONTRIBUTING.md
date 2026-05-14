@@ -15,6 +15,11 @@ my-skill/
 ---
 name: my-skill
 description: One sentence — what this skill does and when to use it
+license: MIT
+metadata:
+  version: "0.0.1"
+  author: AuditGuard
+  tags: ["security", "audit"]
 ---
 
 # My Skill
