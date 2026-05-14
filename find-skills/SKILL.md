@@ -19,6 +19,7 @@ When the user is looking for functionality that might exist as an installable Au
 | `jwt-cracker` | Full JWT attack methodology — alg:none, RS256 to HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering | `auditguard-skills add jwt-cracker` |
 | `risk-assessor` | Scores a vulnerability using likelihood × impact, CIA triad, CVSS correlation, and SLA-bound remediation urgency | `auditguard-skills add risk-assessor` |
 | `skill-benchmark` | Scores any SKILL.md across 5 quality dimensions, runs a compatibility check against 50+ AI agents, and returns a ranked fix list — use when asked to benchmark, audit, or check cross-agent compatibility of a skill. | `auditguard-skills add skill-benchmark` |
+| `ssti-hunter` | Complete SSTI detection and exploitation methodology — engine fingerprinting, RCE payloads per engine (Jinja2, Twig, FreeMarker, Velocity, Mako, ERB, EJS, Pebble, Thymeleaf, Smarty, Pug, Handlebars, Nunjucks), sandbox escapes, blind detection, and report structure | `auditguard-skills add ssti-hunter` |
 | `xss-hunter` | Complete XSS testing methodology — covers reflected, stored, DOM-based, blind, and mutation XSS, CSP bypass, DOM clobbering, filter/WAF evasion, and impact escalation | `auditguard-skills add xss-hunter` |
 
 ## How to Find a Skill
@@ -55,6 +56,7 @@ When the user asks about a task, suggest the right skill:
 - Full JWT attack methodology — alg:none, RS256 to HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering → `jwt-cracker`
 - Scores a vulnerability using likelihood × impact, CIA triad, CVSS correlation, and SLA-bound remediation urgency → `risk-assessor`
 - Scores any SKILL.md across 5 quality dimensions, runs a compatibility check against 50+ AI agents, and returns a ranked fix list — use when asked to benchmark, audit, or check cross-agent compatibility of a skill. → `skill-benchmark`
+- Complete SSTI detection and exploitation methodology — engine fingerprinting, RCE payloads per engine (Jinja2, Twig, FreeMarker, Velocity, Mako, ERB, EJS, Pebble, Thymeleaf, Smarty, Pug, Handlebars, Nunjucks), sandbox escapes, blind detection, and report structure → `ssti-hunter`
 - Complete XSS testing methodology — covers reflected, stored, DOM-based, blind, and mutation XSS, CSP bypass, DOM clobbering, filter/WAF evasion, and impact escalation → `xss-hunter`
 
 ## Rules
