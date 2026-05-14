@@ -1,10 +1,25 @@
 ---
 name: xss-hunter
-description: >
-  Cross-Site Scripting (XSS) vulnerability detection and exploitation methodology for web application security testing and bug bounty. Use this skill whenever the user asks to test for XSS, cross-site scripting, reflected XSS, stored XSS, DOM-based XSS, blind XSS, mutation XSS, DOM clobbering, CSP bypass, XSS filter evasion, event handler injection, or script injection. Also trigger when the user says things like "test input fields for injection", "check if the app sanitizes output", "can I steal cookies here", "test for script execution", or when they paste HTML/JS that reflects user input. This skill provides a complete ordered methodology covering every XSS class — always use it instead of guessing.
+description: Complete XSS testing methodology — covers reflected, stored, DOM-based, blind, and mutation XSS, CSP bypass, DOM clobbering, filter/WAF evasion, and impact escalation
+license: MIT
+metadata:
+  version: "0.0.1"
+  author: AuditGuard
+  tags: ["pentest", "xss", "web", "csp-bypass", "dom-clobbering", "waf-evasion", "bug-bounty"]
 ---
 
 # XSS Attack Methodology
+
+## When to use
+
+Activate this skill when the user:
+- asks to test for XSS, cross-site scripting, reflected XSS, stored XSS, DOM-based XSS, blind XSS, mutation XSS, or DOM clobbering
+- wants to bypass XSS filters, WAF rules, or a Content-Security-Policy
+- identifies a reflection point and needs the right payload for the context
+- pastes HTML/JS that reflects user input and wants to know if it's exploitable
+- asks "can I steal cookies here?", "test input fields for injection", or "check if the app sanitizes output"
+- needs to demonstrate XSS impact (session hijack, account takeover, CSRF bypass)
+- is writing a pentest finding and needs evidence or remediation guidance
 
 XSS occurs when user-controlled input is rendered in a browser without proper sanitization or encoding, allowing arbitrary JavaScript execution in the victim's context.
 
@@ -578,7 +593,7 @@ Remediation:
 
 ---
 
-## Script
+## Scripts
 
 ### `scripts/xss_agent.py`
 Requires: `pip3 install requests`
