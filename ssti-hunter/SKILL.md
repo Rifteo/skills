@@ -1,6 +1,6 @@
 ---
 name: ssti-hunter
-description: Complete SSTI detection and exploitation methodology — engine fingerprinting, RCE payloads per engine (Jinja2, Twig, FreeMarker, Velocity, Mako, ERB, EJS, Pebble, Thymeleaf, Smarty, Pug, Handlebars), sandbox escapes, blind detection, and report structure
+description: Complete SSTI detection and exploitation methodology — engine fingerprinting, RCE payloads per engine (Jinja2, Twig, FreeMarker, Velocity, Mako, ERB, EJS, Pebble, Thymeleaf, Smarty, Pug, Handlebars, Nunjucks), sandbox escapes, blind detection, and report structure
 license: MIT
 metadata:
   version: "1.0.0"
@@ -9,6 +9,19 @@ metadata:
 ---
 
 # SSTI Hunter — Server-Side Template Injection
+
+## When to use
+
+Activate this skill when the user:
+- asks to test for SSTI, server-side template injection, or template injection
+- identifies a parameter that reflects input and suspects it may be evaluated server-side
+- sees `{{7*7}}`, `${7*7}`, or `<%= 7*7 %>` return `49` in a response
+- gets a stack trace mentioning Jinja2, Twig, FreeMarker, Velocity, Mako, ERB, EJS, Pebble, Thymeleaf, Smarty, Pug, Handlebars, or Nunjucks
+- wants to escalate an SSTI to RCE, file read, or credential theft
+- needs to fingerprint which template engine is running
+- is writing an SSTI finding and needs severity, CWE, or remediation guidance
+
+---
 
 SSTI occurs when user input is embedded directly into a template and evaluated by the engine. The result is almost always **Remote Code Execution** on the server.
 
