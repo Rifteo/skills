@@ -3,7 +3,7 @@ name: compliance-gap-analyzer
 description: Aggregates audit findings mapped to framework controls, classifies each control as compliant / partially compliant / non-compliant / not tested, identifies blind spots, prioritizes gaps by severity, and produces a complete self-contained gap report — supports ISO 27001, NIST CSF, PCI-DSS, and OWASP (Top 10 / ASVS)
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "0.0.1"
   author: AuditGuard
   tags: ["compliance", "audit", "gap-analysis", "iso27001", "nist-csf", "pci-dss", "owasp"]
 ---
