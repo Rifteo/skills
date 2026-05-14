@@ -12,7 +12,7 @@ metadata:
 
 When a user provides a control ID, a control name, or a plain-language description of a control objective, identify it, return its full details, and map it across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS).
 
-## When to Use
+## When to use
 
 Activate this skill when the user:
 - provides a control ID and asks what it means (e.g., "what is ISO 27001 A.9.1.1?", "explain NIST CSF PR.AC-1")
@@ -66,7 +66,7 @@ Produce the full control details for the identified control:
 
 ## Step 3 — Cross-Framework Mapping
 
-Map the control to its equivalents in the other three frameworks. For each mapping, state a **confidence level**:
+Map the control to its equivalents in the other frameworks. For each mapping, state a **confidence level**:
 
 | Confidence | Meaning |
 |---|---|

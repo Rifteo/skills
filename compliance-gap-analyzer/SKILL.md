@@ -12,7 +12,7 @@ metadata:
 
 When an auditor provides findings from an audit — each tagged to a framework control with a compliance status — aggregate them into a structured gap report. Identify what is failing, what was never tested, and what to fix first.
 
-## When to Use
+## When to use
 
 Activate this skill when the user:
 - provides a list of audit findings with control references (ISO 27001, NIST CSF, PCI-DSS, OWASP)
@@ -57,7 +57,7 @@ Apply the **weakest-link rule**: one non-compliant finding is enough to classify
 | Classification | Criteria |
 |---|---|
 | **Compliant** | All findings for this control pass; no gaps identified |
-| **Partially Compliant** | Mix of compliant and non-compliant findings; control is not fully satisfied |
+| **Partially Compliant** | Mix of compliant and partially compliant findings; control is not fully satisfied |
 | **Non-Compliant** | One or more findings explicitly fail this control |
 | **Not Tested** | No findings assigned to this control — it was not audited (blind spot) |
 
