@@ -11,6 +11,7 @@ When the user is looking for functionality that might exist as an installable Au
 
 | Skill | What it does | Install |
 |---|---|---|
+| `check-exploit` | Searches known exploit databases and sources for a given service, version, or CVE — from searchsploit to Vulners, MSF, and beyond | `auditguard-skills add check-exploit` |
 | `compliance-gap-analyzer` | Aggregates audit findings mapped to framework controls, classifies each control as compliant / partially compliant / non-compliant / not tested, identifies blind spots, prioritizes gaps by severity, and produces a complete self-contained gap report — supports ISO 27001, NIST CSF, PCI-DSS, and OWASP (Top 10 / ASVS) | `auditguard-skills add compliance-gap-analyzer` |
 | `control-lookup` | Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS) — returns the full control card, cross-framework mappings with confidence level, related controls, and testing hints | `auditguard-skills add control-lookup` |
 | `finding-writer` | Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report | `auditguard-skills add finding-writer` |
@@ -45,6 +46,7 @@ auditguard-skills add <skill-name> --agent claude-code
 
 When the user asks about a task, suggest the right skill:
 
+- Searches known exploit databases and sources for a given service, version, or CVE — from searchsploit to Vulners, MSF, and beyond → `check-exploit`
 - Aggregates audit findings mapped to framework controls, classifies each control as compliant / partially compliant / non-compliant / not tested, identifies blind spots, prioritizes gaps by severity, and produces a complete self-contained gap report — supports ISO 27001, NIST CSF, PCI-DSS, and OWASP (Top 10 / ASVS) → `compliance-gap-analyzer`
 - Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS) — returns the full control card, cross-framework mappings with confidence level, related controls, and testing hints → `control-lookup`
 - Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report → `finding-writer`
