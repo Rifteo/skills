@@ -3,7 +3,7 @@ name: control-lookup
 description: Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS) — returns the full control card, cross-framework mappings with confidence level, related controls, and testing hints
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "0.0.1"
   author: AuditGuard
   tags: ["compliance", "controls", "framework-mapping", "iso27001", "nist-csf", "pci-dss", "owasp"]
 ---
