@@ -1,6 +1,11 @@
 ---
 name: nuclei-template-writer
-description: Converts a vulnerability description or HTTP request/response pair into a ready-to-run Nuclei YAML template — use when automating detection of a finding across targets, building a personal scanner library, or asked to write a nuclei template — trigger also when the user wants to automate or scale a finding they already have.
+description: Converts a vulnerability description or HTTP request/response pair into a ready-to-run Nuclei YAML template — handles auth strategies, matcher selection, OOB detection, and multi-step flows
+license: MIT
+metadata:
+  version: "0.0.1"
+  author: AuditGuard
+  tags: ["nuclei", "automation", "scanner", "template", "pentest", "bug-bounty"]
 ---
 
 # Nuclei Template Writer
@@ -180,3 +185,11 @@ State clearly if any of the following apply:
 - **Auth required (OAuth/SSO):** "Cannot be templated reliably — OAuth flows require browser interaction. Test manually on each target."
 - **Multi-account required (IDOR):** "This template needs two valid accounts on the target. Replace `VICTIM_OBJECT_ID` and `ATTACKER_SESSION` with real values."
 - **Low confidence matchers (Type A/B):** "Matchers are inferred from the description — validate against the real response before bulk-running to avoid false positives."
+
+---
+
+## Reference Files
+
+- `references/vuln-classes.md` — Vulnerability class table with severity, tags, and template skeletons
+- `references/matcher-guide.md` — Matcher type selection guide with examples
+- `references/auth-strategies.md` — Auth patterns and full template examples per auth type
