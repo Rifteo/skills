@@ -1,6 +1,6 @@
 ---
 name: remediation-planner
-description: Converts any security finding, vulnerability, or bug into a prioritized step-by-step remediation plan with effort estimates (Low / Medium / High) per step
+description: Converts a security finding or vulnerability into a prioritized step-by-step remediation plan with effort estimates per step.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -12,7 +12,7 @@ metadata:
 
 Given any security finding, vulnerability, or bug description, produce a prioritized, step-by-step remediation plan. Each step includes a title, a concise explanation, and an effort estimate so the team knows what to do and how hard it is.
 
-## When to Use
+## When to use
 
 - User provides a vulnerability, finding, or bug and needs a fix plan
 - User asks "how do we fix this?" or "what's the remediation for X?"
@@ -43,7 +43,7 @@ Use this exact structure. Repeat the step block for each step.
 
 **Step [N] — [Short Action Title]**
 [What to do and why — maximum 2 lines.]
-`Effort: Low / Medium / High`
+`Effort: Medium`
 
 ---
 
@@ -77,3 +77,4 @@ Add a WAF rule to detect and block common SQL injection patterns while the code 
 - Order matters: immediate/easy wins first, architectural fixes last
 - If a step is a temporary compensating control, label it clearly as such
 - Do not include unrelated hardening advice — stay focused on the reported finding
+- If no concrete remediation exists (e.g. a fundamental design flaw), state that clearly and describe the trade-offs of available mitigations instead
