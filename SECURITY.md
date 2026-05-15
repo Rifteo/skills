@@ -4,7 +4,7 @@
 
 **Do not open a public GitHub issue for security vulnerabilities.**
 
-Report vulnerabilities privately using [GitHub's Security Advisories](../../security/advisories/new).
+Report vulnerabilities privately using [GitHub's Security Advisories](../../security).
 
 We will acknowledge within 48 hours and aim to resolve within 14 days.
 
