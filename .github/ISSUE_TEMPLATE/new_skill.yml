@@ -1,0 +1,42 @@
+name: New Skill Request
+description: Suggest a new agent skill
+title: "[Skill]: "
+labels: ["new-skill"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Skill name
+      description: Kebab-case folder name.
+      placeholder: "e.g. jwt-cracker"
+    validations:
+      required: true
+  - type: input
+    id: description
+    attributes:
+      label: One-line description
+      placeholder: "What this skill does in one sentence."
+    validations:
+      required: true
+  - type: textarea
+    id: when_to_use
+    attributes:
+      label: When to use
+      description: What scenarios or context types would benefit from this skill?
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: External tool (if any)
+      description: CLI tool this skill wraps, if applicable.
+      placeholder: "e.g. sqlmap, ffuf"
+    validations:
+      required: false
+  - type: textarea
+    id: steps
+    attributes:
+      label: Skill steps (draft)
+      description: Key steps the agent should follow. Rough draft is fine.
+    validations:
+      required: false

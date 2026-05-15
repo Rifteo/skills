@@ -1,0 +1,36 @@
+name: Skill Issue
+description: Report a broken, incorrect, or outdated skill
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please check [existing issues](../issues) before reporting to avoid duplicates.
+  - type: input
+    id: skill_name
+    attributes:
+      label: Skill name
+      placeholder: "e.g. xss-hunter"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What is wrong?
+      description: Describe the incorrect, broken, or outdated content.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should it do?
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "OS: Kali Linux / Agent: Claude Code / Tool version: sqlmap 1.8"
+    validations:
+      required: false

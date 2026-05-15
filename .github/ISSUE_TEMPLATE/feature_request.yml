@@ -1,0 +1,30 @@
+name: Feature Request
+description: Suggest an improvement to an existing skill
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: input
+    id: skill_name
+    attributes:
+      label: Skill name
+      placeholder: "e.g. xss-hunter (leave blank if general)"
+    validations:
+      required: false
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is missing or could be better?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
