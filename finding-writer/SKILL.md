@@ -54,3 +54,4 @@ Convert raw pentest notes, log snippets, vulnerability descriptions, or any unst
 - Recommendations must be specific enough that a developer can implement the fix without follow-up questions
 - Ask at most one clarifying question per finding
 - Do not add disclaimers, caveats, or legal boilerplate to the output
+- See `references/examples.md` for a complete example at each severity level
