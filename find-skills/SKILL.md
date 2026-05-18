@@ -11,18 +11,24 @@ When the user is looking for functionality that might exist as an installable Au
 
 | Skill | What it does | Install |
 |---|---|---|
+| `attack-surface` | Maps every entry point, component, and trust boundary of a target before testing begins — prevents missed coverage and prioritizes the highest-value attack paths | `auditguard-skills add attack-surface` |
 | `caveman` | Ultra-compressed response mode for cybersecurity contexts — strips filler while keeping CVEs, payloads, CVSS scores, and findings exact. User-triggered only (/caveman, "caveman mode", "be brief", "in short", "tl;dr", "straight to the point", "just the findings"). | `auditguard-skills add caveman` |
 | `check-exploit` | Searches known exploit databases and sources for a given service, version, or CVE — from searchsploit to Vulners, MSF, and beyond | `auditguard-skills add check-exploit` |
 | `compliance-gap-analyzer` | Aggregates audit findings mapped to framework controls, classifies each control as compliant / partially compliant / non-compliant / not tested, identifies blind spots, prioritizes gaps by severity, and produces a complete self-contained gap report — supports ISO 27001, NIST CSF, PCI-DSS, and OWASP (Top 10 / ASVS) | `auditguard-skills add compliance-gap-analyzer` |
 | `control-lookup` | Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS) — returns the full control card, cross-framework mappings with confidence level, related controls, and testing hints | `auditguard-skills add control-lookup` |
+| `ctf-writeup` | Generates a clean, publishable CTF challenge writeup from solve notes — suitable for HTB, CTFtime, personal blogs, and team wikis | `auditguard-skills add ctf-writeup` |
+| `engagement-handoff` | Documents the current state of an active pentest engagement so the next agent session can continue without losing context — findings, coverage, next steps, and open threads | `auditguard-skills add engagement-handoff` |
 | `finding-writer` | Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report | `auditguard-skills add finding-writer` |
 | `idor-hunter` | Systematic IDOR/BOLA detection methodology — recon, multi-account testing, bypass techniques, and report structure | `auditguard-skills add idor-hunter` |
 | `jwt-cracker` | Full JWT attack methodology — alg:none, RS256 to HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering | `auditguard-skills add jwt-cracker` |
 | `nuclei-template-writer` | Converts a vulnerability description or HTTP request/response pair into a ready-to-run Nuclei YAML template — handles auth strategies, matcher selection, OOB detection, and multi-step flows | `auditguard-skills add nuclei-template-writer` |
+| `pentest-report` | Generates a complete, client-ready penetration test report from all findings in the current engagement — executive summary, risk table, technical findings, and recommendations | `auditguard-skills add pentest-report` |
 | `remediation-planner` | Converts a security finding or vulnerability into a prioritized step-by-step remediation plan with effort estimates per step. | `auditguard-skills add remediation-planner` |
 | `risk-assessor` | Scores a vulnerability using likelihood × impact, CIA triad, CVSS correlation, and SLA-bound remediation urgency | `auditguard-skills add risk-assessor` |
+| `scope-grill` | Interviews the user about a pentest or audit engagement before any testing begins — captures target, scope, rules of engagement, auth, and deliverables into a structured brief | `auditguard-skills add scope-grill` |
 | `skill-benchmark` | Scores any SKILL.md across 5 quality dimensions, runs a compatibility check against 50+ AI agents, and returns a ranked fix list — use when asked to benchmark, audit, or check cross-agent compatibility of a skill. | `auditguard-skills add skill-benchmark` |
 | `ssti-hunter` | Complete SSTI detection and exploitation methodology — engine fingerprinting, RCE payloads per engine (Jinja2, Twig, FreeMarker, Velocity, Mako, ERB, EJS, Pebble, Thymeleaf, Smarty, Pug, Handlebars, Nunjucks), sandbox escapes, blind detection, and report structure | `auditguard-skills add ssti-hunter` |
+| `vuln-diagnose` | Builds a deterministic, reproducible proof-of-concept for a suspected vulnerability before writing a finding — eliminates false positives and produces airtight evidence | `auditguard-skills add vuln-diagnose` |
 | `xss-hunter` | Complete XSS testing methodology — covers reflected, stored, DOM-based, blind, and mutation XSS, CSP bypass, DOM clobbering, filter/WAF evasion, and impact escalation | `auditguard-skills add xss-hunter` |
 
 ## How to Find a Skill
@@ -51,18 +57,24 @@ auditguard-skills add <skill-name> --agent claude-code
 
 When the user asks about a task, suggest the right skill:
 
+- Maps every entry point, component, and trust boundary of a target before testing begins — prevents missed coverage and prioritizes the highest-value attack paths → `attack-surface`
 - Ultra-compressed response mode for cybersecurity contexts — strips filler while keeping CVEs, payloads, CVSS scores, and findings exact. User-triggered only (/caveman, "caveman mode", "be brief", "in short", "tl;dr", "straight to the point", "just the findings"). → `caveman`
 - Searches known exploit databases and sources for a given service, version, or CVE — from searchsploit to Vulners, MSF, and beyond → `check-exploit`
 - Aggregates audit findings mapped to framework controls, classifies each control as compliant / partially compliant / non-compliant / not tested, identifies blind spots, prioritizes gaps by severity, and produces a complete self-contained gap report — supports ISO 27001, NIST CSF, PCI-DSS, and OWASP (Top 10 / ASVS) → `compliance-gap-analyzer`
 - Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS) — returns the full control card, cross-framework mappings with confidence level, related controls, and testing hints → `control-lookup`
+- Generates a clean, publishable CTF challenge writeup from solve notes — suitable for HTB, CTFtime, personal blogs, and team wikis → `ctf-writeup`
+- Documents the current state of an active pentest engagement so the next agent session can continue without losing context — findings, coverage, next steps, and open threads → `engagement-handoff`
 - Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report → `finding-writer`
 - Systematic IDOR/BOLA detection methodology — recon, multi-account testing, bypass techniques, and report structure → `idor-hunter`
 - Full JWT attack methodology — alg:none, RS256 to HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering → `jwt-cracker`
 - Converts a vulnerability description or HTTP request/response pair into a ready-to-run Nuclei YAML template — handles auth strategies, matcher selection, OOB detection, and multi-step flows → `nuclei-template-writer`
+- Generates a complete, client-ready penetration test report from all findings in the current engagement — executive summary, risk table, technical findings, and recommendations → `pentest-report`
 - Converts a security finding or vulnerability into a prioritized step-by-step remediation plan with effort estimates per step. → `remediation-planner`
 - Scores a vulnerability using likelihood × impact, CIA triad, CVSS correlation, and SLA-bound remediation urgency → `risk-assessor`
+- Interviews the user about a pentest or audit engagement before any testing begins — captures target, scope, rules of engagement, auth, and deliverables into a structured brief → `scope-grill`
 - Scores any SKILL.md across 5 quality dimensions, runs a compatibility check against 50+ AI agents, and returns a ranked fix list — use when asked to benchmark, audit, or check cross-agent compatibility of a skill. → `skill-benchmark`
 - Complete SSTI detection and exploitation methodology — engine fingerprinting, RCE payloads per engine (Jinja2, Twig, FreeMarker, Velocity, Mako, ERB, EJS, Pebble, Thymeleaf, Smarty, Pug, Handlebars, Nunjucks), sandbox escapes, blind detection, and report structure → `ssti-hunter`
+- Builds a deterministic, reproducible proof-of-concept for a suspected vulnerability before writing a finding — eliminates false positives and produces airtight evidence → `vuln-diagnose`
 - Complete XSS testing methodology — covers reflected, stored, DOM-based, blind, and mutation XSS, CSP bypass, DOM clobbering, filter/WAF evasion, and impact escalation → `xss-hunter`
 
 ## Rules
