@@ -27,7 +27,7 @@ cd skills
 npm link
 ```
 
-> npm publish coming soon — `npx auditguard-skills` will work without cloning once released.
+> npm publish coming soon. `npx auditguard-skills` will work without cloning once released.
 
 ## Commands
 
@@ -61,19 +61,19 @@ auditguard-skills remove finding-writer
 | Skill | What it does | Platforms |
 |---|---|---|
 | `bugbounty-reporter` | Converts raw findings into triage-ready reports | HackerOne, Bugcrowd, Intigriti, YesWeHack |
-| `caveman` | Ultra-compressed communication mode — max signal, zero noise | All |
+| `caveman` | Ultra-compressed communication mode for fast-paced testing | All |
 
 ### Vulnerability Testing
 
 | Skill | What it does |
 |---|---|
-| `idor-hunter` | Systematic IDOR/BOLA detection — recon, multi-account testing, bypass techniques |
-| `xss-hunter` | Full XSS methodology — reflected, stored, DOM, filter bypass, exploitation |
-| `ssrf-hunter` | SSRF detection and exploitation — internal recon, cloud metadata, filter bypass |
-| `xxe-phantom` | XXE injection — file read, blind OOB, SSRF chaining, SVG/XLSX vectors |
-| `ssti-hunter` | Server-side template injection — engine fingerprinting and RCE exploitation |
-| `js-analyzer` | JavaScript analysis — secrets, endpoints, sinks, prototype pollution |
-| `jwt-cracker` | JWT attacks — alg:none, weak secret, RS256→HS256, kid injection |
+| `idor-hunter` | Systematic IDOR/BOLA detection with multi-account testing and bypass techniques |
+| `xss-hunter` | Full XSS methodology covering reflected, stored, DOM, filter bypass, and exploitation |
+| `ssrf-hunter` | SSRF detection and exploitation including internal recon, cloud metadata, and filter bypass |
+| `xxe-phantom` | XXE injection covering file read, blind OOB, SSRF chaining, and SVG/XLSX vectors |
+| `ssti-hunter` | Server-side template injection with engine fingerprinting and RCE exploitation |
+| `js-analyzer` | JavaScript analysis for secrets, endpoints, sinks, and prototype pollution |
+| `jwt-cracker` | JWT attacks including alg:none, weak secret brute-force, RS256 to HS256, and kid injection |
 | `hpp-hunter` | HTTP parameter pollution detection and exploitation |
 | `clickjacking-hunter` | Clickjacking detection and PoC generation |
 | `redirect-forge` | Open redirect discovery and OAuth chaining |
@@ -83,7 +83,7 @@ auditguard-skills remove finding-writer
 | Skill | What it does |
 |---|---|
 | `finding-writer` | Converts raw notes into a structured, report-ready finding |
-| `pentest-report` | Assembles full pentest report from findings |
+| `pentest-report` | Assembles a full pentest report from findings |
 | `cvss-scorer` | Computes exact CVSS v3.1 base score and vector from a vulnerability description |
 | `risk-assessor` | Business risk assessment from technical findings |
 | `remediation-planner` | Generates specific, prioritized remediation plans |
@@ -103,7 +103,7 @@ auditguard-skills remove finding-writer
 | Skill | What it does |
 |---|---|
 | `compliance-gap-analyzer` | Identifies compliance gaps against security frameworks |
-| `control-lookup` | Looks up controls across ISO 27001, SOC2, NIST, PCI-DSS |
+| `control-lookup` | Looks up controls across ISO 27001, SOC2, NIST, and PCI-DSS |
 
 ### Workflow
 
@@ -114,18 +114,18 @@ auditguard-skills remove finding-writer
 | `ctf-writeup` | Formats CTF challenge writeups |
 | `skill-benchmark` | Benchmarks skill performance with and without the agent |
 
-[Contribute a skill →](SKILL_GUIDE.md)
+[Contribute a skill](SKILL_GUIDE.md)
 
 ## How to use a skill
 
 After installing, activate the skill from your agent:
 
-- **Claude Code** — type `/skills` and select the skill from the list
-- **Cursor / Windsurf** — type `/skill-name` in the chat
-- **Gemini CLI** — type `@skill-name` to invoke
-- **Other agents** — skills are loaded automatically from the skills directory on session start
+- **Claude Code** - type `/skills` and select the skill from the list
+- **Cursor / Windsurf** - type `/skill-name` in the chat
+- **Gemini CLI** - type `@skill-name` to invoke
+- **Other agents** - skills are loaded automatically from the skills directory on session start
 
-Once active, just describe what you need in plain language — the skill handles the structure.
+Once active, just describe what you need in plain language and the skill handles the structure.
 
 **Example with `finding-writer`:**
 ```
@@ -159,18 +159,18 @@ The agent produces a complete, report-ready finding.
 
 Have a skill that would help the community? Open a PR.
 
-Read the **[Skill Structure Guide](SKILL_GUIDE.md)** for the full format — frontmatter fields, references, scripts, and best practices.
+Read the **[Skill Structure Guide](SKILL_GUIDE.md)** for the full format including frontmatter fields, references, scripts, and best practices.
 
 Quick version:
 1. Create a folder named after your skill
 2. Add a `SKILL.md` with YAML frontmatter and instructions
 3. Open a pull request
 
-Once merged, the `find-skills` index updates automatically — your skill is immediately discoverable by the community.
+Once merged, the `find-skills` index updates automatically and your skill is immediately discoverable by the community.
 
 ## Part of AuditGuard
 
-These skills work standalone with any agent and integrate natively with [AuditGuard](https://github.com/AuditGuard-Community) — the pentest management platform built for security teams and consultancies.
+These skills work standalone with any agent and integrate natively with [AuditGuard](https://github.com/AuditGuard-Community), the pentest management platform built for security teams and consultancies.
 
 ## License
 
