@@ -12,6 +12,7 @@ When the user is looking for functionality that might exist as an installable Au
 | Skill | What it does | Install |
 |---|---|---|
 | `attack-surface` | Maps every entry point, component, and trust boundary of a target before testing begins — prevents missed coverage and prioritizes the highest-value attack paths | `auditguard-skills add attack-surface` |
+| `bugbounty-reporter` | Converts raw bug bounty findings into a complete, triage-ready report — clear description, numbered reproduction steps, self-contained PoC, risk, and remediation. Writes for triagers who are not necessarily security experts. Covers all vuln classes and major platforms (HackerOne, Bugcrowd, Intigriti, YesWeHack). | `auditguard-skills add bugbounty-reporter` |
 | `caveman` | Ultra-compressed response mode for cybersecurity contexts — strips filler while keeping CVEs, payloads, CVSS scores, and findings exact. User-triggered only (/caveman, "caveman mode", "be brief", "in short", "tl;dr", "straight to the point", "just the findings"). | `auditguard-skills add caveman` |
 | `check-exploit` | Searches known exploit databases and sources for a given service, version, or CVE — from searchsploit to Vulners, MSF, and beyond | `auditguard-skills add check-exploit` |
 | `compliance-gap-analyzer` | Aggregates audit findings mapped to framework controls, classifies each control as compliant / partially compliant / non-compliant / not tested, identifies blind spots, prioritizes gaps by severity, and produces a complete self-contained gap report — supports ISO 27001, NIST CSF, PCI-DSS, and OWASP (Top 10 / ASVS) | `auditguard-skills add compliance-gap-analyzer` |
@@ -58,6 +59,7 @@ auditguard-skills add <skill-name> --agent claude-code
 When the user asks about a task, suggest the right skill:
 
 - Maps every entry point, component, and trust boundary of a target before testing begins — prevents missed coverage and prioritizes the highest-value attack paths → `attack-surface`
+- Converts raw bug bounty findings into a complete, triage-ready report — clear description, numbered reproduction steps, self-contained PoC, risk, and remediation. Writes for triagers who are not necessarily security experts. Covers all vuln classes and major platforms (HackerOne, Bugcrowd, Intigriti, YesWeHack). → `bugbounty-reporter`
 - Ultra-compressed response mode for cybersecurity contexts — strips filler while keeping CVEs, payloads, CVSS scores, and findings exact. User-triggered only (/caveman, "caveman mode", "be brief", "in short", "tl;dr", "straight to the point", "just the findings"). → `caveman`
 - Searches known exploit databases and sources for a given service, version, or CVE — from searchsploit to Vulners, MSF, and beyond → `check-exploit`
 - Aggregates audit findings mapped to framework controls, classifies each control as compliant / partially compliant / non-compliant / not tested, identifies blind spots, prioritizes gaps by severity, and produces a complete self-contained gap report — supports ISO 27001, NIST CSF, PCI-DSS, and OWASP (Top 10 / ASVS) → `compliance-gap-analyzer`
