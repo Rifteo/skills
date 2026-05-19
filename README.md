@@ -56,11 +56,65 @@ auditguard-skills remove finding-writer
 
 ## Available Skills
 
+### Bug Bounty
+
+| Skill | What it does | Platforms |
+|---|---|---|
+| `bugbounty-reporter` | Converts raw findings into triage-ready reports | HackerOne, Bugcrowd, Intigriti, YesWeHack |
+| `caveman` | Ultra-compressed communication mode — max signal, zero noise | All |
+
+### Vulnerability Testing
+
 | Skill | What it does |
 |---|---|
-| `find-skills` | Discover and install the right AuditGuard skill for any security or audit task |
+| `idor-hunter` | Systematic IDOR/BOLA detection — recon, multi-account testing, bypass techniques |
+| `xss-hunter` | Full XSS methodology — reflected, stored, DOM, filter bypass, exploitation |
+| `ssrf-hunter` | SSRF detection and exploitation — internal recon, cloud metadata, filter bypass |
+| `xxe-phantom` | XXE injection — file read, blind OOB, SSRF chaining, SVG/XLSX vectors |
+| `ssti-hunter` | Server-side template injection — engine fingerprinting and RCE exploitation |
+| `js-analyzer` | JavaScript analysis — secrets, endpoints, sinks, prototype pollution |
+| `jwt-cracker` | JWT attacks — alg:none, weak secret, RS256→HS256, kid injection |
+| `hpp-hunter` | HTTP parameter pollution detection and exploitation |
+| `clickjacking-hunter` | Clickjacking detection and PoC generation |
+| `redirect-forge` | Open redirect discovery and OAuth chaining |
 
-More skills coming soon. [Contribute one →](SKILL_GUIDE.md)
+### Reporting & Scoring
+
+| Skill | What it does |
+|---|---|
+| `finding-writer` | Converts raw notes into a structured, report-ready finding |
+| `pentest-report` | Assembles full pentest report from findings |
+| `cvss-scorer` | Computes exact CVSS v3.1 base score and vector from a vulnerability description |
+| `risk-assessor` | Business risk assessment from technical findings |
+| `remediation-planner` | Generates specific, prioritized remediation plans |
+
+### Recon & Assessment
+
+| Skill | What it does |
+|---|---|
+| `attack-surface` | Maps the full attack surface before testing begins |
+| `scope-grill` | Validates and clarifies engagement scope |
+| `check-exploit` | Checks if a CVE has a public exploit and assesses exploitability |
+| `vuln-diagnose` | Diagnoses ambiguous vulnerability reports |
+| `nuclei-template-writer` | Writes Nuclei templates from vulnerability descriptions |
+
+### Compliance & Governance
+
+| Skill | What it does |
+|---|---|
+| `compliance-gap-analyzer` | Identifies compliance gaps against security frameworks |
+| `control-lookup` | Looks up controls across ISO 27001, SOC2, NIST, PCI-DSS |
+
+### Workflow
+
+| Skill | What it does |
+|---|---|
+| `find-skills` | Discover and install the right skill for any security task |
+| `engagement-handoff` | Structures engagement handoff notes between team members |
+| `ctf-writeup` | Formats CTF challenge writeups |
+| `skill-benchmark` | Benchmarks skill performance with and without the agent |
+
+[Contribute a skill →](SKILL_GUIDE.md)
 
 ## How to use a skill
 
