@@ -772,7 +772,7 @@ grep -rEin "socket\.send\|\.emit\(|ws\.send" ./js-files/ | head -20
 ```html
 <!-- Test if the WebSocket server validates the Origin header -->
 <script>
-var ws = new WSocket("wss://target.com/ws");
+var ws = new WebSocket("wss://target.com/ws");
 ws.onopen = function() {
   ws.send('{"action":"getProfile","userId":1}');
 };
