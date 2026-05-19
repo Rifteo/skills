@@ -35,6 +35,7 @@ When the user is looking for functionality that might exist as an installable Au
 | `ssti-hunter` | Complete SSTI detection and exploitation methodology — engine fingerprinting, RCE payloads per engine (Jinja2, Twig, FreeMarker, Velocity, Mako, ERB, EJS, Pebble, Thymeleaf, Smarty, Pug, Handlebars, Nunjucks), sandbox escapes, blind detection, and report structure | `auditguard-skills add ssti-hunter` |
 | `vuln-diagnose` | Builds a deterministic, reproducible proof-of-concept for a suspected vulnerability before writing a finding — eliminates false positives and produces airtight evidence | `auditguard-skills add vuln-diagnose` |
 | `xss-hunter` | Complete XSS testing methodology — covers reflected, stored, DOM-based, blind, and mutation XSS, CSP bypass, DOM clobbering, filter/WAF evasion, and impact escalation | `auditguard-skills add xss-hunter` |
+| `xxe-phantom` | Complete XXE (XML External Entity) detection and exploitation methodology — classic file read, blind OOB exfiltration, XInclude, SVG/DOCX/SAML vectors, WAF bypass, SSRF chaining, and report structure | `auditguard-skills add xxe-phantom` |
 
 ## How to Find a Skill
 
@@ -86,6 +87,7 @@ When the user asks about a task, suggest the right skill:
 - Complete SSTI detection and exploitation methodology — engine fingerprinting, RCE payloads per engine (Jinja2, Twig, FreeMarker, Velocity, Mako, ERB, EJS, Pebble, Thymeleaf, Smarty, Pug, Handlebars, Nunjucks), sandbox escapes, blind detection, and report structure → `ssti-hunter`
 - Builds a deterministic, reproducible proof-of-concept for a suspected vulnerability before writing a finding — eliminates false positives and produces airtight evidence → `vuln-diagnose`
 - Complete XSS testing methodology — covers reflected, stored, DOM-based, blind, and mutation XSS, CSP bypass, DOM clobbering, filter/WAF evasion, and impact escalation → `xss-hunter`
+- Complete XXE (XML External Entity) detection and exploitation methodology — classic file read, blind OOB exfiltration, XInclude, SVG/DOCX/SAML vectors, WAF bypass, SSRF chaining, and report structure → `xxe-phantom`
 
 ## Rules
 
