@@ -24,7 +24,7 @@ Response: [paste agent output]
 Prompt: [follow-up prompt]
 Response: [paste agent output]
 
-Total turns: N — Total tokens: ~XXXX
+Total turns: N - Total tokens: ~XXXX
 
 **What was missing:**
 - ...
@@ -38,7 +38,7 @@ Total turns: N — Total tokens: ~XXXX
 Prompt: [same initial prompt]
 Response: [paste agent output]
 
-Total turns: 1 — Total tokens: ~XXXX
+Total turns: 1 - Total tokens: ~XXXX
 
 **What the skill provided:**
 - ...
