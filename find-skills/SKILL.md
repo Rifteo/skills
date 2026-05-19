@@ -21,6 +21,7 @@ When the user is looking for functionality that might exist as an installable Au
 | `ctf-writeup` | Generates a clean, publishable CTF challenge writeup from solve notes — suitable for HTB, CTFtime, personal blogs, and team wikis | `auditguard-skills add ctf-writeup` |
 | `engagement-handoff` | Documents the current state of an active pentest engagement so the next agent session can continue without losing context — findings, coverage, next steps, and open threads | `auditguard-skills add engagement-handoff` |
 | `finding-writer` | Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report | `auditguard-skills add finding-writer` |
+| `hpp-hunter` | Complete HTTP Parameter Pollution methodology — server behavior fingerprinting, server-side and client-side HPP, WAF bypass via parameter splitting, OAuth/payment/access-control abuse, header and JSON body pollution, and report structure. | `auditguard-skills add hpp-hunter` |
 | `idor-hunter` | Systematic IDOR/BOLA detection methodology — recon, multi-account testing, bypass techniques, and report structure | `auditguard-skills add idor-hunter` |
 | `jwt-cracker` | Full JWT attack methodology — alg:none, RS256 to HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering | `auditguard-skills add jwt-cracker` |
 | `nuclei-template-writer` | Converts a vulnerability description or HTTP request/response pair into a ready-to-run Nuclei YAML template — handles auth strategies, matcher selection, OOB detection, and multi-step flows | `auditguard-skills add nuclei-template-writer` |
@@ -69,6 +70,7 @@ When the user asks about a task, suggest the right skill:
 - Generates a clean, publishable CTF challenge writeup from solve notes — suitable for HTB, CTFtime, personal blogs, and team wikis → `ctf-writeup`
 - Documents the current state of an active pentest engagement so the next agent session can continue without losing context — findings, coverage, next steps, and open threads → `engagement-handoff`
 - Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report → `finding-writer`
+- Complete HTTP Parameter Pollution methodology — server behavior fingerprinting, server-side and client-side HPP, WAF bypass via parameter splitting, OAuth/payment/access-control abuse, header and JSON body pollution, and report structure. → `hpp-hunter`
 - Systematic IDOR/BOLA detection methodology — recon, multi-account testing, bypass techniques, and report structure → `idor-hunter`
 - Full JWT attack methodology — alg:none, RS256 to HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering → `jwt-cracker`
 - Converts a vulnerability description or HTTP request/response pair into a ready-to-run Nuclei YAML template — handles auth strategies, matcher selection, OOB detection, and multi-step flows → `nuclei-template-writer`
