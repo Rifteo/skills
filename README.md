@@ -2,7 +2,7 @@
 
 # AuditGuard Agent Skills
 
-Reusable instruction sets for pentesters, auditors, and security practitioners. Install into Claude Code, Cursor, Gemini CLI, GitHub Copilot, Windsurf, and more in one command.
+Reusable instruction sets for pentesters, auditors, and security practitioners. Install into Claude Code, Cursor, Gemini CLI, GitHub Copilot, Windsurf, and 48 other agents in one command.
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![npm](https://img.shields.io/badge/npm-coming%20soon-lightgrey)](https://www.npmjs.com/package/auditguard-skills)
