@@ -2,7 +2,7 @@
 
 # AuditGuard Agent Skills
 
-Reusable instruction sets for pentesters, auditors, and security practitioners. Install into Claude Code, Cursor, Gemini CLI, GitHub Copilot, Windsurf, and 54+ other agents in one command.
+Reusable instruction sets for pentesters, auditors, and security practitioners. Install into Claude Code, Cursor, Gemini CLI, GitHub Copilot, Windsurf, and more in one command.
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![npm](https://img.shields.io/badge/npm-coming%20soon-lightgrey)](https://www.npmjs.com/package/auditguard-skills)
@@ -10,6 +10,24 @@ Reusable instruction sets for pentesters, auditors, and security practitioners. 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](SKILL_GUIDE.md)
 
 </div>
+
+## Why Skills?
+
+Without a skill, an agent improvises. It misses bypass techniques, skips confirmation steps, and produces inconsistent output. You end up re-prompting multiple times to get a complete result, burning tokens and time.
+
+A skill gives the agent a proven methodology. Same quality every run, first try.
+
+| | Without skill | With skill |
+|---|---|---|
+| Output quality | Inconsistent | Structured and complete |
+| Turns to completion | 3-5 | 1 |
+| Methodology coverage | Partial | Full |
+
+Not sure which skill to use? Install `find-skills` first. It helps you discover and load the right skill for any task.
+
+```bash
+npx auditguard-skills add find-skills
+```
 
 ## Quickstart
 
@@ -167,6 +185,10 @@ Quick version:
 3. Open a pull request
 
 Once merged, the `find-skills` index updates automatically and your skill is immediately discoverable by the community.
+
+## Contexts
+
+Skills pair with [AuditGuard Contexts](https://github.com/AuditGuard-Community/contexts), engagement-specific knowledge bases for web app pentest, cloud audit, mobile pentest, and more.
 
 ## Part of AuditGuard
 
