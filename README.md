@@ -6,7 +6,7 @@
   <img src=".github/assets/banner-light.png" alt="AuditGuard Skills" width="250">
 </picture>
 
-<br><br>
+<br>
 
 **Your agent improvises. Skills don't.**
 
