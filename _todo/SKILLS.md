@@ -15,6 +15,8 @@ Skills flagged for development. Pick one up and open a PR.
 | `hunt-http-smuggling` | HTTP request smuggling - CL.TE, TE.CL, TE.TE variants and exploit chains |
 | `hunt-race-condition` | Race conditions - limit-once bypass, coupon abuse, concurrent state manipulation |
 | `hunt-llm-ai` | LLM/AI feature testing - prompt injection, data exfiltration via AI, indirect injection |
+| `hunt-web3` | Web3/Immunefi - reentrancy, flash loan manipulation, oracle abuse, access control, integer overflow |
+| `vuln-chainer` | Given a confirmed finding, enumerate and test all companion bugs from the chain signal table |
 
 ## Workflow
 

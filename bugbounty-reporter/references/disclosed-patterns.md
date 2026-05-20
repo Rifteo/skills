@@ -1,4 +1,14 @@
-# Disclosed Report Patterns
+# References
+
+## Chain Signals
+
+- [chain-signals.md](chain-signals.md) - 17 A→B companion bug mappings and 6 escalation chain examples
+
+## Hunt Workflow
+
+- [hunt-workflow.md](hunt-workflow.md) - 7-phase structured engagement workflow (SCOPE→RECON→RANK→HUNT→VALIDATE→REPORT→CHECKPOINT)
+
+## Disclosed Report Patterns
 
 Patterns extracted from public bug bounty disclosures on HackerOne and Bugcrowd, organized by vulnerability class.
 
