@@ -2,7 +2,7 @@
 
 # AuditGuard Agent Skills
 
-**The skill library that turns AI agents into competent security practitioners.**
+**Your agent improvises. Skills don't.**
 
 Install proven pentest methodologies into Claude Code, Cursor, Gemini CLI, and 50+ other agents in one command.
 
