@@ -6,6 +6,8 @@
   <img src=".github/assets/banner-light.png" alt="AuditGuard Skills" width="250">
 </picture>
 
+---
+
 **Your agent improvises. Skills don't.**
 
 Install proven pentest methodologies into Claude Code, Cursor, Gemini CLI, and 50+ other agents in one command.
