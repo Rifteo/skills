@@ -17,7 +17,7 @@ function parseFrontmatter(content) {
 }
 
 const dirs = fs.readdirSync(ROOT, { withFileTypes: true })
-  .filter(d => d.isDirectory() && !SKIP.has(d.name))
+  .filter(d => d.isDirectory() && !SKIP.has(d.name) && !d.name.startsWith('_'))
 
 let errors = 0
 
