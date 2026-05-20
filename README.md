@@ -134,6 +134,25 @@ auditguard-skills remove finding-writer
 
 [Contribute a skill](SKILL_GUIDE.md)
 
+## Slash Commands (Claude Code)
+
+Installing a skill for Claude Code also offers to install AuditGuard slash commands, available in every session:
+
+| Command | What it does |
+|---|---|
+| `/auditguard:triage` | Runs the 7-question pre-submission gate, outputs GO, KILL, or DOWNGRADE |
+| `/auditguard:chain` | Given a confirmed finding, checks the signal table for companion bugs to escalate |
+| `/auditguard:report` | Writes a submission-ready bug bounty report |
+| `/auditguard:hunt` | Starts a structured 7-phase engagement workflow on a target |
+| `/auditguard:intel` | Looks up CVEs, GitHub advisories, and HackerOne hacktivity for a technology |
+
+Commands are self-contained and work without any skill loaded. Install them manually at any time:
+
+```bash
+auditguard-skills add bugbounty-reporter --agent claude-code
+# prompts: Install AuditGuard slash commands for Claude Code? [Y/n/never]
+```
+
 ## How to use a skill
 
 After installing, activate the skill from your agent:
