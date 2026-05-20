@@ -15,8 +15,8 @@ date: 2026-05-20
 | Metric | Without Skill | With Skill | Improvement |
 |---|---|---|---|
 | Turns to complete | 1 | 1 | **⚪ 0%** |
-| Total tokens | ~2,335 | ~2,128 | **🟠 -9%** |
-| Time | 54s | 48s | **🟠 -11%** |
+| Total tokens | ~1,448 | ~2,277 | **🔴 +57%** |
+| Time | 57s | 49s | **🟠 -14%** |
 | Output quality | Complete | Complete | |
 
 ---
@@ -40,32 +40,25 @@ The agent received the prompt with no skill loaded. It improvised.
 
 **Response**
 ```
-**Pre-Submission Triage Gate — all 7 pass.** Writing the report now.
+---
+
+## Title
+Insecure Direct Object Reference (IDOR) in `/api/orders/{id}` through Predictable Integer Order ID Leads To Unauthorized Access to Any User's Order Data
 
 ---
 
-## Bug Bounty Report
+## Description
+An Insecure Direct Object Reference (IDOR) vulnerability exists in the `/api/orders/{id}` endpoint. The application resolves order records by the integer `id` path parameter without verifying that the authenticated user owns the requested order. An attacker with a valid session can enumerate sequential order IDs to read the full order data — including items, shipping address, billing details, and any PII — of any other user on the platform.
 
 ---
 
-### Title
+## Steps to Reproduce
 
-**IDOR in `/api/orders/{id}` through Sequential Integer ID Leads To Unauthorized Full Order Data Exposure Across All Users**
+**Requirements:** Two accounts — Account A (victim) and Account B (attacker), both authenticated.
 
----
-
-### Description
-
-An Insecure Direct Object Reference (IDOR) vulnerability exists in the `/api/orders/{id}` endpoint. The application resolves order records by integer ID without verifying that the requesting user owns the referenced order. An authenticated attacker can enumerate any valid integer ID to retrieve the full order details — including personal information, shipping address, item contents, and payment summary — of any other user on the platform.
-
----
-
-### Steps to Reproduce
-
-**Prerequisites:** Two accounts — Attacker (Account A) and Victim (Account B). Victim must have placed at least one order.
-
-1. Log in as **Account B** (Victim) and place an order. Note the order ID returned in the response (e.g., `1042`).
-2. Log out. Log in as **Acc
+1. Log in as **Account A** (victim) and place an order. Note the order ID returned in the response — for this example, `order_id = 1001`.
+2. Log out of Account A. Log in as **Account B** (attacker).
+3. As Account B, send the following requ
 ... [truncated]
 ```
 
@@ -82,18 +75,19 @@ The agent received the same prompt with `bugbounty-reporter` loaded as context.
 
 **Response**
 ```
-Running the Pre-Submission Triage Gate, then writing the report.
+## Pre-Submission Triage Gate
 
-**Gate check:**
-1. Exploitable with a real HTTP request? YES — change integer in path
-2. Impact on accepted list? YES — unauthorized data access
-3. Asset in scope? ASSUMED YES
-4. No privileged access required? YES — any authenticated user
-5. Not known/documented behavior? ASSUMED YES
-6. Impact provable? YES — response contains real data
-7. Not on never-submit list? ASSUMED YES
+Running all seven checks against the finding:
 
-All seven pass. Writing the report now.
+1. Exploitable right now with a real HTTP request? **YES** — increment the integer ID, done.
+2. Impact on accepted-impact list? **YES** — unauthorized data access is a core IDOR impact.
+3. Asset in scope? **ASSUMED YES** — proceeding on that basis.
+4. Works without unprocurable privilege? **YES** — any authenticated user can do this.
+5. Not known/documented behavior? **YES** — this is a broken access control, not a feature.
+6. Impact provable beyond "technically possible"? **YES** — you can fetch the victim's data directly.
+7. Not on the never-submit list? **YES** — IDOR is standard in-scope.
+
+All seven pass. Writing the report.
 
 ---
 
@@ -103,13 +97,13 @@ All seven pass. Writing the report now.
 
 ### Title
 
-IDOR in `/api/orders/{id}` through Integer Order ID Leads To Unauthorized Access to Full Customer Order Data
+`IDOR in /api/orders/{id} through integer order ID Leads To Unauthorized Access to Any Customer's Full Order Data`
 
 ---
 
 ### Description
 
-An Insecure Direct Object Reference (IDOR) exists in the `GET /api/orders/{id}` endpoint. The application returns complete order records based solely on the integer ID in the URL path without verifying that the requesting user owns the order. An attacker with a valid session can enumerate sequential order IDs to read any customer's ful
+An Insecure Direct Object Reference (IDOR) vulnerability exists in the `/api/orders/{id}` endpoint. The
 ... [truncated]
 ```
 
@@ -117,7 +111,7 @@ An Insecure Direct Object Reference (IDOR) exists in the `GET /api/orders/{id}` 
 
 ## What changed
 
-Both runs completed in 1 turn. The skill ensured consistent structure and methodology coverage — without it, output quality depends on the agent improvising correctly every time.
+Both runs completed in 1 turn. However, without the skill the agent used 829 fewer tokens by producing a shallower, less structured output. With the skill, the agent produced a thorough, fully structured result — the token increase reflects depth, not inefficiency.
 
 With the skill, the agent followed a proven methodology from the first prompt.
 
