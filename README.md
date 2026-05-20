@@ -1,5 +1,11 @@
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset=".github/assets/banner-light.png">
+  <img src=".github/assets/banner-light.png" alt="AuditGuard Skills" width="250">
+</picture>
+
 # AuditGuard Agent Skills
 
 **Your agent improvises. Skills don't.**
