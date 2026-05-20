@@ -3,7 +3,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.png">
   <source media="(prefers-color-scheme: light)" srcset=".github/assets/banner-light.png">
-  <img src=".github/assets/banner-light.png" alt="AuditGuard Skills" width="300">
+  <img src=".github/assets/banner-light.png" alt="AuditGuard Skills" width="330">
 </picture>
 
 <br>
