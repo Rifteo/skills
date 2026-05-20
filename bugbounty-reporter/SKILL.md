@@ -1,8 +1,9 @@
 ---
 name: bugbounty-reporter
-description: Converts raw bug bounty findings into a complete, triage-ready report — clear description, numbered reproduction steps, self-contained PoC, risk, and remediation. Writes for triagers who are not necessarily security experts. Covers all vuln classes and major platforms (HackerOne, Bugcrowd, Intigriti, YesWeHack).
+description: Converts raw bug bounty findings into a complete, triage-ready report with clear description, numbered reproduction steps, self-contained PoC, risk, and remediation. Writes for triagers who are not necessarily security experts. Covers all vuln classes and major platforms (HackerOne, Bugcrowd, Intigriti, YesWeHack).
+license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   author: AuditGuard
   tags: ["bug-bounty", "reporting", "h1", "bugcrowd", "intigriti", "pentest"]
 ---
@@ -21,9 +22,26 @@ Turn raw findings into a report that gets triaged, not closed. Bug bounty report
 
 1. Parse the finding — vulnerability class, endpoint, parameter, auth state, observed behavior
 2. If critical context is missing, ask **one** question before writing — never stall with multiple questions
-3. Check: is this self-XSS, clickjacking on a low-value page, or missing header with no exploit path? If yes, flag it as likely N/A before writing
-4. Write the report using the structure below
-5. Mark any missing field `[TO ADD]` — never invent evidence
+3. Run the Pre-Submission Triage Gate below — one NO means do not write the report
+4. Check: is this self-XSS, clickjacking on a low-value page, or missing header with no exploit path? If yes, flag it as likely N/A before writing
+5. Write the report using the structure below
+6. Mark any missing field `[TO ADD]` — never invent evidence
+
+---
+
+## Pre-Submission Triage Gate
+
+Run before writing any report. One NO = kill the finding.
+
+1. Can an attacker use this RIGHT NOW with a real HTTP request?
+2. Is the impact on the program's accepted-impact list?
+3. Is the asset in scope?
+4. Does it work without privileged access an attacker cannot get?
+5. Is this not already known or documented behavior?
+6. Can impact be proved beyond "technically possible"?
+7. Is this not on the program's never-submit list?
+
+If all seven pass, proceed to write the report.
 
 ---
 
@@ -40,7 +58,7 @@ Format: `{Bug class} in {scope/endpoint} through {parameter or element} Leads To
 ```
 
 ### Description
-2–4 sentences. No filler. Start with the finding.
+2-4 sentences. No filler. Start with the finding.
 
 Template: `[Vuln class] exists in [location]. The application [root cause]. An attacker can [impact].`
 
@@ -53,15 +71,16 @@ Numbered, exact, reproducible by someone who has never seen the app.
 
 ### Proof of Concept
 Use the format that fits:
-- **HTTP request/response** — preferred for API and web vulns
-- **curl command** — for easy reproduction
-- **Payload + trigger location** — for injection vulns
+- **HTTP request/response**, preferred for API and web vulns
+- **curl command**, for easy reproduction
+- **Payload + trigger location**, for injection vulns
 
 Rules: redact real PII, truncate long tokens, note if destructive actions used test accounts only.
 
 ### Risk
 One paragraph or bullets. Name the actual outcome — no vague statements.
 See `references/vuln-reference.md` for risk statements by vuln class.
+See `references/disclosed-patterns.md` for impact framing from paid reports.
 
 ### Remediation
 Specific and actionable — not "fix the access control".
