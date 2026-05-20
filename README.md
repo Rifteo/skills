@@ -2,42 +2,56 @@
 
 # AuditGuard Agent Skills
 
-Reusable instruction sets for pentesters, auditors, and security practitioners. Install into Claude Code, Cursor, Gemini CLI, GitHub Copilot, Windsurf, and 48 other agents in one command.
+**The skill library that turns AI agents into competent security practitioners.**
+
+Install proven pentest methodologies into Claude Code, Cursor, Gemini CLI, and 50+ other agents in one command.
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![npm](https://img.shields.io/badge/npm-coming%20soon-lightgrey)](https://www.npmjs.com/package/auditguard-skills)
-[![Issues](https://img.shields.io/github/issues/AuditGuard-Community/skills)](https://github.com/AuditGuard-Community/skills/issues)
+[![Skills](https://img.shields.io/badge/skills-27-brightgreen)](https://github.com/AuditGuard-Community/skills)
+[![Agents](https://img.shields.io/badge/agents-53-blue)](https://github.com/AuditGuard-Community/skills)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](SKILL_GUIDE.md)
 
 </div>
 
-## Why Skills?
+---
 
-Without a skill, an agent improvises. It misses bypass techniques, skips confirmation steps, and produces inconsistent output. You end up re-prompting multiple times to get a complete result, burning tokens and time.
+## The problem with AI agents and security work
 
-A skill gives the agent a proven methodology. Same quality every run, first try.
+Ask an agent to hunt for IDOR bugs. It will improvise. It misses verb inconsistency checks, skips GraphQL object exposure, and never tests parameter pollution. You re-prompt five times, spend 3x the tokens, and still get an incomplete result.
+
+The agent is not dumb. It lacks a methodology.
+
+---
+
+## What a skill is
+
+A skill is a battle-tested methodology file your agent reads before starting a task. It covers every test case, every bypass technique, every output format a practitioner would use. The agent stops improvising and starts executing.
 
 | | Without skill | With skill |
 |---|---|---|
 | Output quality | Inconsistent | Structured and complete |
-| Turns to completion | 3-5 | 1 |
+| Turns to finish | 3 to 5 | 1 |
 | Methodology coverage | Partial | Full |
+| Report format | Whatever the agent guesses | Triage-ready, platform-specific |
 
-Not sure which skill to use? Install `find-skills` first. It helps you discover and load the right skill for any task.
+27 skills. 53 agents. One command to install.
 
-```bash
-npx auditguard-skills add find-skills
-```
+---
 
 ## Quickstart
 
 ```bash
-npx auditguard-skills add finding-writer
+npx auditguard-skills add bugbounty-reporter
 ```
 
-No account needed. No configuration. The CLI auto-detects your installed agents and drops the skill in the right place.
+No account. No configuration. The CLI detects your installed agents automatically and puts the skill in the right place.
 
-## Install the CLI
+> npm publish coming soon. In the meantime: `git clone` + `npm link` (see Install below).
+
+---
+
+## Install
 
 ```bash
 git clone https://github.com/AuditGuard-Community/skills
@@ -45,131 +59,143 @@ cd skills
 npm link
 ```
 
-> npm publish coming soon. `npx auditguard-skills` will work without cloning once released.
+---
 
-## Commands
+## CLI
 
 ```bash
 # Install a skill into all detected agents
-auditguard-skills add finding-writer
+auditguard-skills add bugbounty-reporter
 
 # Install into a specific agent
-auditguard-skills add finding-writer --agent claude-code
+auditguard-skills add bugbounty-reporter --agent claude-code
 
-# Install globally (available in all projects)
-auditguard-skills add finding-writer --global
+# Install globally across all projects
+auditguard-skills add bugbounty-reporter --global
 
-# List all available skills
+# Browse all available skills
 auditguard-skills available
 
-# List installed skills
+# See what is installed
 auditguard-skills list
 
-# Show which agents were detected on this machine
+# See which agents were detected on this machine
 auditguard-skills agents
 
 # Remove a skill
-auditguard-skills remove finding-writer
+auditguard-skills remove bugbounty-reporter
 ```
 
-## Available Skills
+Not sure which skill to use? Install `find-skills` first:
+
+```bash
+npx auditguard-skills add find-skills
+```
+
+It reads your task and loads the right skill automatically.
+
+---
+
+## Skills
 
 ### Bug Bounty
 
 | Skill | What it does | Platforms |
 |---|---|---|
-| `bugbounty-reporter` | Converts raw findings into triage-ready reports | HackerOne, Bugcrowd, Intigriti, YesWeHack |
-| `caveman` | Ultra-compressed communication mode for fast-paced testing | All |
+| `bugbounty-reporter` | Converts raw findings into triage-ready reports. Pre-submission gate included. | HackerOne, Bugcrowd, Intigriti, YesWeHack |
+| `caveman` | Ultra-compressed comms mode for fast-paced testing sessions | All |
 
 ### Vulnerability Testing
 
 | Skill | What it does |
 |---|---|
-| `idor-hunter` | Systematic IDOR/BOLA detection with multi-account testing and bypass techniques |
-| `xss-hunter` | Full XSS methodology covering reflected, stored, DOM, filter bypass, and exploitation |
+| `idor-hunter` | Systematic IDOR and BOLA detection with multi-account testing and bypass techniques |
+| `xss-hunter` | Full XSS methodology: reflected, stored, DOM, filter bypass, CSP evasion, mXSS |
 | `ssrf-hunter` | SSRF detection and exploitation including internal recon, cloud metadata, and filter bypass |
-| `xxe-phantom` | XXE injection covering file read, blind OOB, SSRF chaining, and SVG/XLSX vectors |
+| `xxe-phantom` | XXE injection: file read, blind OOB, SSRF chaining, SVG and XLSX vectors |
 | `ssti-hunter` | Server-side template injection with engine fingerprinting and RCE exploitation |
 | `js-analyzer` | JavaScript analysis for secrets, endpoints, sinks, and prototype pollution |
-| `jwt-cracker` | JWT attacks including alg:none, weak secret brute-force, RS256 to HS256, and kid injection |
+| `jwt-cracker` | JWT attacks: alg:none, weak secret brute-force, RS256 to HS256, kid injection |
 | `hpp-hunter` | HTTP parameter pollution detection and exploitation |
 | `clickjacking-hunter` | Clickjacking detection and PoC generation |
-| `redirect-forge` | Open redirect discovery and OAuth chaining |
+| `redirect-forge` | Open redirect discovery and OAuth code theft chaining |
 
-### Reporting & Scoring
+### Reporting and Scoring
 
 | Skill | What it does |
 |---|---|
 | `finding-writer` | Converts raw notes into a structured, report-ready finding |
-| `pentest-report` | Assembles a full pentest report from findings |
+| `pentest-report` | Assembles a full pentest report from individual findings |
 | `cvss-scorer` | Computes exact CVSS v3.1 base score and vector from a vulnerability description |
 | `risk-assessor` | Business risk assessment from technical findings |
 | `remediation-planner` | Generates specific, prioritized remediation plans |
 
-### Recon & Assessment
+### Recon and Assessment
 
 | Skill | What it does |
 |---|---|
 | `attack-surface` | Maps the full attack surface before testing begins |
 | `scope-grill` | Validates and clarifies engagement scope |
 | `check-exploit` | Checks if a CVE has a public exploit and assesses exploitability |
-| `vuln-diagnose` | Diagnoses ambiguous vulnerability reports |
-| `nuclei-template-writer` | Writes Nuclei templates from vulnerability descriptions |
+| `vuln-diagnose` | Diagnoses ambiguous or incomplete vulnerability reports |
+| `nuclei-template-writer` | Writes production-ready Nuclei templates from vulnerability descriptions |
 
-### Compliance & Governance
+### Compliance and Governance
 
 | Skill | What it does |
 |---|---|
 | `compliance-gap-analyzer` | Identifies compliance gaps against security frameworks |
-| `control-lookup` | Looks up controls across ISO 27001, SOC2, NIST, and PCI-DSS |
+| `control-lookup` | Maps controls across ISO 27001, SOC2, NIST, and PCI-DSS |
 
 ### Workflow
 
 | Skill | What it does |
 |---|---|
-| `find-skills` | Discover and install the right skill for any security task |
+| `find-skills` | Discovers and loads the right skill for any security task |
 | `engagement-handoff` | Structures engagement handoff notes between team members |
 | `ctf-writeup` | Formats CTF challenge writeups |
 | `skill-benchmark` | Benchmarks skill performance with and without the agent |
 
-[Contribute a skill](SKILL_GUIDE.md)
+---
 
-## Slash Commands (Claude Code)
+## Slash Commands for Claude Code
 
-Installing a skill for Claude Code also offers to install AuditGuard slash commands, available in every session:
+Install a skill for Claude Code and you get five slash commands that work in every session, no skill loaded required:
 
 | Command | What it does |
 |---|---|
-| `/auditguard:triage` | Runs the 7-question pre-submission gate, outputs GO, KILL, or DOWNGRADE |
-| `/auditguard:chain` | Given a confirmed finding, checks the signal table for companion bugs to escalate |
-| `/auditguard:report` | Writes a submission-ready bug bounty report |
-| `/auditguard:hunt` | Starts a structured 7-phase engagement workflow on a target |
-| `/auditguard:intel` | Looks up CVEs, GitHub advisories, and HackerOne hacktivity for a technology |
-
-Commands are self-contained and work without any skill loaded. Install them manually at any time:
+| `/auditguard:triage` | 7-question pre-submission gate. Outputs GO, KILL, or DOWNGRADE with evidence. |
+| `/auditguard:chain` | Given a confirmed finding, checks the signal table for companion bugs to escalate severity |
+| `/auditguard:report` | Writes a submission-ready bug bounty report: title, steps, PoC, impact, remediation |
+| `/auditguard:hunt` | Launches a structured 7-phase engagement workflow on a target |
+| `/auditguard:intel` | Pulls CVEs, GitHub advisories, and HackerOne hacktivity for any named technology |
 
 ```bash
 auditguard-skills add bugbounty-reporter --agent claude-code
-# prompts: Install AuditGuard slash commands for Claude Code? [Y/n/never]
+# Install AuditGuard slash commands for Claude Code? [Y/n/never]
 ```
 
-## How to use a skill
+---
 
-After installing, activate the skill from your agent:
+## How to activate a skill
 
-- **Claude Code** - type `/skills` and select the skill from the list
-- **Cursor / Windsurf** - type `/skill-name` in the chat
-- **Gemini CLI** - type `@skill-name` to invoke
-- **Other agents** - skills are loaded automatically from the skills directory on session start
+After installing, tell your agent to use the skill:
 
-Once active, just describe what you need in plain language and the skill handles the structure.
+- **Claude Code** — type `/skills` and select from the list
+- **Cursor / Windsurf** — type `/skill-name` in chat
+- **Gemini CLI** — type `@skill-name` to invoke
+- **Other agents** — skills are loaded automatically from the skills directory on session start
 
-**Example with `finding-writer`:**
+Then describe your task in plain language:
+
 ```
-I found that the /api/orders/{id} endpoint returns order data without 
-checking if the authenticated user owns that order. Any user ID works.
+I found that /api/orders/{id} returns order data without checking 
+if the authenticated user owns that order. Any integer ID works.
 ```
-The agent produces a complete, report-ready finding.
+
+The agent produces a complete, triage-ready report. First try.
+
+---
 
 ## Supported Agents
 
@@ -190,29 +216,35 @@ The agent produces a complete, report-ready finding.
 | Augment | `augment` |
 | Kilo Code | `kilo` |
 | Amp | `amp` |
-| + more | `auditguard-skills agents` to see all |
+| + 38 more | run `auditguard-skills agents` to see all |
+
+---
 
 ## Contributing
 
-Have a skill that would help the community? Open a PR.
+Skills are built by practitioners, for practitioners. If you have a methodology that works, the community needs it.
 
-Read the **[Skill Structure Guide](SKILL_GUIDE.md)** for the full format including frontmatter fields, references, scripts, and best practices.
+Read the **[Skill Structure Guide](SKILL_GUIDE.md)** for the full format.
 
-Quick version:
+The short version:
 1. Create a folder named after your skill
-2. Add a `SKILL.md` with YAML frontmatter and instructions
+2. Add `SKILL.md` with YAML frontmatter and methodology
 3. Open a pull request
 
-Once merged, the `find-skills` index updates automatically and your skill is immediately discoverable by the community.
+Once merged, `find-skills` picks it up automatically and your skill is live for the entire community.
+
+---
 
 ## Contexts
 
-Skills pair with [AuditGuard Contexts](https://github.com/AuditGuard-Community/contexts), engagement-specific knowledge bases for web app pentest, cloud audit, mobile pentest, and more.
+Skills pair with [AuditGuard Contexts](https://github.com/AuditGuard-Community/contexts), engagement-specific knowledge bases for web app pentest, cloud audit, mobile pentest, and more. Load a context at the start of an engagement and the agent knows the full scope, methodology, and relevant skills before you ask the first question.
+
+---
 
 ## Part of AuditGuard
 
 These skills work standalone with any agent and integrate natively with [AuditGuard](https://github.com/AuditGuard-Community), the pentest management platform built for security teams and consultancies.
 
-## License
+---
 
-MIT
+MIT License
