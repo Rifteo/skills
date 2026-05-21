@@ -5,4 +5,4 @@ node_modules/
 Thumbs.db
 find-skills/SKILL.md
 .claude
-scripts/
+/scripts/

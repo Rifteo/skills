@@ -21,6 +21,7 @@ These commands are self-contained. They do not require the corresponding skill t
 | `/auditguard:report` | Writes a submission-ready bug bounty report with title, steps, PoC, impact, and remediation. |
 | `/auditguard:hunt` | Starts a structured 7-phase engagement workflow on a target. |
 | `/auditguard:intel` | Looks up CVEs, GitHub advisories, and HackerOne hacktivity for a named technology. |
+| `/auditguard:setup` | Audits current AuditGuard install state and gives exact steps for anything missing. |
 
 ---
 
