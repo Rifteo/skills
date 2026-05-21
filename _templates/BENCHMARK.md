@@ -1,6 +1,6 @@
 ---
 skill: skill-name
-tested-on: Claude Sonnet 4.6
+tested-on: claude CLI (claude-sonnet-4-6)
 date: YYYY-MM-DD
 ---
 

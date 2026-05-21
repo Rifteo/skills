@@ -1,6 +1,6 @@
 ---
 skill: clickjacking-hunter
-tested-on: claude CLI
+tested-on: claude CLI (claude-sonnet-4-6)
 date: 2026-05-20
 ---
 
