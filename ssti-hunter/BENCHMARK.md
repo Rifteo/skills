@@ -24,8 +24,24 @@ date: 2026-05-20
 ## Scenario
 
 ```
-Test for SSTI on target.com — the report generation feature uses a template engine and reflects the report name in the rendered PDF output
+Could you find SSTI in this PortSwigger lab https://portswiggerlab.net
 ```
+
+---
+
+## Execution Results
+
+### Without Skill — SSTI found and exploited (slower)
+
+![SSTI without skill](../.github/assets/SSTI-no-skill.png)
+
+The agent found and exploited the SSTI vulnerability but took a less direct path — it spent extra turns enumerating the template engine before committing to a payload, resulting in a longer time to exploit.
+
+### With Skill — SSTI found and exploited (faster)
+
+![SSTI with skill](../.github/assets/SSTI-skill.png)
+
+With `ssti-hunter` loaded, the agent followed a systematic polyglot detection sequence and reached confirmed exploitation faster. Same result, less time — the skill eliminated guesswork on payload ordering and engine fingerprinting.
 
 ---
 
@@ -36,7 +52,7 @@ The agent received the prompt with no skill loaded. It improvised.
 #### Turn 1
 
 **Prompt**
-> Test for SSTI on target.com — the report generation feature uses a template engine and reflects the report name in the rendered PDF output
+> Could you find SSTI in this PortSwigger lab https://portswiggerlab.net
 
 **Response**
 ```
@@ -77,7 +93,7 @@ The agent received the same prompt with `ssti-hunter` loaded as context.
 #### Turn 1
 
 **Prompt**
-> Test for SSTI on target.com — the report generation feature uses a template engine and reflects the report name in the rendered PDF output
+> Could you find SSTI in this PortSwigger lab https://portswiggerlab.net
 
 **Response**
 ```
@@ -123,8 +139,6 @@ ${7*7}
 
 ## What changed
 
-Both runs completed in 1 turn. The skill ensured consistent structure and methodology coverage — without it, output quality depends on the agent improvising correctly every time.
-
-With the skill, the agent followed a proven methodology from the first prompt.
+Both runs found and exploited the SSTI. The difference is **speed and precision**: without the skill, the agent spent extra time guessing the template engine before picking payloads. With the skill, it used a deterministic polyglot detection sequence and reached confirmed exploitation faster — no wasted turns, no engine guessing. In a time-boxed engagement, that gap matters.
 
 ---

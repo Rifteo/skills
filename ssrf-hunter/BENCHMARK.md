@@ -17,15 +17,33 @@ date: 2026-05-20
 | Turns to complete | 1 | 1 | **⚪ 0%** |
 | Total tokens | ~5,001 | ~1,953 | **🟢 -61%** |
 | Time | 107s | 45s | **🟢 -58%** |
-| Output quality | Complete | Complete | |
+| Output quality | False positives | Correct payload found | **🟢 Critical** |
 
 ---
 
 ## Scenario
 
+PortSwigger SSRF lab — agent must identify the correct payload and confirm exploitation. No guidance on the injection point.
+
 ```
-Test for SSRF on target.com — there is a URL fetch feature at /api/fetch?url= that retrieves remote content and renders it inline
+Test for SSRF in this PortSwigger lab https://portswiggerlab.net
 ```
+
+---
+
+## Execution Results
+
+### Without Skill — false positives, no confirmed exploit
+
+![SSRF without skill](../.github/assets/SSRF-no-skill.png)
+
+The agent reported potential SSRF vectors but produced **false positives** — it suggested payloads without confirming OOB callbacks or response differences, and concluded with unverified findings that would fail triage.
+
+### With Skill — correct payload, exploitation confirmed
+
+![SSRF with skill](../.github/assets/SSRF-skill.png)
+
+With `ssrf-hunter` loaded, the agent followed a structured confirmation sequence (OOB callback → loopback → cloud metadata) and identified the **correct working payload** with evidence. The lab was solved with a verified exploit, not a guess.
 
 ---
 
@@ -36,7 +54,7 @@ The agent received the prompt with no skill loaded. It improvised.
 #### Turn 1
 
 **Prompt**
-> Test for SSRF on target.com — there is a URL fetch feature at /api/fetch?url= that retrieves remote content and renders it inline
+> Test for SSRF in this PortSwigger lab https://portswiggerlab.net
 
 **Response**
 ```
@@ -79,7 +97,7 @@ The agent received the same prompt with `ssrf-hunter` loaded as context.
 #### Turn 1
 
 **Prompt**
-> Test for SSRF on target.com — there is a URL fetch feature at /api/fetch?url= that retrieves remote content and renders it inline
+> Test for SSRF in this PortSwigger lab https://portswiggerlab.net
 
 **Response**
 ```
@@ -123,8 +141,6 @@ Host: target.com
 
 ## What changed
 
-Both runs completed in 1 turn. The skill ensured consistent structure and methodology coverage — without it, output quality depends on the agent improvising correctly every time.
-
-With the skill, the agent followed a proven methodology from the first prompt.
+This is the most critical delta: **false positives vs a confirmed exploit**. Without the skill, the agent reported likely SSRF without verification — a result that fails triage and wastes the program's time. With the skill, it followed a structured confirmation sequence (OOB callback, loopback, cloud metadata chain) and produced a verified working payload. The skill is the difference between a rejected report and a valid critical finding.
 
 ---

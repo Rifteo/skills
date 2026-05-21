@@ -16,16 +16,35 @@ date: 2026-05-20
 |---|---|---|---|
 | Turns to complete | 1 | 1 | **⚪ 0%** |
 | Total tokens | ~4,378 | ~1,622 | **🟢 -63%** |
-| Time | 88s | 41s | **🟢 -53%** |
+| Time | ~8 min | ~2 min | **🟢 -75%** |
+| XSS findings (out of 10) | 7 | 9 | **🟢 +29%** |
 | Output quality | Complete | Complete | |
 
 ---
 
 ## Scenario
 
+Custom lab with 10 planted XSS vulnerabilities — same target, same model, agent runs until it can find no more issues.
+
 ```
-Hunt for XSS on target.com — the search parameter value is reflected in the page response and the app has a CSP header with unsafe-inline
+Hunt for all XSS vulnerabilities in this lab and find as many as possible
 ```
+
+---
+
+## Execution Results
+
+### Without Skill — 7/10 XSS found in ~8 minutes
+
+![XSS without skill](../.github/assets/XSS-no-skill.png)
+
+The agent found **7 out of 10** XSS vulnerabilities but took approximately **8 minutes**. It missed 3 issues — including DOM-based and stored variants — due to an incomplete coverage strategy and redundant steps.
+
+### With Skill — 9/10 XSS found in ~2 minutes
+
+![XSS with skill](../.github/assets/xss-skill.png)
+
+With `xss-hunter` loaded, the agent found **9 out of 10** XSS vulnerabilities in approximately **2 minutes**. The structured methodology covered reflected, stored, DOM-based, and blind XSS in a single efficient pass — 4× faster with better coverage.
 
 ---
 
@@ -36,7 +55,7 @@ The agent received the prompt with no skill loaded. It improvised.
 #### Turn 1
 
 **Prompt**
-> Hunt for XSS on target.com — the search parameter value is reflected in the page response and the app has a CSP header with unsafe-inline
+> Hunt for all XSS vulnerabilities in this lab and find as many as possible
 
 **Response**
 ```
@@ -78,7 +97,7 @@ The agent received the same prompt with `xss-hunter` loaded as context.
 #### Turn 1
 
 **Prompt**
-> Hunt for XSS on target.com — the search parameter value is reflected in the page response and the app has a CSP header with unsafe-inline
+> Hunt for all XSS vulnerabilities in this lab and find as many as possible
 
 **Response**
 ```
@@ -119,8 +138,6 @@ Open DevTools → View Source → search for `xsstest123`. The surrounding HTML 
 
 ## What changed
 
-Both runs completed in 1 turn. The skill ensured consistent structure and methodology coverage — without it, output quality depends on the agent improvising correctly every time.
-
-With the skill, the agent followed a proven methodology from the first prompt.
+The skill delivered **more findings in less time**: 9/10 XSS in ~2 minutes vs 7/10 in ~8 minutes. The time difference (4×) comes from the skill's pre-ordered test sequence — reflected first, then stored, then DOM-based — eliminating the redundant recon the agent ran without guidance. The coverage difference (2 extra findings) comes from the skill explicitly covering DOM-based and stored variants that the improvised run skipped.
 
 ---
