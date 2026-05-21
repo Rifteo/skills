@@ -12,12 +12,21 @@ metadata:
 
 Convert raw pentest notes, log snippets, vulnerability descriptions, or any unstructured observation into a complete, report-ready audit finding.
 
-## When to Use
+## When to use
 
 - User pastes raw notes, tool output, or a quick observation from a pentest
 - User describes a vulnerability and needs it structured for a report
 - User has a log snippet or HTTP request/response that reveals a security issue
 - User wants to turn a single-line note into a client-deliverable write-up
+
+## When NOT to use
+
+Do NOT apply the finding format — respond normally — when:
+- The user is asking a general security question, not describing a specific vulnerability they found
+- The user wants to know how to exploit something (use the relevant hunter skill instead)
+- The user is asking for a CVSS score only (use `cvss-scorer` instead)
+- The user is asking how to fix a vulnerability (use `remediation-planner` instead)
+- No evidence, observation, or artifact has been provided — ask for it rather than writing a finding from theory
 
 ## Process
 

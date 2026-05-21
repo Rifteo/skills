@@ -14,6 +14,16 @@ Produce an exact CVSS v3.1 vector and score from a vulnerability description. Be
 
 ---
 
+## When NOT to use
+
+Do NOT produce a CVSS vector — respond normally — when:
+- The user is asking what CVSS is or how it works (answer the theory question directly)
+- The user wants a full risk assessment beyond CVSS — likelihood, business impact, SLAs (use `risk-assessor` instead)
+- The user is asking how to fix a vulnerability (use `remediation-planner` instead)
+- No specific vulnerability has been described — a score requires a concrete finding, not a hypothetical
+
+---
+
 ## Core Behavior
 
 - **Infer aggressively from context.** Most metrics can be determined from a good description. Do it.
