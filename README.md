@@ -14,7 +14,7 @@ Install proven pentest methodologies into Claude Code, Cursor, Gemini CLI, and 5
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![npm](https://img.shields.io/badge/npm-coming%20soon-lightgrey)](https://www.npmjs.com/package/auditguard-skills)
-[![Skills](https://img.shields.io/badge/skills-27-brightgreen)](https://github.com/AuditGuard-Community/skills)
+[![Skills](https://img.shields.io/badge/skills-28-brightgreen)](https://github.com/AuditGuard-Community/skills)
 [![Agents](https://img.shields.io/badge/agents-53-blue)](https://github.com/AuditGuard-Community/skills)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](SKILL_GUIDE.md)
 
@@ -41,7 +41,7 @@ A skill is a battle-tested methodology file your agent reads before starting a t
 | Methodology coverage | Partial | Full |
 | Report format | Whatever the agent guesses | Triage-ready, platform-specific |
 
-27 skills. 53 agents. One command to install.
+28 skills. 53 agents. One command to install.
 
 ---
 
@@ -145,6 +145,14 @@ It reads your task and loads the right skill automatically.
 | `check-exploit` | Checks if a CVE has a public exploit and assesses exploitability |
 | `vuln-diagnose` | Diagnoses ambiguous or incomplete vulnerability reports |
 | `nuclei-template-writer` | Writes production-ready Nuclei templates from vulnerability descriptions |
+
+### MCP Integrations
+
+Skills that orchestrate external MCP tool servers into structured engagements.
+
+| Skill | MCP Server | What it does |
+|---|---|---|
+| `hexstrike-forge` | HexStrike | Full pentest engagement: 5-phase workflow, parallel tool execution, triage gates, false positive filtering, and report-ready findings from a single prompt. Requires HexStrike MCP active. |
 
 ### Compliance and Governance
 
