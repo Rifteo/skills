@@ -14,7 +14,7 @@ Install proven pentest methodologies into Claude Code, Cursor, Gemini CLI, and 5
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![npm](https://img.shields.io/badge/npm-coming%20soon-lightgrey)](https://www.npmjs.com/package/auditguard-skills)
-[![Skills](https://img.shields.io/badge/skills-27-brightgreen)](https://github.com/AuditGuard-Community/skills)
+[![Skills](https://img.shields.io/badge/skills-28-brightgreen)](https://github.com/AuditGuard-Community/skills)
 [![Agents](https://img.shields.io/badge/agents-53-blue)](https://github.com/AuditGuard-Community/skills)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](SKILL_GUIDE.md)
 
@@ -41,7 +41,7 @@ A skill is a battle-tested methodology file your agent reads before starting a t
 | Methodology coverage | Partial | Full |
 | Report format | Whatever the agent guesses | Triage-ready, platform-specific |
 
-27 skills. 53 agents. One command to install.
+28 skills. 53 agents. One command to install.
 
 ---
 
@@ -78,6 +78,12 @@ auditguard-skills add bugbounty-reporter --agent claude-code
 
 # Install globally across all projects
 auditguard-skills add bugbounty-reporter --global
+
+# Check which installed skills have a newer version available
+auditguard-skills outdated
+
+# Update all installed skills to their latest version
+auditguard-skills update
 
 # Browse all available skills
 auditguard-skills available
@@ -146,6 +152,14 @@ It reads your task and loads the right skill automatically.
 | `vuln-diagnose` | Diagnoses ambiguous or incomplete vulnerability reports |
 | `nuclei-template-writer` | Writes production-ready Nuclei templates from vulnerability descriptions |
 
+### MCP Integrations
+
+Skills that orchestrate external MCP tool servers into structured engagements.
+
+| Skill | MCP Server | What it does |
+|---|---|---|
+| `hexstrike-forge` | HexStrike | Full pentest engagement: 5-phase workflow, parallel tool execution, triage gates, false positive filtering, and report-ready findings from a single prompt. Requires HexStrike MCP active. |
+
 ### Compliance and Governance
 
 | Skill | What it does |
@@ -175,6 +189,7 @@ Install a skill for Claude Code and you get five slash commands that work in eve
 | `/auditguard:report` | Writes a submission-ready bug bounty report: title, steps, PoC, impact, remediation |
 | `/auditguard:hunt` | Launches a structured 7-phase engagement workflow on a target |
 | `/auditguard:intel` | Pulls CVEs, GitHub advisories, and HackerOne hacktivity for any named technology |
+| `/auditguard:setup` | Audits your current AuditGuard install: shows which skills and commands are installed, checks context-mcp config, and gives exact setup steps for anything missing |
 
 ```bash
 auditguard-skills add bugbounty-reporter --agent claude-code
@@ -187,10 +202,10 @@ auditguard-skills add bugbounty-reporter --agent claude-code
 
 After installing, tell your agent to use the skill:
 
-- **Claude Code** — type `/skills` and select from the list
-- **Cursor / Windsurf** — type `/skill-name` in chat
-- **Gemini CLI** — type `@skill-name` to invoke
-- **Other agents** — skills are loaded automatically from the skills directory on session start
+- **Claude Code**: type `/skills` and select from the list
+- **Cursor / Windsurf**: type `/skill-name` in chat
+- **Gemini CLI**: type `@skill-name` to invoke
+- **Other agents**: skills are loaded automatically from the skills directory on session start
 
 Then describe your task in plain language:
 
