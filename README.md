@@ -183,6 +183,7 @@ Install a skill for Claude Code and you get five slash commands that work in eve
 | `/auditguard:report` | Writes a submission-ready bug bounty report: title, steps, PoC, impact, remediation |
 | `/auditguard:hunt` | Launches a structured 7-phase engagement workflow on a target |
 | `/auditguard:intel` | Pulls CVEs, GitHub advisories, and HackerOne hacktivity for any named technology |
+| `/auditguard:setup` | Audits your current AuditGuard install — shows which skills and commands are installed, checks context-mcp config, and gives exact setup steps for anything missing |
 
 ```bash
 auditguard-skills add bugbounty-reporter --agent claude-code
