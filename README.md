@@ -79,6 +79,12 @@ auditguard-skills add bugbounty-reporter --agent claude-code
 # Install globally across all projects
 auditguard-skills add bugbounty-reporter --global
 
+# Check which installed skills have a newer version available
+auditguard-skills outdated
+
+# Update all installed skills to their latest version
+auditguard-skills update
+
 # Browse all available skills
 auditguard-skills available
 
