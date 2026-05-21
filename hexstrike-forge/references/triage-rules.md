@@ -1,75 +1,124 @@
 # Triage Rules
 
-Apply these rules to every HexStrike flag before promoting it to a finding. The goal: eliminate noise, keep signal. Confirm fewer than 20% of raw flags.
+Apply these rules to every HexStrike flag before assigning a confidence label.
 
 ---
 
-## Automatic DISCARD — Do Not Report
+## Section 1 — Confidence Labels
 
-These patterns are noise. Discard without investigation.
+Assign **CONFIRM-HIGH** when ALL of the following are true:
+- A tool produced a positive match (not just a version match or banner grab)
+- You manually verified the condition with at least one follow-up request or check
+- The impact is directly demonstrable (data returned, callback received, error triggered)
 
-| Pattern | Reason |
-|---|---|
-| Tool flagged but response was 404 | Resource does not exist |
-| Tool flagged but response was identical to unauthenticated baseline | No actual access gained |
-| "Missing header" finding where the header has no exploit path on this specific app | Low signal, not a real finding in isolation |
-| Version detected but no CVE with public PoC exists | Theoretical risk only |
-| Nuclei `info` severity template fired | Informational — note it, don't report it |
-| SSL/TLS finding on an internal-only host | Risk context is wrong |
-| Rate limiting missing on a non-sensitive endpoint | Not exploitable without other conditions |
-| Redirect to same domain | Not an open redirect |
-| Self-XSS (only exploitable by the victim on their own session) | No real attack path |
+Assign **CONFIRM-MED** when:
+- A tool produced a positive match
+- Manual verification was blocked (rate limiting, filtered port, auth required)
+- The tool match is high-fidelity (specific template condition, not a generic banner or version range)
 
----
+Assign **INVESTIGATE** when:
+- The signal is promising but unconfirmed (version in range, no PoC executed)
+- The tool flag is low-fidelity (heuristic, pattern match, wildcard template)
+- Manual follow-up is needed but not yet done
 
-## Requires Manual Confirmation — INVESTIGATE
+Assign **DISCARD** when:
+- The flag matches a known false positive pattern (see Section 4)
+- The finding is informational with no exploitable attack path
+- Three or more tools flagged the same item and none confirmed it
 
-Do not report yet. Test manually before deciding.
-
-| Pattern | What to do |
-|---|---|
-| SQLi flag with no data extraction evidence | Send `' OR '1'='1` manually, check response delta |
-| XSS payload reflected in response | Verify execution in browser — reflection ≠ execution |
-| IDOR flag from automated tool | Manually swap IDs between two test accounts, confirm data leak |
-| SSRF flag (tool detected redirect) | Manually confirm callback to Burp Collaborator / interactsh |
-| Auth bypass flag | Manually replay the request without credentials |
-| Nuclei `medium` or above on a login/admin endpoint | Always manually verify |
-| "Exposed file" flag (.env, .git, backup) | Fetch the file manually — confirm actual content, not 403 |
+**Deduplication rule:** if multiple tools confirm the same vulnerability on the same endpoint, that is one CONFIRM finding. List all tool evidence under a single evidence ledger entry.
 
 ---
 
-## Automatic CONFIRM — Fast-Track to Finding
+## Section 2 — Chain Detection Rules
 
-These patterns are high-confidence. Still write up with evidence.
+After triage, scan for these patterns across all CONFIRM and INVESTIGATE items. When a chain is identified, write one finding describing the full path — individual components become evidence items, not separate findings.
 
-| Pattern | Notes |
-|---|---|
-| Tool returned data belonging to another test account | Confirmed IDOR — document the request/response |
-| XSS payload executed `alert(document.domain)` in browser | Confirmed XSS — capture screenshot |
-| SQLi returned database rows or error with schema info | Confirmed SQLi — capture response snippet |
-| Unauthenticated access to authenticated-only endpoint returned data | Confirmed auth bypass |
-| Credentials found in exposed file (.env, config, backup) | Critical — capture evidence, escalate immediately |
-| CVE with CISA KEV match on detected version | High confidence — verify version, write up |
-
----
-
-## Deduplication Rules
-
-Multiple tools often flag the same issue. Merge into one finding.
-
-- Same endpoint + same vulnerability class = one finding, regardless of how many tools flagged it
-- List all tools that confirmed it in the Evidence section
-- Use the highest-severity tool's output as the primary evidence
-- Example: Nuclei + manual test both confirm XSS on `/search?q=` → one finding, two evidence sources
+| Pattern | Chain type | Escalation |
+|---|---|---|
+| Two findings on the same service (port/protocol) | Service chain | Combine into one escalated finding |
+| Finding A creates the attack position for Finding B | Attack path chain | A is entry point, B is the escalation |
+| SSRF + internal service or metadata endpoint exposure | SSRF to pivot | SSRF becomes Critical if internal services are reachable |
+| XSS in admin context + CSRF token bypass | Session hijack chain | Stored XSS + CSRF = account takeover path |
+| CVE on service + weak or default config on same service | Exploit + misconfiguration | Combined finding with higher impact narrative |
+| Open redirect + OAuth authorization flow | OAuth token theft | Redirect steals the auth code mid-flow |
+| Subdomain takeover + any auth or session cookie on root domain | Cookie hijack chain | Takeover allows full session capture |
+| Information disclosure (stack trace, debug output) + targeted attack vector | Recon-assisted exploitation | Disclosure reduces attacker effort — note in impact |
+| Authentication bypass + any privileged action | Privilege escalation chain | Bypass becomes Critical if admin functions are reachable |
+| Path traversal + sensitive file exposure | Traversal to exfil | File read becomes Critical if credentials or keys are exposed |
 
 ---
 
-## Triage Checklist Per Flag
+## Section 3 — CISA KEV Cross-Reference
 
-Before promoting any flag to CONFIRM:
+After assigning any CVE-based finding a confidence label, check the CISA KEV live catalog:
 
-- [ ] Can I reproduce it with a fresh session?
-- [ ] Is the response meaningfully different from the baseline?
-- [ ] Does the evidence show actual impact, not just a tool flag?
-- [ ] Have I checked if a WAF or compensating control is interfering?
-- [ ] Is this the same issue already confirmed on a different endpoint? (deduplicate)
+**Authoritative source:** `https://www.cisa.gov/known-exploited-vulnerabilities-catalog`
+
+Search the CVE ID directly. Do not rely on a static list in this file — the catalog updates continuously.
+
+**If on KEV:**
+- Elevate to priority finding regardless of CVSS score
+- Add to the finding: `CISA KEV: YES — active exploitation confirmed in the wild`
+- Flag separately in the Executive Summary under "Requires Immediate Remediation"
+- Note the KEV due date if the target is a US federal agency (CISA mandates patching within the deadline)
+
+---
+
+## Section 4 — Common False Positives
+
+Discard these immediately:
+
+| Category | Flag | Reason |
+|---|---|---|
+| TLS | SSL certificate self-signed | Informational on internal/dev targets — only finding if in production |
+| TLS | SSL certificate expired | Informational — not exploitable on its own |
+| Technology | Any technology detection result | Tech detection is fingerprinting, not a vulnerability |
+| Headers | X-Frame-Options not set | Only a finding if clickjacking is in scope and the page has sensitive actions |
+| Headers | Missing security headers (CSP, HSTS, etc.) | Informational unless the program explicitly accepts header findings |
+| Headers | HTTP OPTIONS method enabled | Only a finding if TRACE is enabled or it reveals sensitive methods |
+| Cookies | Missing HttpOnly or Secure flag | Only a finding if the cookie is a session token and XSS is confirmed |
+| Ports | `open\|filtered` port state from nmap | Ambiguous — do not treat as confirmed open |
+| Version | Version number in banner matches vulnerable range | Version in range does not equal confirmed vulnerability — requires PoC |
+| Robots.txt | Sensitive paths listed in robots.txt | Informational — confirms paths exist, not that they are exploitable |
+| Directory listing | Empty directory listing | No exploitable content = discard |
+| CORS | CORS allows all origins (`*`) on a public API | Only a finding if the API carries authenticated data |
+| DNS | SPF/DMARC misconfiguration | Email security issue — only in scope if program explicitly accepts it |
+
+---
+
+## Section 5 — Evidence Ledger Format
+
+Create one entry per CONFIRM item as it is found. Do not reconstruct evidence at Phase 4.
+
+```
+### EV-001
+- Tool: <tool name>
+- Check: <CVE ID, template name, or test description>
+- Output: <key lines from stdout>
+- Timestamp: <ISO 8601>
+- Confidence: CONFIRM-HIGH | CONFIRM-MED
+- KEV: YES | NO
+- Chain: <linked EV-ID if part of a chain, else none>
+```
+
+---
+
+## Section 6 — Finding Template (fallback if finding-writer not installed)
+
+```
+**Title:** <vuln class> in <component> via <vector> leads to <impact>
+**Severity:** Critical | High | Medium | Low
+**CVSS 3.1:** <score> (<vector string>)
+**CISA KEV:** YES — active exploitation in the wild | NO
+**OWASP:** <Top 10 category, e.g. A01:2021 Broken Access Control>
+**CWE:** <CWE-ID — name>
+**Description:** <what it is and why it is exploitable>
+**Evidence:** <tool name, template/check, key lines from stdout>
+**Steps to Reproduce:**
+1. <step>
+2. <step>
+**Impact:** <business impact — data exposed, actions possible, blast radius>
+**Remediation:** <specific fix with version or config change>
+**References:** <CVE link, CWE link, OWASP link>
+```
