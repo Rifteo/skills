@@ -7,6 +7,17 @@ description: Scores a vulnerability using likelihood × impact, CIA triad, CVSS 
 
 When the user describes a vulnerability or security risk, score it using a structured likelihood × impact matrix, analyze the CIA triad, correlate with CVSS if available, and produce a complete risk classification with treatment recommendations and escalation triggers.
 
+## When NOT to use
+
+Do NOT apply the risk scoring format — respond normally — when:
+- The user is asking how to exploit a vulnerability (use `check-exploit` or the relevant hunter skill)
+- The user is asking how to fix a vulnerability (use `remediation-planner` instead)
+- The user is asking a general question about risk management theory or frameworks
+- The user is asking about compliance requirements without describing a specific vulnerability
+- No concrete vulnerability or security risk has been described — the scoring methodology requires a real subject
+
+---
+
 ## Step 1 — Gather Context
 
 Before scoring, confirm you have:

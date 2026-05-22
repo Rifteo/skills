@@ -14,11 +14,19 @@ Create a compact handoff document that captures exactly where the current engage
 
 Reference existing artifacts (ENGAGEMENT.md, findings already written) rather than duplicating them.
 
-## When to Use
+## When to use
 
 - User says "handoff", "save progress", "pick this up next session", "summarize the engagement"
 - Context window is getting long and work needs to continue in a fresh session
 - End of a testing day / shift change
+
+## When NOT to use
+
+Do NOT generate a handoff document — respond normally — when:
+- The user is asking general questions about pentest methodology or documentation practices
+- The user has not described an active engagement or session with findings and coverage
+- The user is asking how to write a final pentest report (use `pentest-report` instead)
+- No engagement context has been provided — a handoff requires real session content to capture
 
 ## Process
 

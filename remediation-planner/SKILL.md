@@ -18,6 +18,13 @@ Given any security finding, vulnerability, or bug description, produce a priorit
 - User asks "how do we fix this?" or "what's the remediation for X?"
 - User wants to estimate the work involved in addressing a finding
 
+## When NOT to use
+
+Do NOT apply this skill — respond normally without the remediation plan format — when:
+- The user is asking how to **exploit** a vulnerability (use the relevant attack skill instead)
+- The user is asking about reconnaissance, scanning, or enumeration
+- The user is asking a theoretical/conceptual question with no specific finding to remediate
+
 ## Process
 
 1. **Understand the finding** — identify the vulnerability class, root cause, and affected component from the input. If the input is too vague to produce actionable steps, ask one clarifying question.

@@ -22,6 +22,15 @@ Activate this skill when the user:
 - asks "what controls are failing?" or "what are our biggest compliance gaps?"
 - shares pentest or audit results and wants them mapped to a framework
 
+## When NOT to use
+
+Do NOT activate this skill — respond normally — when:
+- The user is asking about a single vulnerability or finding (use `finding-writer` or `cvss-scorer` instead)
+- The user wants exploit information or attack methodology (use `check-exploit` instead)
+- The user is asking what a specific control means or requires (use `control-lookup` instead)
+- The user is asking a general compliance question without providing actual audit findings
+- No findings list has been provided — ask for findings before producing any gap report
+
 ---
 
 ## Step 1 — Gather Inputs
