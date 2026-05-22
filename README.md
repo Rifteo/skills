@@ -60,8 +60,8 @@ No account. No configuration. The CLI detects your installed agents automaticall
 ## Install
 
 ```bash
-git clone https://github.com/AuditGuard-Community/skills
-cd skills
+git clone https://github.com/AuditGuard-Community/skills-cli
+cd skills-cli
 npm link
 ```
 
