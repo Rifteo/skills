@@ -113,9 +113,7 @@ I'll walk through the SSTI Hunter methodology applied to this specific attack su
 
 Before probing for evaluation, confirm the field is reflected in the PDF at all.
 
-```
 Report name: SSTI_CANARY_1337
-```
 
 Download the generated PDF and verify the string appears. If it does, the field is live.
 
@@ -125,7 +123,7 @@ Download the generated PDF and verify the string appears. If it does, the field 
 
 Submit each payload as the report name. Download the PDF and look for the **evaluated result** (e.g. `49`), not the literal string.
 
-```
+
 {{7*7}}
 ${7*7}
 <%= 7*7 %>
