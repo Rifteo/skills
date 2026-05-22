@@ -45,6 +45,27 @@ A skill is a battle-tested methodology file your agent reads before starting a t
 
 ---
 
+## Benchmarks
+
+Real numbers across 24 skills. Same prompt. Same model (claude-sonnet-4-6). Skill on vs skill off.
+
+| Metric | Without skill | With skill |
+|---|---|---|
+| Avg token usage | baseline | **-52%** |
+| Avg time to complete | baseline | **-53%** |
+| Skills that reduced turns needed | — | **10 of 24** |
+| Best token saving | — | find-skills **-95%**, scope-grill **-93%** |
+| Best time saving | — | find-skills **-97%**, scope-grill **-90%** |
+| Finding count (idor-hunter) | 5 IDORs | **11 IDORs (+120%)** |
+| Finding count (xss-hunter) | 7/10 XSS in 8 min | **9/10 XSS in 2 min** |
+| False positives (ssrf-hunter) | Reported unverified | **Eliminated** |
+| Turns to complete (js-analyzer) | 5 turns | **1 turn** |
+| Turns to complete (jwt-cracker) | 3 turns | **1 turn** |
+
+Each skill's full benchmark is in its folder (`BENCHMARK.md`).
+
+---
+
 ## Quickstart
 
 ```bash
