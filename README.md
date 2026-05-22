@@ -10,7 +10,7 @@
 
 **Your agent improvises. Skills don't.**
 
-Install proven pentest methodologies into Claude Code, Cursor, Gemini CLI, and 50+ other agents in one command.
+Install proven pentest methodologies into Claude Code, Gemini CLI, Codex, and 50+ other agents in one command.
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![npm](https://img.shields.io/badge/npm-coming%20soon-lightgrey)](https://www.npmjs.com/package/auditguard-skills)
@@ -224,20 +224,20 @@ The agent produces a complete, triage-ready report. First try.
 |---|---|
 | Claude Code | `claude-code` |
 | Gemini CLI | `gemini-cli` |
+| Codex | `codex` |
 | Cursor | `cursor` |
 | GitHub Copilot | `github-copilot` |
 | Windsurf | `windsurf` |
 | Cline | `cline` |
 | Continue | `continue` |
-| Roo Code | `roo` |
-| Goose | `goose` |
-| OpenHands | `openhands` |
-| Codex | `codex` |
 | Aider Desk | `aider-desk` |
+| Roo Code | `roo` |
+| OpenHands | `openhands` |
+| Goose | `goose` |
+| Devin | `devin` |
 | Augment | `augment` |
-| Kilo Code | `kilo` |
 | Amp | `amp` |
-| + 38 more | run `auditguard-skills agents` to see all |
+| + 39 more | run `auditguard-skills agents` to see all |
 
 ---
 
