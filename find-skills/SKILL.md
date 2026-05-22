@@ -7,14 +7,6 @@ description: Helps users discover and install AuditGuard agent skills when they 
 
 When the user is looking for functionality that might exist as an installable AuditGuard skill, help them discover and install it.
 
-## When NOT to use
-
-Do NOT suggest skills or show install commands — answer the question directly — when:
-- The user is asking a general programming, coding, or non-security question
-- The user is asking about security concepts or theory (explain, not extend)
-- The user is already in the middle of a task and has not asked for skill discovery
-- The question is about how to use an existing tool (nmap, Burp, hashcat, etc.) — not about AuditGuard skills
-
 ## Available Skills
 
 | Skill | What it does | Install |
