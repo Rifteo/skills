@@ -17,6 +17,7 @@ date: 2026-05-20
 | Turns to complete | 1 | 1 | **⚪ 0%** |
 | Total tokens | ~3,521 | ~1,696 | **🟢 -52%** |
 | Time | 77s | 40s | **🟡 -48%** |
+| IDOR findings | 5 | 11 | **🟢 +120%** |
 | Output quality | Complete | Complete | |
 
 ---
@@ -24,8 +25,24 @@ date: 2026-05-20
 ## Scenario
 
 ```
-Test for IDOR vulnerabilities on api.target.com — the app uses sequential integer IDs for user resources and I have two test accounts with different privilege levels
+Test this website against IDORs and try to find the maximum localhost:3000
 ```
+
+---
+
+## Execution Results
+
+### Without Skill — 5 IDORs found
+
+![IDOR without skill](../.github/assets/Idor-no-skill.png)
+
+The agent improvised a generic authorization testing approach. It identified **5 IDOR vulnerabilities** on `localhost:3000` before stopping — missing several attack vectors due to incomplete methodology coverage.
+
+### With Skill — 11 IDORs found
+
+![IDOR with skill](../.github/assets/Idor-skill.png)
+
+With `idor-hunter` loaded, the agent followed a structured enumeration across all object reference types (path params, query strings, JSON bodies, headers). It uncovered **11 IDOR vulnerabilities** — more than double — on the same target with the same prompt.
 
 ---
 
@@ -36,7 +53,7 @@ The agent received the prompt with no skill loaded. It improvised.
 #### Turn 1
 
 **Prompt**
-> Test for IDOR vulnerabilities on api.target.com — the app uses sequential integer IDs for user resources and I have two test accounts with different privilege levels
+> Test this website against IDORs and try to find the maximum localhost:3000
 
 **Response**
 ```
@@ -79,7 +96,7 @@ The agent received the same prompt with `idor-hunter` loaded as context.
 #### Turn 1
 
 **Prompt**
-> Test for IDOR vulnerabilities on api.target.com — the app uses sequential integer IDs for user resources and I have two test accounts with different privilege levels
+> Test this website against IDORs and try to find the maximum localhost:3000
 
 **Response**
 ```
@@ -106,7 +123,6 @@ Capture both tokens from login responses and keep them in separate Burp Suite se
 
 Browse the app as **Account A** with Burp proxy active. Look for ID patterns in:
 
-```
 # Path parameters (most common with sequential integers)
 GET /api/users/1234
 GET /api/orders/5678
@@ -117,13 +133,10 @@ GET /api/dashboard?user_id=1234
 GET /api/ex
 ... [truncated]
 ```
-
 ---
 
 ## What changed
 
-Both runs completed in 1 turn. The skill ensured consistent structure and methodology coverage — without it, output quality depends on the agent improvising correctly every time.
-
-With the skill, the agent followed a proven methodology from the first prompt.
+The skill more than doubled the finding count: **5 IDORs → 11 IDORs** on the same target with the same prompt. Without the skill, the agent applied a shallow approach and stopped after the most obvious vectors. With the skill, it followed a complete enumeration across all reference types and privilege escalation paths — finding 6 additional vulnerabilities that would have been missed in a real engagement.
 
 ---
