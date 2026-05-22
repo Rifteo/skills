@@ -123,7 +123,6 @@ Capture both tokens from login responses and keep them in separate Burp Suite se
 
 Browse the app as **Account A** with Burp proxy active. Look for ID patterns in:
 
-```
 # Path parameters (most common with sequential integers)
 GET /api/users/1234
 GET /api/orders/5678
@@ -134,7 +133,6 @@ GET /api/dashboard?user_id=1234
 GET /api/ex
 ... [truncated]
 ```
-
 ---
 
 ## What changed
