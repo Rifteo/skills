@@ -1,115 +1,199 @@
 ---
 skill: vuln-diagnose
-tested-on: claude CLI (claude-sonnet-4-6)
-date: 2026-05-20
+tested-on: claude-sonnet-4-6
+date: 2026-05-22
 ---
 
 # Benchmark: vuln-diagnose
-
-> Real numbers. Same prompt. Same model. Skill on vs skill off.
-
----
+Real numbers. Same prompt. Same model. Skill on vs skill off.
 
 ## Results
 
-| Metric | Without Skill | With Skill | Improvement |
-|---|---|---|---|
-| Turns to complete | 1 | 1 | **⚪ 0%** |
-| Total tokens | ~1,228 | ~1,355 | **🟠 +10%** |
-| Time | 35s | 39s | **🟠 +11%** |
-| Output quality | Complete | Complete | |
-
----
+| Metric | Without Skill | With Skill | Difference |
+|--------|:-------------:|:----------:|:----------:|
+| First-turn quality | Incomplete | Partial | 🟢 +1 level(s) |
+| Turns to complete | 2 | 1 | 🟢 -1 turn(s) |
+| Response tokens | ~2,255 | ~1,315 | 🟢 -42% |
+| Total time | 55s | 26s | 🟢 -53% |
+| User effort | Medium | Low | 🟢 Low |
 
 ## Scenario
 
-```
-Diagnose this finding: the app returns 403 for requests to /admin but returns 200 and serves admin content when the request includes the header X-Original-URL: /admin
-```
+Pentester suspects an IDOR but is unsure — needs a confirmation procedure before reporting
 
----
+## Without Skill — 2 turns required
 
-## Without Skill — 1 turn required
+The agent received the prompt with no skill loaded. The first response was incomplete — it took 2 rounds of prompting to reach a usable result.
 
-The agent received the prompt with no skill loaded. It improvised.
-
-#### Turn 1
+### Turn 1
 
 **Prompt**
-> Diagnose this finding: the app returns 403 for requests to /admin but returns 200 and serves admin content when the request includes the header X-Original-URL: /admin
+
+i think i found an IDOR but i'm not sure. when i view my profile the app does GET /api/v1/users/1042/profile with my token. i changed 1042 to 1043 and got a profile that looks like another user's — display_name, avatar_url, bio, joined_date. but i don't know if it's actually a vuln or if profiles are public by design. how do i confirm before writing the finding?
 
 **Response**
-```
-**Pre-Submission Triage Gate**
 
-**Finding:** Access control bypass via `X-Original-URL` header — GET /admin returns 403 normally, but `X-Original-URL: /admin` returns 200 with admin content.
+Good call. Here's the complete version:
 
 ---
 
-**1. Can an attacker use this RIGHT NOW with a real HTTP request?**
-**YES** — A single curl command with the header already reproduces a 200 + admin content response, no setup required.
+## Hypothesis
 
-**2. Is the impact on the program's accepted-impact list?**
-**LIKELY YES** — Unauthorized access to an admin panel is a canonical access control finding accepted by virtually every bug bounty program, but verify the specific program's policy before submitting.
-
-**3. Is the asset in scope?**
-**UNVERIFIED** — Scope depends on the specific program; confirm the target domain is listed before proceeding.
-
-**4. Does it work without privileged access an attacker cannot get?**
-**YES** — No credentials, session tokens, or prior authentication are required; the bypass is header-only.
-
-**5. Is this not already known or 
-... [truncated]
-```
+The endpoint `GET /api/v1/users/{id}/profile` may allow any authenticated user to retrieve another user's profile data by substituting a different numeric ID, without any ownership or authorization check. This would constitute an IDOR if the data is not intended to be public, or a user enumeration vulnerability if sequential IDs allow bulk profiling even of nominally public data.
 
 ---
+
+## Endpoint
+
+```
+GET /api/v1/users/{id}/profile
+Host: app.com
+Authorization: Bearer <token>
+```
+
+**Parameter under test:** `id` (integer, sequential, user-supplied in path)
+
+---
+
+## Requests
+
+### Baseline — your own profile
+```http
+GET /api/v1/users/1042/profile HTTP/1.1
+Host: app.com
+Authorization: Bearer <your_token>
+```
+Expected: 200, your own data. Confirms the endpoint works normally.
+
+---
+
+### Test 1 — no authentication
+```http
+GET /api/v1/users/1043/profile HTTP/1.1
+Host: app.com
+```
+| Result | Interpretation |
+|--------|---------------|
+| 200 with data | Endpoint is public by design — likely not a vuln |
+| 401 / 403 | Auth is required — proceed to Test 2 |
+
+---
+
+### Test 2 — your token, another user's ID
+```http
+GET /api/v1/users/1043/profile HTTP/1.1
+Host: app.com
+Authorization: Bearer <your_token>
+```
+| Result | Interpretation |
+|--------|---------------|
+| 200 with other user's data | Authorization check missing — likely IDOR |
+| 403 | Server enforces ownership — not a vuln |
+| 404 | ID may not exist, try adjacent IDs |
+
+---
+
+### Test 3 — different account's token, same target ID
+```http
+GET /api/v1/users/1043/profile HTTP/1.1
+Host: app.com
+Authorization: Bearer <account_b_token>
+```
+This confirms the issue isn't specific to your account and is reproducible by any authenticated user. Use a second test account you own — never borrow or guess credentials.
+
+---
+
+### Test 4 — enumeration range
+```http
+GET /api/v1/users/1040/profile
+GET /api/v1/users/1041/profile
+GET /api/v1/users/1042/profile  ← yours
+GET /api/v1/user
+
+*[truncated]*
+
+*Missing sections triggered 1 follow-up prompt(s) before the agent produced a complete result.*
 
 ## With Skill — 1 turn, complete
 
-The agent received the same prompt with `vuln-diagnose` loaded as context.
+Same prompt, with `vuln-diagnose` loaded as system context.
 
-#### Turn 1
+### Turn 1
 
 **Prompt**
-> Diagnose this finding: the app returns 403 for requests to /admin but returns 200 and serves admin content when the request includes the header X-Original-URL: /admin
+
+i think i found an IDOR but i'm not sure. when i view my profile the app does GET /api/v1/users/1042/profile with my token. i changed 1042 to 1043 and got a profile that looks like another user's — display_name, avatar_url, bio, joined_date. but i don't know if it's actually a vuln or if profiles are public by design. how do i confirm before writing the finding?
 
 **Response**
-```
-## Step 1 — Hypothesis
 
-> I believe an **access control bypass** exists at `/admin` because the application enforces URL-based restrictions at the network/proxy layer but honors the `X-Original-URL` header to route internally — allowing the header to override the enforced path.
+Good instinct to pause and verify. What you have right now is a *hypothesis*, not a finding. Here's how to confirm it definitively.
 
 ---
 
-## Step 2 — Minimal Feedback Loop
+## State the Hypothesis
 
-The binary test is already implicit in the report. Formalizing it:
+"I believe an IDOR exists at `GET /api/v1/users/{id}/profile` that allows an authenticated user to read another user's profile data without authorization, because substituting a foreign user ID returns that user's data."
 
-**Blocked (expected):**
-```http
-GET /admin HTTP/1.1
-Host: target.example.com
-```
-→ Response: `403 Forbidden`
-
-**Bypassed (unexpected):**
-```http
-GET / HTTP/1.1
-Host: target.example.com
-X-Original-URL: /admin
-```
-→ Response: `200 OK` + admin content
-
-The structural reason this works: a reverse proxy (commonly Nginx with `proxy_set_header X-Original-URL`) strips the header from untrusted sources in some configs but in vulnerable configs passes it through. The backend framework (Django, Symfony, Rails) then reads `X-Original-URL` to determine the routed path, bypassing the proxy-level ACL that only checked t
-... [truncated]
-```
+The open question is whether this is **unauthorized access** or **intentionally public data**. Everything below answers that.
 
 ---
+
+## The Core Question You Need to Answer
+
+An IDOR requires both:
+1. Access to data you **shouldn't have** (not just data you can reach)
+2. The app **failing to enforce** an authorization check
+
+If profiles are public by design, condition 1 fails and there's no vulnerability.
+
+---
+
+## Test 1 — Does Authentication Matter at All?
+
+Strip your token and replay the request.
+
+```http
+GET /api/v1/users/1043/profile HTTP/1.1
+Host: target.example.com
+# No Authorization header
+```
+
+**If it returns the profile** → profiles are likely public. The "IDOR" is just a public API. Very likely not a vulnerability.
+
+**If it returns 401/403** → authentication is required to see profiles. Now you have something worth investigating.
+
+---
+
+## Test 2 — Does the App Enforce Ownership?
+
+Log in as a **second test account** (User B) and request User A's profile using User B's token.
+
+```http
+GET /api/v1/users/1042/profile HTTP/1.1
+Host: target.example.com
+Authorization: Bearer <user_B_token>
+```
+
+Then flip it — request User B's profile with User A's token:
+
+```http
+GET /api/v1/users/1043/profile HTTP/1.1
+Host: target.example.com
+Authorization: Bearer <user_A_token>
+```
+
+**If both succeed** → the app authenticates (you must be logged in) but doesn't authorize (it doesn't check *whose* profile you can see). This is a real IDOR.
+
+**If 403 is returned** → the app *does* enforce ownership. Your earlier test may have worked for a different reason (see Test 3).
+
+---
+
+## Test 3 — Rule Out Public-P
+
+*[truncated]*
 
 ## What changed
 
-Both runs completed in 1 turn. However, without the skill the agent used 127 fewer tokens by producing a shallower, less structured output. With the skill, the agent produced a thorough, fully structured result — the token increase reflects depth, not inefficiency.
+Without the skill, the first response was **Incomplete** — the agent needed **2 turns** and follow-up prompts to fill the gaps. With the skill, the agent delivered a **Partial** answer in **1 turn**.
 
-With the skill, the agent followed a proven methodology from the first prompt.
-
----
+Note: the SKILL.md adds context overhead on the input side (not shown above — response tokens are compared to keep the comparison fair). The trade-off is deliberate: more tokens in, fewer turns and better quality out.

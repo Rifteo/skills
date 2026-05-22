@@ -1,128 +1,210 @@
 ---
 skill: remediation-planner
-tested-on: claude CLI (claude-sonnet-4-6)
-date: 2026-05-20
+tested-on: claude-sonnet-4-6
+date: 2026-05-22
 ---
 
 # Benchmark: remediation-planner
-
-> Real numbers. Same prompt. Same model. Skill on vs skill off.
-
----
+Real numbers. Same prompt. Same model. Skill on vs skill off.
 
 ## Results
 
-| Metric | Without Skill | With Skill | Improvement |
-|---|---|---|---|
-| Turns to complete | 1 | 1 | **⚪ 0%** |
-| Total tokens | ~1,227 | ~748 | **🟡 -39%** |
-| Time | 42s | 24s | **🟡 -43%** |
-| Output quality | Complete | Complete | |
-
----
+| Metric | Without Skill | With Skill | Difference |
+|--------|:-------------:|:----------:|:----------:|
+| First-turn quality | Incomplete | Complete | 🟢 +3 level(s) |
+| Turns to complete | 2 | 1 | 🟢 -1 turn(s) |
+| Response tokens | ~2,419 | ~1,052 | 🟢 -57% |
+| Total time | 44s | 22s | 🟢 -50% |
+| User effort | Medium | Low | 🟢 Low |
 
 ## Scenario
 
-```
-Create a remediation plan for a time-based blind SQL injection in the user search endpoint — PostgreSQL backend, parameter is username in a GET request
-```
+Dev asks how to fix a SQLi in their code, release is in 3 days
 
----
+## Without Skill — 2 turns required
 
-## Without Skill — 1 turn required
+The agent received the prompt with no skill loaded. The first response was incomplete — it took 2 rounds of prompting to reach a usable result.
 
-The agent received the prompt with no skill loaded. It improvised.
-
-#### Turn 1
+### Turn 1
 
 **Prompt**
-> Create a remediation plan for a time-based blind SQL injection in the user search endpoint — PostgreSQL backend, parameter is username in a GET request
+
+pentest found a SQLi on our search endpoint. here's the Java Spring Boot code:
+
+@GetMapping("/search")
+public List<Product> search(@RequestParam String query) {
+    String sql = "SELECT * FROM products WHERE name = '" + query + "'";
+    return jdbcTemplate.query(sql, productMapper);
+}
+
+payload that worked: ' OR '1'='1' --
+
+we have a release in 3 days, how do we fix this and in what order?
 
 **Response**
+
+## SQL Injection Fix - Priority Order
+
+### 1. Immediate Fix (Do This First - 30 mins)
+
+The core problem is string concatenation building SQL. Fix with a parameterized query:
+
+```java
+// VULNERABLE - never do this
+String sql = "SELECT * FROM products WHERE name = '" + query + "'";
+
+// FIXED - parameterized query
+@GetMapping("/search")
+public List<Product> search(@RequestParam String query) {
+    String sql = "SELECT * FROM products WHERE name = ?";
+    return jdbcTemplate.query(sql, productMapper, query);
+}
 ```
-## Remediation Plan: Time-Based Blind SQLi — User Search Endpoint
+
+The `?` placeholder ensures the driver treats input as **data, never as SQL syntax**, regardless of content.
 
 ---
 
-### Root Cause
+### 2. Add Input Validation (Do This Second)
 
-The `username` parameter is interpolated directly into a SQL query string before execution, allowing an attacker to inject `pg_sleep()` or similar timing primitives to extract data character by character without visible output.
+```java
+@GetMapping("/search")
+public List<Product> search(@RequestParam String query) {
+
+    // basic validation - adjust rules to your business needs
+    if (query == null || query.isBlank()) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Query required");
+    }
+    if (query.length() > 100) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Query too long");
+    }
+
+    String sql = "SELECT * FROM products WHERE name = ?";
+    return jdbcTemplate.query(sql, productMapper, query);
+}
+```
+
+> **Note:** Validation is a second layer, not a replacement for parameterized queries. Attackers can bypass input filters; they cannot bypass parameterized queries.
 
 ---
 
-### Priority Fix: Parameterized Queries
+### 3. Consider Using Spring Data JPA (Better Long-term)
 
-This is the only complete fix. Everything else below is defense-in-depth.
+If you have time and this pattern exists elsewhere in the codebase:
 
-**Before (vulnerable):**
-```python
-query = f"SELECT * FROM users WHERE username = '{username}'"
-cursor.execute(query)
-```
+```java
+// Repository
+public interface ProductRepository extends JpaRepository<Product, Long> {
+    List<Product> findByNameContainingIgnoreCase(String name);
+    // Spring generates the safe query automatically
+}
 
-**After (fixed):**
-```python
-query = "SELECT * FROM users WHERE username = %s"
-cursor.execute(query, (username,))
-```
-
-For ORMs:
-```python
-# SQLAlchemy
-User.query.filter(User.username == username).all()
-
-# Django ORM
-User.objects.filter(username=username)
-```
-
-The parameter placeholder (`%s` in psycopg2, `$1` in asyncpg) causes the driver to send the value as a bind parameter — the database engine never parses it as SQL.
-
----
-
-### Laye
-... [truncated]
+// Controller
+@GetMapping("/search")
+public List<Product> search(@RequestParam String query) {
+    return productRepository.findByNameContainingIgnoreCase(query);
+}
 ```
 
 ---
+
+### 4. Check for the Same Pattern Elsewhere
+
+Before release, scan the whole codebase:
+
+```bash
+# fin
+
+*[truncated]*
+
+*Missing sections triggered 1 follow-up prompt(s) before the agent produced a complete result.*
 
 ## With Skill — 1 turn, complete
 
-The agent received the same prompt with `remediation-planner` loaded as context.
+Same prompt, with `remediation-planner` loaded as system context.
 
-#### Turn 1
+### Turn 1
 
 **Prompt**
-> Create a remediation plan for a time-based blind SQL injection in the user search endpoint — PostgreSQL backend, parameter is username in a GET request
+
+pentest found a SQLi on our search endpoint. here's the Java Spring Boot code:
+
+@GetMapping("/search")
+public List<Product> search(@RequestParam String query) {
+    String sql = "SELECT * FROM products WHERE name = '" + query + "'";
+    return jdbcTemplate.query(sql, productMapper);
+}
+
+payload that worked: ' OR '1'='1' --
+
+we have a release in 3 days, how do we fix this and in what order?
 
 **Response**
-```
-**Remediation Plan: Time-Based Blind SQL Injection in User Search Endpoint (`username` parameter)**
+
+**Remediation Plan: SQL Injection in `/search` Endpoint (Spring Boot / JdbcTemplate)**
 
 ---
 
-**Step 1 — Parameterize the Query Immediately**
-Replace the raw string interpolation of `username` with a parameterized query or prepared statement. In PostgreSQL this means using `$1` placeholders (e.g., via `pg`, `psycopg2`, `JDBC`, or your ORM) — the driver then handles quoting and escaping at the protocol level, eliminating the injection surface entirely.
+**Step 1 — Replace String Concatenation with a Parameterized Query**
+Swap the concatenated SQL string for a `?` placeholder — JdbcTemplate handles binding safely and this is a one-line change.
+
 `Effort: Low`
 
----
-
-**Step 2 — Audit All Other Query Construction in the Codebase**
-The presence of one injectable parameter strongly suggests the same pattern is used elsewhere. Search for string concatenation or interpolation in SQL strings across all data-access code (look for patterns like `"SELECT … " + variable` or f-strings/template literals building queries). Fix every instance, not just this endpoint.
-`Effort: Medium`
-
----
-
-**Step 3 — Enforce Input Validation on `username`**
-Add an allowlist validator at the controlle
-... [truncated]
+**Before (vulnerable):**
+```java
+String sql = "SELECT * FROM products WHERE name = '" + query + "'";
+return jdbcTemplate.query(sql, productMapper);
 ```
 
+**After (safe):**
+```java
+String sql = "SELECT * FROM products WHERE name = ?";
+return jdbcTemplate.query(sql, productMapper, query);
+```
+
+> This is your **release blocker fix**. Do this before anything else ships.
+
 ---
+
+**Step 2 — Add Input Validation on the `query` Parameter**
+Reject or sanitize inputs that don't match expected patterns — a product name search shouldn't accept quotes, comment sequences (`--`, `/*`), or semicolons.
+
+`Effort: Low`
+
+```java
+@GetMapping("/search")
+public ResponseEntity<List<Product>> search(@RequestParam String query) {
+    if (query == null || query.isBlank() || query.length() > 100) {
+        return ResponseEntity.badRequest().build();
+    }
+    // optional: allowlist pattern if product names are alphanumeric only
+    if (!query.matches("[\\w\\s\\-]+")) {
+        return ResponseEntity.badRequest().build();
+    }
+    String sql = "SELECT * FROM products WHERE name = ?";
+    return ResponseEntity.ok(jdbcTemplate.query(sql, productMapper, query));
+}
+```
+
+> Adjust the regex to match your actual product naming rules. This is defense-in-depth — Step 1 is still the primary fix.
+
+---
+
+**Step 3 — Audit All Other JdbcTemplate Usages in the Codebase**
+The same pattern almost certainly exists elsewhere. Search for `jdbcTemplate` and any string concatenation with user-supplied variables before the release.
+
+`Effort: Low–Medium`
+
+Run this in your repo to find candidates:
+```bash
+grep -rn "jdbcTemplate" src/ | grep -E '"\s*\+|query\s*\+'
+```
+Or search your IDE for `jdbcTemplate.query` and `jdbcTemplat
+
+*[truncated]*
 
 ## What changed
 
-Both runs completed in 1 turn. The skill ensured consistent structure and methodology coverage — without it, output quality depends on the agent improvising correctly every time.
+Without the skill, the first response was **Incomplete** — the agent needed **2 turns** and follow-up prompts to fill the gaps. With the skill, the agent delivered a **Complete** answer in **1 turn**.
 
-With the skill, the agent followed a proven methodology from the first prompt.
-
----
+Note: the SKILL.md adds context overhead on the input side (not shown above — response tokens are compared to keep the comparison fair). The trade-off is deliberate: more tokens in, fewer turns and better quality out.

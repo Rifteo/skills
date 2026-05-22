@@ -1,124 +1,159 @@
 ---
 skill: attack-surface
-tested-on: claude CLI (claude-sonnet-4-6)
-date: 2026-05-20
+tested-on: claude-sonnet-4-6
+date: 2026-05-22
 ---
 
 # Benchmark: attack-surface
-
-> Real numbers. Same prompt. Same model. Skill on vs skill off.
-
----
+Real numbers. Same prompt. Same model. Skill on vs skill off.
 
 ## Results
 
-| Metric | Without Skill | With Skill | Improvement |
-|---|---|---|---|
-| Turns to complete | 1 | 1 | **⚪ 0%** |
-| Total tokens | ~7,336 | ~2,200 | **🟢 -70%** |
-| Time | 143s | 54s | **🟢 -62%** |
-| Output quality | Complete | Complete | |
-
----
+| Metric | Without Skill | With Skill | Difference |
+|--------|:-------------:|:----------:|:----------:|
+| First-turn quality | Partial | Good | 🟢 +1 level(s) |
+| Turns to complete | 1 | 1 | ⚪ 0 |
+| Response tokens | ~4,039 | ~2,562 | 🟢 -37% |
+| Total time | 88s | 56s | 🟢 -36% |
+| User effort | Low | Low | ⚪ Low |
 
 ## Scenario
 
-```
-Map the attack surface for a fintech SaaS at target.com — public web app, mobile API, OAuth login via Google and GitHub, file upload feature, and webhook integrations
-```
-
----
+Pentester starts a graybox engagement, gives context casually — needs a structured attack surface map
 
 ## Without Skill — 1 turn required
 
-The agent received the prompt with no skill loaded. It improvised.
+The agent received the prompt with no skill loaded.
 
-#### Turn 1
+### Turn 1
 
 **Prompt**
-> Map the attack surface for a fintech SaaS at target.com — public web app, mobile API, OAuth login via Google and GitHub, file upload feature, and webhook integrations
+
+starting a graybox pentest on an e-commerce company, they have app.acmecorp.com, a REST API and an admin dashboard. stack is react + nodejs + postgres, JWT RS256 auth with google SSO and MFA. they use stripe for payments, sendgrid for emails and cloudflare in front. iOS/Android mobile app too. where do i start and what's my attack surface?
 
 **Response**
-```
-## Phase 1: SCOPE
 
-### In-Scope Assets
-| Asset | Type | Notes |
-|---|---|---|
-| `target.com` | Web app | Primary surface |
-| `api.target.com` | Mobile/REST API | iOS + Android clients |
-| `*.target.com` | Subdomains | Wildcard assumed |
-| OAuth flows | Google + GitHub | Auth surface |
-| File upload endpoints | Feature | Likely `/upload`, `/documents` |
-| Webhook system | Integration | Inbound + outbound |
+# Gray Box Pentest: ACMECorp E-Commerce Attack Surface
 
-### Accepted Impact (Fintech Context)
-- Account takeover / authentication bypass
-- Payment data exposure (PCI-adjacent)
-- Unauthorized access to other users' data (IDOR)
-- Financial logic flaws (double-spend, balance manipulation)
-- SSRF via webhooks (internal network access)
-- Stored XSS on financial dashboards
-- File upload leading to RCE or stored XSS
+## Initial Orientation
 
-### Never-Submit / Out-of-Scope (assumed standard)
-- DoS / DDoS
-- Physical attacks
-- Social engineering
-- Findings on third-party infrastructure (Google, GitHub OAuth providers themselves)
-- Rate-limit issues without demonstrated im
-... [truncated]
-```
+Gray box means you likely have: some API docs, maybe source snippets, valid user accounts, and architecture knowledge. Use all of it - don't pretend you're black box testing.
 
 ---
+
+## Attack Surface Map
+
+### 1. Authentication & Session Layer (Start Here)
+
+This is your highest-value target given the complexity.
+
+```
+JWT RS256 + Google SSO + MFA = multiple interaction points, each with failure modes
+```
+
+**JWT-Specific Attacks:**
+
+```bash
+# Algorithm confusion: RS256 → HS256
+# Take the public key, sign a token with it as HMAC secret
+# Many libraries accept both if misconfigured
+
+# Grab the public key (often exposed)
+curl https://app.acmecorp.com/.well-known/jwks.json
+curl https://app.acmecorp.com/api/auth/public-key
+
+# Tool: jwt_tool
+python3 jwt_tool.py <token> -X a  # algorithm confusion
+python3 jwt_tool.py <token> -X s  # self-signed (none algorithm)
+python3 jwt_tool.py <token> -I -pc role -pv admin  # claim injection
+
+# Check for 'none' algorithm acceptance
+# Decode header, change alg to "none", remove signature, keep trailing dot
+echo '{"alg":"none","typ":"JWT"}' | base64 | tr -d '='
+```
+
+**SSO-Specific Attacks:**
+
+```
+OAuth/OIDC flow attacks:
+- redirect_uri validation bypass (subdomain takeover, path traversal)
+- state parameter CSRF
+- nonce replay
+- token leakage via referrer headers
+- account linking abuse (link attacker google account to victim)
+```
+
+```bash
+# Test redirect_uri bypass
+https://accounts.google.com/oauth/authorize?
+  client_id=XXXXX
+  &redirect_uri=https://app.acmecorp.com.evil.com  # subdomain bypass
+  &redirect_uri=https://app.acmecorp.com/callback/../evil  # path traversal
+  &redirect_uri=https://app.acmecorp.com/callback%2F..%2Fevil
+
+# Check if state is validated (CSRF in OAuth)
+# Initiate flow, intercept state param, reuse across sessions
+```
+
+**MFA Bypass Vectors:**
+
+```
+- Rate limiting on OTP endpoint? (6-digit = 1M combinations)
+- Response manipulation (200 vs
+
+*[truncated]*
 
 ## With Skill — 1 turn, complete
 
-The agent received the same prompt with `attack-surface` loaded as context.
+Same prompt, with `attack-surface` loaded as system context.
 
-#### Turn 1
+### Turn 1
 
 **Prompt**
-> Map the attack surface for a fintech SaaS at target.com — public web app, mobile API, OAuth login via Google and GitHub, file upload feature, and webhook integrations
+
+starting a graybox pentest on an e-commerce company, they have app.acmecorp.com, a REST API and an admin dashboard. stack is react + nodejs + postgres, JWT RS256 auth with google SSO and MFA. they use stripe for payments, sendgrid for emails and cloudflare in front. iOS/Android mobile app too. where do i start and what's my attack surface?
 
 **Response**
-```
-## Attack Surface Map — target.com (Fintech SaaS)
+
+# Attack Surface Map — AcmeCorp E-Commerce
+
+**Engagement type:** Gray-box pentest
+**Scope confirmed:** app.acmecorp.com + REST API + admin dashboard + mobile apps
 
 ---
 
-### Phase 1 — Entry Point Enumeration
+## Phase 1 — Entry Point Enumeration
 
-**Web Application**
-- `target.com` — public marketing/landing page
-- `app.target.com` — main authenticated SaaS dashboard
-- `admin.target.com` — likely admin panel (common fintech pattern)
-- `api.target.com` — backend API (inferred from SaaS + mobile API)
-- Login, registration, password reset flows
-- File upload feature (statements, KYC docs, exports)
-- Search/filter UI components
-- Data export endpoints (CSV/PDF — common in fintech)
+### Web Application (`app.acmecorp.com`)
 
-**Mobile API**
-- Mobile-specific API base (may differ from web API — separate versioning, auth logic)
-- Certificate pinning bypass surface
-- API endpoints exposed via decompiled APK/IPA
-- Mobile auth token storage and refresh logic
+| Component | Type | Auth | Priority | Notes |
+|---|---|---|---|---|
+| Login / Registration | Auth flow | None | **Critical** | OAuth + MFA — multiple bypass paths |
+| Password reset | Auth flow | None | **Critical** | Token predictability, host header injection |
+| Google SSO callback | OAuth | None | **Critical** | State param CSRF, redirect_uri manipulation |
+| MFA flow | Auth flow | Partial | **High** | Rate limiting, bypass via direct endpoint access |
+| Product search / filters | User input | Optional | **High** | SQLi, parameter pollution |
+| Checkout / cart | Business logic | Yes | **High** | Price manipulation, coupon abuse, race conditions |
+| File upload (product images, avatars) | Upload | Yes | **High** | Extension bypass, path traversal, stored XSS |
+| Order history / account pages | IDOR | Yes | **High** | Horizontal privilege escalation |
+| Export functions (invoices, reports) | Data access | Yes | **Medium** | SSRF, path traversal, template injection |
 
-**OAuth / Auth Flows**
-- Google OAuth (`/auth/google`, `/oauth/callback`)
-- GitHub OAuth (`/auth/github`, `/oauth/callback`)
-- Account linking — existing account + new OAuth provider
-- OAuth `state` parameter handling (CSRF protectio
-... [truncated]
-```
+### REST API
 
----
+| Component | Type | Auth | Priority | Notes |
+|---|---|---|---|---|
+| JWT validation logic | Auth | Bearer (RS256) | **Critical** | Algorithm confusion (`RS256 → HS256`), `kid` header injection, `none` alg |
+| `/api/v*/admin/*` routes | Privilege | Bearer | **Critical** | Auth missing on individual routes, mass assignment |
+| `/api/v*/users/:id` | IDOR | Bearer | **High** | Sequential IDs, UUID predictability |
+| `/api/v*/orders/:id` | IDOR | Bearer | **High** | Cross-user order access |
+| GraphQL endpoint (if exists) | API | Bearer | **High** | Introspection enabled, batching attacks |
+| Webhook receivers (Stripe, SendGrid) | External input | Signature | **High** | Signature validation bypass, event manipulation |
+| Internal/debug endpoints
+
+*[truncated]*
 
 ## What changed
 
-Both runs completed in 1 turn. The skill ensured consistent structure and methodology coverage — without it, output quality depends on the agent improvising correctly every time.
+Both completed in 1 turn, but the quality on that first turn differed: **Partial** without the skill vs **Good** with it. The skill enforces a consistent methodology from the first prompt.
 
-With the skill, the agent followed a proven methodology from the first prompt.
-
----
+Note: the SKILL.md adds context overhead on the input side (not shown above — response tokens are compared to keep the comparison fair). The trade-off is deliberate: more tokens in, fewer turns and better quality out.
