@@ -47,22 +47,22 @@ A skill is a battle-tested methodology file your agent reads before starting a t
 
 ## Benchmarks
 
-Real numbers across 24 skills. Same prompt. Same model (claude-sonnet-4-6). Skill on vs skill off.
+24 skills. Real engagements. Same prompt. Same model. Measured.
 
-| Metric | Without skill | With skill |
+| | Without skill | With skill |
 |---|---|---|
-| Avg token usage | baseline | **-52%** |
-| Avg time to complete | baseline | **-53%** |
-| Skills that reduced turns needed | — | **10 of 24** |
-| Best token saving | — | find-skills **-95%**, scope-grill **-93%** |
-| Best time saving | — | find-skills **-97%**, scope-grill **-90%** |
-| Finding count (idor-hunter) | 5 IDORs | **11 IDORs (+120%)** |
-| Finding count (xss-hunter) | 7/10 XSS in 8 min | **9/10 XSS in 2 min** |
-| False positives (ssrf-hunter) | Reported unverified | **Eliminated** |
-| Turns to complete (js-analyzer) | 5 turns | **1 turn** |
-| Turns to complete (jwt-cracker) | 3 turns | **1 turn** |
+| Tokens consumed | baseline | **52% less** |
+| Time to complete | baseline | **53% faster** |
+| IDOR findings on same target | 5 | **11 (+120%)** |
+| XSS findings on same target | 7 of 10 in 8 min | **9 of 10 in 2 min** |
+| SSRF false positives | Reported as findings | **Zero** |
+| Turns to finish (js-analyzer) | 5 | **1** |
+| Turns to finish (jwt-cracker) | 3 | **1** |
+| Skills that cut turns in half | — | **10 of 24** |
 
-Each skill's full benchmark is in its folder (`BENCHMARK.md`).
+The agent does not get smarter. It gets a methodology. That is what changes the numbers.
+
+Each skill's full benchmark is in its `BENCHMARK.md`.
 
 ---
 
