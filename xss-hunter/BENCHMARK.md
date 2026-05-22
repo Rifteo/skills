@@ -119,9 +119,9 @@ Two key facts shape the approach:
 
 Inject a canary to find exactly where the value lands in the page source:
 
-```
+
 GET /search?q=xsstest123
-```
+
 
 Open DevTools → View Source → search for `xsstest123`. The surrounding HTML tells you which payload to use:
 
