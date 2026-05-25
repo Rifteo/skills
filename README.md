@@ -130,57 +130,53 @@ It reads your task and loads the right skill automatically.
 
 ## Skills
 
-### Bug Bounty
-
-| Skill | What it does | Platforms |
-|---|---|---|
-| `bugbounty-reporter` | Converts raw findings into triage-ready reports. Pre-submission gate included. | HackerOne, Bugcrowd, Intigriti, YesWeHack |
-| `caveman` | Ultra-compressed comms mode for fast-paced testing sessions | All |
-
-### Vulnerability Testing
+### Web Application
 
 | Skill | What it does |
 |---|---|
-| `idor-hunter` | Systematic IDOR and BOLA detection with multi-account testing and bypass techniques |
 | `xss-hunter` | Full XSS methodology: reflected, stored, DOM, filter bypass, CSP evasion, mXSS |
-| `ssrf-hunter` | SSRF detection and exploitation including internal recon, cloud metadata, and filter bypass |
 | `xxe-phantom` | XXE injection: file read, blind OOB, SSRF chaining, SVG and XLSX vectors |
 | `ssti-hunter` | Server-side template injection with engine fingerprinting and RCE exploitation |
 | `js-analyzer` | JavaScript analysis for secrets, endpoints, sinks, and prototype pollution |
-| `jwt-cracker` | JWT attacks: alg:none, weak secret brute-force, RS256 to HS256, kid injection |
 | `hpp-hunter` | HTTP parameter pollution detection and exploitation |
 | `clickjacking-hunter` | Clickjacking detection and PoC generation |
 | `redirect-forge` | Open redirect discovery and OAuth code theft chaining |
 
-### Reporting and Scoring
+### API Security
 
 | Skill | What it does |
 |---|---|
-| `finding-writer` | Converts raw notes into a structured, report-ready finding |
-| `pentest-report` | Assembles a full pentest report from individual findings |
-| `cvss-scorer` | Computes exact CVSS v3.1 base score and vector from a vulnerability description |
-| `risk-assessor` | Business risk assessment from technical findings |
-| `remediation-planner` | Generates specific, prioritized remediation plans |
+| `jwt-cracker` | JWT attacks: alg:none, weak secret brute-force, RS256 to HS256, kid injection |
+| `idor-hunter` | Systematic IDOR and BOLA detection with multi-account testing and bypass techniques |
 
-### Recon and Assessment
+### Infrastructure
+
+| Skill | What it does |
+|---|---|
+| `ssrf-hunter` | SSRF detection and exploitation including internal recon, cloud metadata, and filter bypass |
+| `nuclei-template-writer` | Writes production-ready Nuclei templates from vulnerability descriptions |
+| `check-exploit` | Checks if a CVE has a public exploit and assesses exploitability |
+
+### Reconnaissance
 
 | Skill | What it does |
 |---|---|
 | `attack-surface` | Maps the full attack surface before testing begins |
 | `scope-grill` | Validates and clarifies engagement scope |
-| `check-exploit` | Checks if a CVE has a public exploit and assesses exploitability |
 | `vuln-diagnose` | Diagnoses ambiguous or incomplete vulnerability reports |
-| `nuclei-template-writer` | Writes production-ready Nuclei templates from vulnerability descriptions |
 
-### MCP Integrations
+### Reporting
 
-Skills that orchestrate external MCP tool servers into structured engagements.
+| Skill | What it does |
+|---|---|
+| `finding-writer` | Converts raw notes into a structured, report-ready finding |
+| `pentest-report` | Assembles a full pentest report from individual findings |
+| `bugbounty-reporter` | Converts raw findings into triage-ready reports. Pre-submission gate included. |
+| `cvss-scorer` | Computes exact CVSS v3.1 base score and vector from a vulnerability description |
+| `risk-assessor` | Business risk assessment from technical findings |
+| `remediation-planner` | Generates specific, prioritized remediation plans |
 
-| Skill | MCP Server | What it does |
-|---|---|---|
-| `hexstrike-forge` | HexStrike | Full pentest engagement: 5-phase workflow, parallel tool execution, triage gates, false positive filtering, and report-ready findings from a single prompt. Requires HexStrike MCP active. |
-
-### Compliance and Governance
+### Compliance
 
 | Skill | What it does |
 |---|---|
@@ -194,7 +190,14 @@ Skills that orchestrate external MCP tool servers into structured engagements.
 | `find-skills` | Discovers and loads the right skill for any security task |
 | `engagement-handoff` | Structures engagement handoff notes between team members |
 | `ctf-writeup` | Formats CTF challenge writeups |
+| `caveman` | Ultra-compressed comms mode for fast-paced testing sessions |
 | `skill-benchmark` | Benchmarks skill performance with and without the agent |
+
+### Integrations
+
+| Skill | Tool | What it does |
+|---|---|---|
+| `hexstrike-forge` | HexStrike | Full pentest engagement: 5-phase workflow, parallel tool execution, triage gates, false positive filtering, and report-ready findings from a single prompt. Requires HexStrike MCP active. |
 
 ---
 
