@@ -47,18 +47,17 @@ A skill is a battle-tested methodology file your agent reads before starting a t
 
 ## Benchmarks
 
-24 skills. Real engagements. Same prompt. Same model. Measured.
+19 skills. Real engagements. Same prompt. Same model. Measured.
 
 | | Without skill | With skill |
 |---|---|---|
 | Tokens consumed | baseline | **52% less** |
-| Time to complete | baseline | **53% faster** |
+| Time to complete | baseline | **50% faster** |
 | IDOR findings on same target | 5 | **11 (+120%)** |
 | XSS findings on same target | 7 of 10 in 8 min | **9 of 10 in 2 min** |
 | SSRF false positives | Reported as findings | **Zero** |
-| Turns to finish (js-analyzer) | 5 | **1** |
 | Turns to finish (jwt-cracker) | 3 | **1** |
-| Skills that cut turns in half | — | **10 of 24** |
+| Skills that cut turns to 1 | — | **8 of 19** |
 
 The agent does not get smarter. It gets a methodology. That is what changes the numbers.
 
