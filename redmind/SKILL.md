@@ -1,6 +1,6 @@
 ---
 name: redmind
-description: A red team mindset layer that shifts how the agent approaches any offensive security engagement — attacker-first thinking, objective-anchored decisions, chain-based analysis, and strategic persistence across the full attack surface. Teaches the agent to look for what breaks, not what works, and to treat every finding as a door rather than a destination.
+description: Red team mindset that shifts the agent to offensive security thinking across any target or engagement type.
 license: MIT
 metadata:
   version: "1.1.0"
