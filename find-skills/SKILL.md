@@ -20,6 +20,7 @@ When the user is looking for functionality that might exist as an installable Au
 | `control-lookup` | Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS) — returns the full control card, cross-framework mappings with confidence level, related controls, and testing hints | `auditguard-skills add control-lookup` |
 | `ctf-writeup` | Generates a clean, publishable CTF challenge writeup from solve notes — suitable for HTB, CTFtime, personal blogs, and team wikis | `auditguard-skills add ctf-writeup` |
 | `cvss-scorer` | Computes an exact CVSS v3.1 base score and vector from a vulnerability description. Infers metrics from context, picks the most accurate score when info is sufficient, and asks one short question only when the ambiguity would change the severity level. No noise, no tables, no formula dumps. | `auditguard-skills add cvss-scorer` |
+| `economist-attack` | Offensive strategy skill that prioritizes high-impact attack paths and avoids wasting effort on low-yield surfaces. | `auditguard-skills add economist-attack` |
 | `engagement-handoff` | Documents the current state of an active pentest engagement so the next agent session can continue without losing context — findings, coverage, next steps, and open threads | `auditguard-skills add engagement-handoff` |
 | `finding-writer` | Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report | `auditguard-skills add finding-writer` |
 | `hexstrike-forge` | Full HexStrike engagement workflow — sequences the right tools for your target type, kills false positives, and forges confirmed findings into a professional report | `auditguard-skills add hexstrike-forge` |
@@ -76,6 +77,7 @@ When the user asks about a task, suggest the right skill:
 - Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS) — returns the full control card, cross-framework mappings with confidence level, related controls, and testing hints → `control-lookup`
 - Generates a clean, publishable CTF challenge writeup from solve notes — suitable for HTB, CTFtime, personal blogs, and team wikis → `ctf-writeup`
 - Computes an exact CVSS v3.1 base score and vector from a vulnerability description. Infers metrics from context, picks the most accurate score when info is sufficient, and asks one short question only when the ambiguity would change the severity level. No noise, no tables, no formula dumps. → `cvss-scorer`
+- Offensive strategy skill that prioritizes high-impact attack paths and avoids wasting effort on low-yield surfaces. → `economist-attack`
 - Documents the current state of an active pentest engagement so the next agent session can continue without losing context — findings, coverage, next steps, and open threads → `engagement-handoff`
 - Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report → `finding-writer`
 - Full HexStrike engagement workflow — sequences the right tools for your target type, kills false positives, and forges confirmed findings into a professional report → `hexstrike-forge`
