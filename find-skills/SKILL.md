@@ -30,6 +30,7 @@ When the user is looking for functionality that might exist as an installable Au
 | `nuclei-template-writer` | Converts a vulnerability description or HTTP request/response pair into a ready-to-run Nuclei YAML template — handles auth strategies, matcher selection, OOB detection, and multi-step flows | `auditguard-skills add nuclei-template-writer` |
 | `pentest-report` | Generates a complete, client-ready penetration test report from all findings in the current engagement — executive summary, risk table, technical findings, and recommendations | `auditguard-skills add pentest-report` |
 | `redirect-forge` | Complete open redirect detection and exploitation methodology — parameter discovery, 30+ bypass techniques, OAuth token theft, SSRF chaining, CSP abuse, phishing escalation, and report structure | `auditguard-skills add redirect-forge` |
+| `redmind` | Red team mindset that shifts the agent to offensive security thinking across any target or engagement type. | `auditguard-skills add redmind` |
 | `remediation-planner` | Converts a security finding or vulnerability into a prioritized step-by-step remediation plan with effort estimates per step. | `auditguard-skills add remediation-planner` |
 | `risk-assessor` | Scores a vulnerability using likelihood × impact, CIA triad, CVSS correlation, and SLA-bound remediation urgency | `auditguard-skills add risk-assessor` |
 | `scope-grill` | Interviews the user about a pentest or audit engagement before any testing begins — captures target, scope, rules of engagement, auth, and deliverables into a structured brief | `auditguard-skills add scope-grill` |
@@ -85,6 +86,7 @@ When the user asks about a task, suggest the right skill:
 - Converts a vulnerability description or HTTP request/response pair into a ready-to-run Nuclei YAML template — handles auth strategies, matcher selection, OOB detection, and multi-step flows → `nuclei-template-writer`
 - Generates a complete, client-ready penetration test report from all findings in the current engagement — executive summary, risk table, technical findings, and recommendations → `pentest-report`
 - Complete open redirect detection and exploitation methodology — parameter discovery, 30+ bypass techniques, OAuth token theft, SSRF chaining, CSP abuse, phishing escalation, and report structure → `redirect-forge`
+- Red team mindset that shifts the agent to offensive security thinking across any target or engagement type. → `redmind`
 - Converts a security finding or vulnerability into a prioritized step-by-step remediation plan with effort estimates per step. → `remediation-planner`
 - Scores a vulnerability using likelihood × impact, CIA triad, CVSS correlation, and SLA-bound remediation urgency → `risk-assessor`
 - Interviews the user about a pentest or audit engagement before any testing begins — captures target, scope, rules of engagement, auth, and deliverables into a structured brief → `scope-grill`
