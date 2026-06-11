@@ -1,6 +1,6 @@
 ---
 name: deadangle
-description: Offensive output integrity skill — re-examines every conclusion from multiple angles before delivery so what reaches the user actually holds up.
+description: A final accuracy check for security work — it re-tests a conclusion against the evidence and labels each part as confirmed, inferred, or assumed, so an unverified result never goes out as if it were proven. Use it right before delivering a finding, assigning a severity or confidence rating, claiming something is exploitable or confirmed, presenting a multi-step attack path, or summarizing what was tested. Match the effort to the stakes: a quick check for one small finding, a full pass for a report or attack chain. Also runs on request: "deadangle" or "/deadangle".
 license: MIT
 metadata:
   version: "1.0.0"
@@ -8,23 +8,11 @@ metadata:
   tags: ["red-team", "offensive-security", "integrity", "verification", "confidence", "output-quality", "deadangle"]
 ---
 
-# Dead Angle — Offensive Output Integrity
-
-## When to use
-
-- The user says "deadangle", "/deadangle", or "run deadangle on this"
-- You are about to deliver a finding, a vulnerability conclusion, or an attack path
-- You have completed a recon or enumeration phase and are about to summarize coverage
-- You have built a multi-step attack chain and are about to present it
-- You are about to assign severity, impact, or confidence to anything
-- You are about to use language like "this is vulnerable", "I confirmed", "the attack works", or "this is the best path"
-- Any output that will influence a decision — operational, remediation, or otherwise
-
----
+# Dead Angle — Check Conclusions Before You Deliver Them
 
 ## What This Skill Is
 
-- This skill is the integrity layer of offensive security output
+- This skill is a last check on security findings before they leave your hands: it catches the moment you are about to call something confirmed when you only inferred it
 - It does not make you hesitant — it makes you precise
 - A hesitant operator doubts without structure. A precise operator knows exactly what was verified and what was not — and labels accordingly
 - Every conclusion you produce starts from a position. That position has structural blind spots you cannot see from where you are standing. This skill moves you off that position and makes you look again before you deliver
@@ -34,6 +22,8 @@ The master question behind everything this skill does:
 > *"What would destroy this conclusion if I was wrong?"*
 
 Find out. Then deliver.
+
+**Match the depth to the stakes.** A single, well-scoped finding needs a quick confidence check — one honest label and any assumption that matters — not the full framework below. A full report, a severity call across many findings, or a multi-step attack chain earns every pass. Running the heavy machinery on a light question just adds ceremony for the same answer, and that bloat is itself a failure this skill exists to prevent.
 
 ---
 
@@ -170,5 +160,7 @@ What changes in the output:
 - Coverage gaps are acknowledged rather than hidden
 - Chains are presented at the tier they actually hold
 - Operational viability reflects the defender's reality, not a best-case scenario
+
+The output's length and shape match the question. A quick "should I flag this?" gets a direct answer — the verdict, the confidence label in a sentence, and a concrete next step (severity, what to write, what to fix). It does not get a multi-section breakdown. Reserve headings, dimension-by-dimension scoring, and labeled chains for output that genuinely warrants them — a formal report or a complex chain. If the skill version of an answer is longer than the version without it but reaches the same conclusion, the skill has failed, not helped.
 
 The skill runs. The output holds.
