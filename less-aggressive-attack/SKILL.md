@@ -1,6 +1,6 @@
 ---
 name: less-aggressive-attack
-description: Offensive engagement without damage — safety first, read-only where possible, no uncontrollable actions.
+description: Tests for vulnerabilities, but less aggressively — read-only where possible, confirming a flaw without exercising its full impact or causing damage, following a strict set of safety rules. Not the default. Use it whenever the user wants the testing to stay cautious and non-destructive, or when the target is sensitive enough that an aggressive action could do real harm — in any context, Do not use it when the user wants a full, aggressive test, or on isolated labs, sandboxes, and CTFs where destruction is expected.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -9,27 +9,6 @@ metadata:
 ---
 
 # Less Aggressive Attack — Safety-First Offensive Operations
-
-## When to use
-
-This skill is **not the default**. Do not apply it to every offensive engagement. Only activate it when the user explicitly signals that safety and non-destruction are the priority.
-
-**Activate when the user says things like:**
-- "don't break anything", "be careful", "safety first", "non-destructive testing"
-- "don't affect real users", "keep it clean", "read-only where possible"
-- "don't alter any data", "no damage", "safe engagement", "careful with production"
-- "just prove the finding, don't exploit it fully", "confirm access, don't use it"
-- Any explicit instruction to prioritize not causing harm over achieving maximum coverage or impact
-
-**Do not activate for:**
-- Standard engagements where the user has not flagged safety as a constraint
-- Lab environments, isolated sandboxes, or CTF challenges where destruction is acceptable and expected
-- Engagements where the user explicitly wants to test the full blast radius of a vulnerability
-- Any situation where the user has clearly accepted the risk of destructive interaction
-
-**When in doubt:** ask the user whether impact safety matters for this engagement before proceeding. Do not assume safe is always the intent.
-
----
 
 ## The Core Discipline
 
@@ -189,6 +168,17 @@ Staying in scope is a safety requirement, not just a compliance formality.
 
 When the scope is ambiguous, the answer is to stop and clarify — not to proceed and hope.
 
+### Scope Clarification Template
+
+Do not stop with an open-ended "please clarify your scope" — that pushes the work back on the user without direction. Ask only the questions whose answers are actually unresolved, and make each one concrete and answerable:
+
+- **Environment:** "Is this a production system, or an isolated/staging environment?"
+- **Live users:** "Are there real users or live operational data on this system right now?"
+- **Authorized depth:** "Is this read-only — confirm the finding only — or is full exploitation authorized?"
+- **Boundaries:** "What is explicitly in scope, and is there anything adjacent (shared infra, other tenants, third-party services) I must not touch?"
+
+Lead with a sensible default when you can — e.g. "I'll confirm the finding read-only and stop before any state change unless you tell me otherwise" — so the user can correct you rather than design the engagement from scratch.
+
 ---
 
 ## Escalation and Stop Conditions
@@ -216,17 +206,3 @@ A finding confirmed safely carries the same weight as one confirmed destructivel
 - Recommend controlled testing conditions for any finding that could not be safely validated to its full impact
 
 Output integrity is part of engagement safety. An overstated finding is not a safe finding.
-
----
-
-## Offensive Direction
-
-This skill is self-contained. It does not require any other skill to operate.
-
-**Direction** — before any action, define the objective. What is the finding that needs to be confirmed? Every action is evaluated against whether it confirms that finding without introducing unacceptable risk. If an action does not advance the finding and stay within safety bounds, it does not happen.
-
-**Prioritization** — findings that can be confirmed through observation or minimal interaction are highest priority. Findings that require state-changing action to confirm are escalated only when observation is insufficient and authorization is clear.
-
-**Pivoting** — when a path cannot be pursued safely within scope, document what was established and redirect. A safe null result is a valid output. Do not force unsafe action to produce a finding.
-
-**Output integrity** — a finding is not complete until its confidence level is honest. What was observed, what was inferred, what could not be tested safely, and what would be needed to confirm the full impact — all of that belongs in the output.
