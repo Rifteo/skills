@@ -1,6 +1,6 @@
 ---
 name: less-noise-attack
-description: Operate below SOC detection thresholds, passive recon first, minimal footprint, targeted action only.
+description: Runs offensive security work in a low-noise mode — passive recon first, minimal footprint, and only deliberate, targeted active actions that blend with legitimate traffic, so the engagement stays below detection thresholds. Not the default. Use it whenever the user wants to stay undetected, or when the target is monitored enough that tripping a WAF, SOC, or anomaly detector could get the engagement flagged and blocked mid-operation — in any context. Do not use it when speed and coverage matter more than stealth, or on isolated labs, sandboxes, and CTFs where detection is not a concern.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -9,27 +9,6 @@ metadata:
 ---
 
 # Less Noise Attack — Low-Noise Offensive Operations
-
-## When to use
-
-This skill is **not the default**. Do not apply it to every offensive engagement. Only activate it when the user explicitly signals that stealth is the priority.
-
-**Activate when the user says things like:**
-- "stay under the radar", "don't get caught", "be stealthy", "go quiet", "less noise"
-- "avoid the SOC", "don't trigger alerts", "ghost mode", "fly under the radar"
-- "slow and steady", "don't make noise", "be careful not to be detected"
-- "simulate a real attacker", "act like a real threat actor" (when stealth is implied)
-- Any explicit instruction to prioritize staying undetected over speed or coverage
-
-**Do not activate for:**
-- Standard scans or assessments where the user has not asked for stealth
-- Engagements where speed and coverage are the priority
-- CTF challenges, lab environments, or isolated testing where detection is not a concern
-- Any situation where the user wants maximum coverage and is not worried about noise
-
-**When in doubt:** ask the user whether stealth matters for this engagement before applying this mindset. Do not assume.
-
----
 
 ## The Core Discipline
 
@@ -198,6 +177,19 @@ A detection event is information. Treat it as data, not as an obstacle to push t
 
 ---
 
+## Critical Finding — Stop, Do Not Weaponize
+
+When a high-severity finding is confirmed — authentication bypass, access to real funds or customer data, full account takeover, anything that crosses into material impact — the posture changes immediately:
+
+- **Stop at confirmation.** A critical finding is proven the moment access is demonstrated. It does not need to be exercised to its full impact to be real.
+- **Do not use it as a pivot platform.** Turning a confirmed critical into a launch point for deeper compromise multiplies both the noise and the operational risk — and on a live target it can cause real damage.
+- **Notify the engagement owner before going further.** A confirmed critical is a reporting event, not a green light to escalate. Continuing past it without explicit authorization is its own liability.
+- **Capture the minimal evidence that proves it, and hold.** Any further action waits for an explicit decision from the engagement owner.
+
+The lowest-noise response and the most professional response are the same one: confirm it, document it, stop.
+
+---
+
 ## Objective Anchoring
 
 This skill does not make every surface passive-only. It makes every action justify itself against the objective.
@@ -208,17 +200,3 @@ Before any active action:
 - Is there a lower-noise path to the same result?
 
 If the action does not advance the objective, it does not happen — regardless of how interesting the surface looks. Interest is not justification. Impact on the objective is.
-
----
-
-## Offensive Direction
-
-This skill is self-contained. It does not require any other skill to operate.
-
-**Direction** — before any action, define the objective. What is the crown jewel? What does a successful engagement look like? Every action is evaluated against that answer. If an action does not move toward the objective, it does not happen.
-
-**Prioritization** — not every surface is equal. Weight effort toward surfaces that carry the highest impact potential for the objective: authentication and trust boundaries, privileged access paths, data that matters to the organization, integration points between systems. Surfaces with no signal get deprioritized, not abandoned — return if context shifts.
-
-**Pivoting** — when a path yields nothing after a targeted approach, extract the intelligence value of that null result and move. A dry path tells you something about the environment. Log it. Redirect to the next highest-potential target. Do not broaden the probe to force a result.
-
-**Output integrity** — a finding is not a finding until it is confirmed. Label conclusions honestly: what was directly observed, what was inferred, what was assumed. Do not present an inference as a confirmed result. Do not move to exploitation on an unverified hypothesis. Confidence must match evidence.
