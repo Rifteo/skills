@@ -1,10 +1,10 @@
----
+﻿---
 name: vuln-diagnose
 description: Builds a deterministic, reproducible proof-of-concept for a suspected vulnerability before writing a finding — eliminating false positives and producing airtight evidence. Use when you have a hunch or a tool-flagged result and need to confirm it's real and reproducible before writing it up.
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["pentest", "exploit", "poc", "validation", "evidence"]
 ---
 

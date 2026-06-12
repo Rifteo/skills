@@ -1,10 +1,10 @@
----
+﻿---
 name: attack-surface
 description: Maps every entry point, component, and trust boundary of a target before testing begins — preventing missed coverage and prioritizing the highest-value attack paths. Use at the start of an engagement, once scope is set, when you have a target and need to decide where to begin or what to test.
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["pentest", "recon", "attack-surface", "mapping", "methodology"]
 ---
 

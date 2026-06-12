@@ -1,10 +1,10 @@
----
+﻿---
 name: xss-hunter
 description: Complete XSS testing methodology — reflected, stored, DOM-based, blind, and mutation XSS, CSP bypass, DOM clobbering, filter/WAF evasion, and impact escalation. Use when testing for XSS, finding the right payload for an injection context, or bypassing a filter, WAF, or Content-Security-Policy.
 license: MIT
 metadata:
   version: "0.0.1"
-  author: AuditGuard
+  author: Rifteo
   tags: ["pentest", "xss", "web", "csp-bypass", "dom-clobbering", "waf-evasion", "bug-bounty"]
 ---
 

@@ -1,23 +1,23 @@
----
+﻿---
 name: hexstrike-forge
 description: Full HexStrike engagement workflow — sequences the right tools for your target type, kills false positives, and forges confirmed findings into a professional report. Use when the HexStrike MCP is active and you want a structured engagement, or you have raw HexStrike output to turn into findings.
 license: MIT
 metadata:
   version: "1.2.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["hexstrike", "pentest", "workflow", "triage", "automation"]
 ---
 
 # HexStrike Forge
 
-HexStrike executes. AuditGuard refines. This skill sequences HexStrike tools intelligently, filters noise down to confirmed findings, and assembles a professional report.
+HexStrike executes. Rifteo refines. This skill sequences HexStrike tools intelligently, filters noise down to confirmed findings, and assembles a professional report.
 
 **Rule:** No exploit, no finding. Every HexStrike output is a hypothesis until triage confirms it.
 
 ## Startup
 
 ### 1. Scope gate
-Run `scope-grill` skill if installed (`npx auditguard-skills add scope-grill` to install). If not installed, ask these three questions before any active testing and do not proceed until all are answered:
+Run `scope-grill` skill if installed (`npx rifteo-skills add scope-grill` to install). If not installed, ask these three questions before any active testing and do not proceed until all are answered:
 
 1. Do you have written authorization to test this target?
 2. What is in scope and what is explicitly out of scope?
@@ -85,7 +85,7 @@ After triage:
 
 For each CONFIRM-HIGH and CONFIRM-MED finding:
 1. Assign finding ID (F-01, F-02 ...) in descending severity order
-2. Write up using `finding-writer` skill if installed — it produces a full structured pentest finding (`npx auditguard-skills add finding-writer` to install). If not installed, use the template in `references/triage-rules.md` section 6.
+2. Write up using `finding-writer` skill if installed — it produces a full structured pentest finding (`npx rifteo-skills add finding-writer` to install). If not installed, use the template in `references/triage-rules.md` section 6.
 
 INVESTIGATE items go into open threads in the handoff — not findings.
 
@@ -95,9 +95,9 @@ INVESTIGATE items go into open threads in the handoff — not findings.
 
 Choose based on what the user needs:
 
-- **Full report** → `pentest-report` skill if installed (`npx auditguard-skills add pentest-report`) — it assembles a complete professional report. If not installed, produce: Executive Summary → Risk Summary (finding count by severity, KEV flags) → Findings sorted by CVSS → Open Threads → Appendix (tool output).
-- **Continue later** → `engagement-handoff` skill if installed (`npx auditguard-skills add engagement-handoff`) — it produces a structured handoff document. If not installed, produce: confirmed scope, evidence ledger, open threads with next steps, retest date, and any credentials or context the next session needs.
-- **Remediation plans** → `remediation-planner` skill per finding if installed (`npx auditguard-skills add remediation-planner`) — it produces prioritized fix plans. If not installed, for each finding produce: immediate action (hours), short-term fix (days), long-term hardening (weeks), and a verification step to confirm the fix.
+- **Full report** → `pentest-report` skill if installed (`npx rifteo-skills add pentest-report`) — it assembles a complete professional report. If not installed, produce: Executive Summary → Risk Summary (finding count by severity, KEV flags) → Findings sorted by CVSS → Open Threads → Appendix (tool output).
+- **Continue later** → `engagement-handoff` skill if installed (`npx rifteo-skills add engagement-handoff`) — it produces a structured handoff document. If not installed, produce: confirmed scope, evidence ledger, open threads with next steps, retest date, and any credentials or context the next session needs.
+- **Remediation plans** → `remediation-planner` skill per finding if installed (`npx rifteo-skills add remediation-planner`) — it produces prioritized fix plans. If not installed, for each finding produce: immediate action (hours), short-term fix (days), long-term hardening (weeks), and a verification step to confirm the fix.
 - **Quick brief** → no sub-skill needed. Produce 5 lines: scope, test duration, finding count by severity, highest-risk finding title, recommended immediate action.
 
 Executive Summary must always include: total findings by severity, KEV findings flagged separately, any chains discovered, and one sentence on overall risk posture.

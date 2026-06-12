@@ -1,4 +1,4 @@
-# Contributing to AuditGuard Agent Skills
+﻿# Contributing to Rifteo agent skills
 
 ## Adding a skill
 
@@ -18,7 +18,7 @@ description: One sentence — what this skill does and when to use it
 license: MIT
 metadata:
   version: "0.0.1"
-  author: AuditGuard
+  author: Rifteo
   tags: ["security", "audit"]
 ---
 

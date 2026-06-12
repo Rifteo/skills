@@ -1,10 +1,10 @@
----
+﻿---
 name: caveman
 description: Ultra-compressed response mode for cybersecurity contexts — strips filler while keeping CVEs, payloads, CVSS scores, and findings exact. User-triggered only (/caveman, "caveman mode", "be brief", "in short", "tl;dr", "straight to the point", "just the findings").
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["cybersecurity", "pentest", "audit", "mode", "communication"]
 ---
 

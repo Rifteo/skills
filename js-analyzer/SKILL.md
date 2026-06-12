@@ -1,10 +1,10 @@
----
+﻿---
 name: js-analyzer
 description: Full JavaScript analysis methodology for pentesting and bug bounty — JS file discovery, secret extraction, endpoint mapping, DOM XSS, prototype pollution, postMessage abuse, client-side logic flaws, source map extraction, and hardcoded credential hunting. Use when analyzing a target's JavaScript: hunting endpoints or secrets in bundles, or testing client-side vulns.
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["javascript", "recon", "xss", "secrets", "prototype-pollution", "dom", "bug-bounty", "pentest"]
 ---
 

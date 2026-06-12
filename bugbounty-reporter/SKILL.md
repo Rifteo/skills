@@ -1,10 +1,10 @@
----
+﻿---
 name: bugbounty-reporter
 description: Converts a confirmed bug bounty finding — raw notes, a request/response, or a PoC — into a complete, triage-ready report with clear description, numbered reproduction steps, self-contained PoC, risk, and remediation, written for triagers who are not necessarily security experts. Use when you have a finding to submit to HackerOne, Bugcrowd, Intigriti, or YesWeHack.
 license: MIT
 metadata:
   version: "1.1.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["bug-bounty", "reporting", "h1", "bugcrowd", "intigriti", "pentest"]
 ---
 

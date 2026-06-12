@@ -1,10 +1,10 @@
----
+﻿---
 name: economist-attack
 description: Weighs each attack path's effort against its likely impact to find the most important weakness with the least wasted effort, pursuing high-value surfaces first. Shapes the order in which you test, not what you test. Use it whenever you are doing offensive testing and need to decide where to focus: it compares effort against impact, goes after high-value surfaces first, and checks in with you when a finding lands or a surface goes dry.
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["red-team", "pentest", "offensive-security", "strategy", "prioritization", "attack-planning"]
 ---
 

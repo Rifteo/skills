@@ -1,10 +1,10 @@
----
+﻿---
 name: less-noise-attack
 description: Runs offensive security work in a low-noise mode — passive recon first, minimal footprint, and only deliberate, targeted active actions that blend with legitimate traffic, so the engagement stays below detection thresholds. Not the default. Use it whenever the user wants to stay undetected, or when the target is monitored enough that tripping a WAF, SOC, or anomaly detector could get the engagement flagged and blocked mid-operation — in any context. Do not use it when speed and coverage matter more than stealth, or on isolated labs, sandboxes, and CTFs where detection is not a concern.
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["red-team", "pentest", "offensive-security", "opsec", "low-noise", "stealth", "passive-recon", "detection-avoidance", "all-domains"]
 ---
 

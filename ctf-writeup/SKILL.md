@@ -1,10 +1,10 @@
----
+﻿---
 name: ctf-writeup
 description: Generates a clean, publishable CTF challenge writeup from solve notes — suitable for HTB, CTFtime, personal blogs, and team wikis. Use when you've solved a challenge and want your notes turned into a documented writeup.
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["ctf", "writeup", "hacking", "learning", "community"]
 ---
 

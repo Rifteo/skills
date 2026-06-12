@@ -1,6 +1,6 @@
-# Skill Structure Guide
+﻿# Skill Structure Guide
 
-A complete reference for creating AuditGuard agent skills.
+A complete reference for creating Rifteo agent skills.
 
 ---
 
@@ -29,7 +29,7 @@ my-skill/
     └── extract-findings.py
 ```
 
-All files are installed alongside `SKILL.md` when a user runs `auditguard-skills add my-skill`.
+All files are installed alongside `SKILL.md` when a user runs `rifteo-skills add my-skill`.
 
 ---
 
@@ -42,7 +42,7 @@ description: One sentence — what this skill does and when to use it
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["security", "audit"]
 ---
 
@@ -56,10 +56,10 @@ Instructions for the agent to follow when this skill is active.
 | Field | Required | Description |
 |---|---|---|
 | `name` | yes | Matches the folder name exactly |
-| `description` | yes | One sentence shown in `auditguard-skills available` |
+| `description` | yes | One sentence shown in `rifteo-skills available` |
 | `license` | no | License for the skill (e.g. `MIT`) |
 | `metadata.version` | no | Semantic version of the skill |
-| `metadata.author` | no | AuditGuard |
+| `metadata.author` | no | Rifteo |
 | `metadata.tags` | no | Array of tags for filtering and discovery |
 
 ---
