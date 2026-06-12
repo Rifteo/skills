@@ -1,6 +1,6 @@
 ---
 name: vuln-diagnose
-description: Builds a deterministic, reproducible proof-of-concept for a suspected vulnerability before writing a finding — eliminates false positives and produces airtight evidence
+description: Builds a deterministic, reproducible proof-of-concept for a suspected vulnerability before writing a finding — eliminating false positives and producing airtight evidence. Use when you have a hunch or a tool-flagged result and need to confirm it's real and reproducible before writing it up.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -13,13 +13,6 @@ metadata:
 A suspected vulnerability is not a finding. Before writing anything, build a deterministic reproduction case. If you cannot reproduce it reliably, you cannot report it.
 
 Inspired by the principle: *a fast, deterministic, agent-runnable pass/fail signal is a superpower.*
-
-## When to Use
-
-- User has a hunch or a partially-confirmed vulnerability
-- Tool output flagged something but it needs manual validation
-- User wants to confirm a finding before writing it up
-- User says "I think there's an IDOR here", "this looks like XSS", "not sure if this is exploitable"
 
 ## Process
 

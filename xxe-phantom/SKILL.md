@@ -1,6 +1,6 @@
 ---
 name: xxe-phantom
-description: Complete XXE (XML External Entity) detection and exploitation methodology — classic file read, blind OOB exfiltration, XInclude, SVG/DOCX/SAML vectors, WAF bypass, SSRF chaining, and report structure
+description: Complete XXE (XML External Entity) detection and exploitation methodology — classic file read, blind OOB exfiltration, XInclude, SVG/DOCX/SAML vectors, WAF bypass, SSRF chaining, and report structure. Use when an endpoint accepts XML (Content-Type application/xml, or SVG/DOCX/SAML/SOAP input) and you want to read files, probe internal services, or chain to SSRF.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -9,21 +9,6 @@ metadata:
 ---
 
 # XXE Phantom — XML External Entity Injection
-
-## When to use
-
-Activate this skill when the user:
-- asks to test for XXE, XML injection, or external entity injection
-- sees a request with `Content-Type: application/xml`, `text/xml`, or `application/soap+xml`
-- identifies an endpoint that accepts XML in the body
-- uploads SVG, DOCX, XLSX, ODT, PDF, or any XML-based file format
-- sees a SAML assertion, SOAP request, RSS feed, or WebDAV request
-- wants to read local files, probe internal services, or escalate XXE to SSRF or RCE
-- gets a stack trace mentioning XML parser, SAX, DOM, Expat, libxml2, Xerces, or similar
-- asks "can I read files from the server?", "how do I chain XXE with SSRF?", or "how do I exfiltrate data out of band?"
-- is writing a finding and needs severity, CWE, CVSS, or remediation guidance
-
----
 
 XXE occurs when an XML parser evaluates external entity declarations (`<!ENTITY xxe SYSTEM "...">`) supplied by the attacker. Impact ranges from local file disclosure to full SSRF and, in some stacks, Remote Code Execution.
 

@@ -1,6 +1,6 @@
 ---
 name: engagement-handoff
-description: Documents the current state of an active pentest engagement so the next agent session can continue without losing context — findings, coverage, next steps, and open threads
+description: Documents the current state of an active pentest engagement so the next session can continue without losing context — findings, coverage, next steps, and open threads. Use when an engagement needs to pause and resume later: a handoff, saving progress, end of a testing day, or a context window getting long. Not for the final client report (use pentest-report).
 license: MIT
 metadata:
   version: "1.0.0"
@@ -13,12 +13,6 @@ metadata:
 Create a compact handoff document that captures exactly where the current engagement stands. A fresh agent session reading this file should be able to continue without asking any questions.
 
 Reference existing artifacts (ENGAGEMENT.md, findings already written) rather than duplicating them.
-
-## When to use
-
-- User says "handoff", "save progress", "pick this up next session", "summarize the engagement"
-- Context window is getting long and work needs to continue in a fresh session
-- End of a testing day / shift change
 
 ## When NOT to use
 

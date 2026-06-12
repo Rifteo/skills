@@ -1,6 +1,6 @@
 ---
 name: hexstrike-forge
-description: Full HexStrike engagement workflow — sequences the right tools for your target type, kills false positives, and forges confirmed findings into a professional report
+description: Full HexStrike engagement workflow — sequences the right tools for your target type, kills false positives, and forges confirmed findings into a professional report. Use when the HexStrike MCP is active and you want a structured engagement, or you have raw HexStrike output to turn into findings.
 license: MIT
 metadata:
   version: "1.2.0"
@@ -13,14 +13,6 @@ metadata:
 HexStrike executes. AuditGuard refines. This skill sequences HexStrike tools intelligently, filters noise down to confirmed findings, and assembles a professional report.
 
 **Rule:** No exploit, no finding. Every HexStrike output is a hypothesis until triage confirms it.
-
-## When to Use
-
-- HexStrike MCP is active and you want a structured engagement
-- User says "pentest this", "run HexStrike on X", "find vulnerabilities in Y"
-- You have raw HexStrike output and need to turn it into professional findings
-
----
 
 ## Startup
 

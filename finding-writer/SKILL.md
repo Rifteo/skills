@@ -1,6 +1,6 @@
 ---
 name: finding-writer
-description: Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report
+description: Converts raw pentest notes, logs, or observations into a structured audit finding ready for a security report. Use when you have evidence of a specific vulnerability — notes, tool output, an HTTP request/response — and need it written up. Not for scoring only (use cvss-scorer), fixing (use remediation-planner), or exploitation (use the relevant hunter skill).
 license: MIT
 metadata:
   version: "0.0.1"
@@ -11,13 +11,6 @@ metadata:
 # Finding Writer
 
 Convert raw pentest notes, log snippets, vulnerability descriptions, or any unstructured observation into a complete, report-ready audit finding.
-
-## When to use
-
-- User pastes raw notes, tool output, or a quick observation from a pentest
-- User describes a vulnerability and needs it structured for a report
-- User has a log snippet or HTTP request/response that reveals a security issue
-- User wants to turn a single-line note into a client-deliverable write-up
 
 ## When NOT to use
 

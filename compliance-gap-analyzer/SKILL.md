@@ -1,6 +1,6 @@
 ---
 name: compliance-gap-analyzer
-description: Aggregates audit findings mapped to framework controls, classifies each control as compliant / partially compliant / non-compliant / not tested, identifies blind spots, prioritizes gaps by severity, and produces a complete self-contained gap report — supports ISO 27001, NIST CSF, PCI-DSS, and OWASP (Top 10 / ASVS)
+description: Aggregates audit findings mapped to framework controls, classifies each as compliant / partially compliant / non-compliant / not tested, identifies blind spots, prioritizes gaps by severity, and produces a self-contained gap report — ISO 27001, NIST CSF, PCI-DSS, OWASP (Top 10 / ASVS). Use when you have audit or pentest findings to map to a framework and want a gap or coverage report. Not for a single control (use control-lookup) or a single finding (use finding-writer).
 license: MIT
 metadata:
   version: "0.0.1"
@@ -11,16 +11,6 @@ metadata:
 # Compliance Gap Analyzer
 
 When an auditor provides findings from an audit — each tagged to a framework control with a compliance status — aggregate them into a structured gap report. Identify what is failing, what was never tested, and what to fix first.
-
-## When to use
-
-Activate this skill when the user:
-- provides a list of audit findings with control references (ISO 27001, NIST CSF, PCI-DSS, OWASP)
-- asks for a compliance gap report, gap analysis, or control coverage summary
-- wants to identify blind spots or untested controls in an audit
-- needs to compare current compliance posture against a previous audit (delta analysis)
-- asks "what controls are failing?" or "what are our biggest compliance gaps?"
-- shares pentest or audit results and wants them mapped to a framework
 
 ## When NOT to use
 
