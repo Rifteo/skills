@@ -1,6 +1,6 @@
 ---
 name: redirect-forge
-description: Complete open redirect detection and exploitation methodology — parameter discovery, 30+ bypass techniques, OAuth token theft, SSRF chaining, CSP abuse, phishing escalation, and report structure
+description: Complete open redirect detection and exploitation methodology — parameter discovery, 30+ bypass techniques, OAuth token theft, SSRF chaining, CSP abuse, phishing escalation, and report structure. Use when testing a redirect parameter (?next=, ?url=, ?redirect=), a controllable Location header, OAuth redirect_uri abuse, or chaining open redirect into SSRF, CSP bypass, or account takeover.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -9,20 +9,6 @@ metadata:
 ---
 
 # Redirect Forge — Open Redirect
-
-## When to use
-
-Activate this skill when the user:
-- asks to test for open redirect, URL redirection, or unvalidated redirect/forward
-- sees a parameter like `?next=`, `?url=`, `?redirect=`, `?return=`, `?goto=`, `?destination=` in a URL
-- wants to steal OAuth tokens or authorization codes via `redirect_uri` manipulation
-- needs to chain open redirect → SSRF, open redirect → CSP bypass, or open redirect → account takeover
-- sees a 301/302/307/308 response and wants to know if the `Location` header is controllable
-- wants to bypass a redirect allowlist or whitelist
-- is writing a finding and needs severity, CWE, CVSS, or remediation guidance
-- asks "can I abuse this redirect for phishing?" or "how do I chain this with OAuth?"
-
----
 
 Open redirect occurs when an application redirects a user to a URL that is partially or fully controlled by attacker input, without proper validation. On its own it enables phishing. Chained with OAuth, SSRF, or CSP it becomes Critical.
 

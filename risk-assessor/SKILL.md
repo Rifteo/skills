@@ -1,6 +1,6 @@
 ---
 name: risk-assessor
-description: Scores a vulnerability using likelihood × impact, CIA triad, CVSS correlation, and SLA-bound remediation urgency
+description: Scores a vulnerability using likelihood × impact, CIA triad, CVSS correlation, and SLA-bound remediation urgency. Use when you need a risk rating and remediation urgency for a finding, beyond a raw CVSS score.
 ---
 
 # Risk Assessor

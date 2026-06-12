@@ -1,6 +1,6 @@
 ---
 name: skill-benchmark
-description: Scores any SKILL.md across 5 quality dimensions, runs a compatibility check against 50+ AI agents, and returns a ranked fix list — use when asked to benchmark, audit, or check cross-agent compatibility of a skill.
+description: Scores any SKILL.md across 5 quality dimensions, runs a compatibility check against 50+ AI agents, and returns a ranked fix list. Use when asked to benchmark, audit, or check cross-agent compatibility of a skill — e.g. before publishing or opening a PR.
 ---
 
 # Skill Benchmark
@@ -11,17 +11,6 @@ returns a structured report with a ranked fix list.
 
 **No agents need to be installed.** Everything is static analysis — you read
 the skill file, apply the rubric below, and produce the report.
-
-## When to use
-
-Activate this skill when the user asks to:
-- benchmark, score, or audit a skill ("is my skill any good?")
-- check cross-agent compatibility ("will this work on Cursor/Windsurf/Gemini?")
-- get a ranked fix list before publishing a SKILL.md
-- compare skills or evaluate quality before a PR submission
-- audit a SKILL.md for a community repo (e.g. before opening a pull request)
-
----
 
 ## Protocol
 

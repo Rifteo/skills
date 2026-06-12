@@ -1,6 +1,6 @@
 ---
 name: xss-hunter
-description: Complete XSS testing methodology — covers reflected, stored, DOM-based, blind, and mutation XSS, CSP bypass, DOM clobbering, filter/WAF evasion, and impact escalation
+description: Complete XSS testing methodology — reflected, stored, DOM-based, blind, and mutation XSS, CSP bypass, DOM clobbering, filter/WAF evasion, and impact escalation. Use when testing for XSS, finding the right payload for an injection context, or bypassing a filter, WAF, or Content-Security-Policy.
 license: MIT
 metadata:
   version: "0.0.1"
@@ -9,17 +9,6 @@ metadata:
 ---
 
 # XSS Attack Methodology
-
-## When to use
-
-Activate this skill when the user:
-- asks to test for XSS, cross-site scripting, reflected XSS, stored XSS, DOM-based XSS, blind XSS, mutation XSS, or DOM clobbering
-- wants to bypass XSS filters, WAF rules, or a Content-Security-Policy
-- identifies a reflection point and needs the right payload for the context
-- pastes HTML/JS that reflects user input and wants to know if it's exploitable
-- asks "can I steal cookies here?", "test input fields for injection", or "check if the app sanitizes output"
-- needs to demonstrate XSS impact (session hijack, account takeover, CSRF bypass)
-- is writing a pentest finding and needs evidence or remediation guidance
 
 XSS occurs when user-controlled input is rendered in a browser without proper sanitization or encoding, allowing arbitrary JavaScript execution in the victim's context.
 

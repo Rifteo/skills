@@ -1,6 +1,6 @@
 ---
 name: bugbounty-reporter
-description: Converts raw bug bounty findings into a complete, triage-ready report with clear description, numbered reproduction steps, self-contained PoC, risk, and remediation. Writes for triagers who are not necessarily security experts. Covers all vuln classes and major platforms (HackerOne, Bugcrowd, Intigriti, YesWeHack).
+description: Converts a confirmed bug bounty finding — raw notes, a request/response, or a PoC — into a complete, triage-ready report with clear description, numbered reproduction steps, self-contained PoC, risk, and remediation, written for triagers who are not necessarily security experts. Use when you have a finding to submit to HackerOne, Bugcrowd, Intigriti, or YesWeHack.
 license: MIT
 metadata:
   version: "1.1.0"
@@ -11,12 +11,6 @@ metadata:
 # Bug Bounty Reporter
 
 Turn raw findings into a report that gets triaged, not closed. Bug bounty reports fail for two reasons: the triager can't reproduce it, or can't understand why it matters. This skill fixes both.
-
-## When to Use
-
-- User has a confirmed bug bounty finding and needs to write it up
-- User says "write this up", "report this", "format this for H1/Bugcrowd/Intigriti"
-- User has raw notes, a request/response, or a PoC and needs a submission-ready report
 
 ## Process
 

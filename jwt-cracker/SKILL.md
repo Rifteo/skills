@@ -1,21 +1,9 @@
 ---
 name: jwt-cracker
-description: Full JWT attack methodology — alg:none, RS256 to HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering
+description: Full JWT attack methodology — alg:none, RS256-to-HS256 confusion, weak secret brute-force, kid injection, jku/jwk injection, and claim tampering. Use when testing a JWT for forgery or authentication bypass, or when you see a token shaped like xxxxx.yyyyy.zzzzz.
 ---
 
 # JWT Attack Methodology
-
-## When to use
-
-Activate this skill when the user asks to:
-- test JWT tokens, authentication bypass, or token forgery
-- try `alg:none`, algorithm confusion, or weak secret brute-force
-- test `kid` injection, `jku`/`x5u` header injection, or embedded `jwk` injection
-- check if `exp`, `iss`, or `aud` claims are validated
-- bypass authentication on an API or web app
-- test a string that looks like a JWT (`xxxxx.yyyyy.zzzzz`)
-
----
 
 JWT tokens look like: `header.payload.signature` (base64url-encoded, dot-separated).
 

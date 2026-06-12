@@ -1,6 +1,6 @@
 ---
 name: control-lookup
-description: Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS) — returns the full control card, cross-framework mappings with confidence level, related controls, and testing hints
+description: Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS) — returns the full control card, cross-framework mappings with confidence level, related controls, and testing hints. Use when you have a control ID, a cross-framework mapping question, or a plain-language search for the control covering a topic (e.g. MFA, patch management).
 license: MIT
 metadata:
   version: "0.0.1"
@@ -11,18 +11,6 @@ metadata:
 # Control Lookup
 
 When a user provides a control ID, a control name, or a plain-language description of a control objective, identify it, return its full details, and map it across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS).
-
-## When to use
-
-Activate this skill when the user:
-- provides a control ID and asks what it means (e.g., "what is ISO 27001 A.9.1.1?", "explain NIST CSF PR.AC-1")
-- asks how controls map across frameworks (e.g., "what's the NIST CSF equivalent of PCI-DSS Req 8?")
-- searches for a control by keyword or plain-language description (e.g., "what control covers MFA?", "find the control for patch management")
-- needs testing hints or evidence criteria for a specific control
-- asks about related controls or prerequisites within a framework
-- wants to understand the scope or intent of a control before writing a finding or test procedure
-
----
 
 ## Step 1 — Parse the Input
 

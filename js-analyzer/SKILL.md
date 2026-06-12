@@ -1,6 +1,6 @@
 ---
 name: js-analyzer
-description: Full JavaScript analysis methodology for pentesting and bug bounty — JS file discovery, secret extraction, endpoint mapping, DOM XSS, prototype pollution, postMessage abuse, client-side logic flaws, source map extraction, and hardcoded credential hunting
+description: Full JavaScript analysis methodology for pentesting and bug bounty — JS file discovery, secret extraction, endpoint mapping, DOM XSS, prototype pollution, postMessage abuse, client-side logic flaws, source map extraction, and hardcoded credential hunting. Use when analyzing a target's JavaScript: hunting endpoints or secrets in bundles, or testing client-side vulns.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -9,21 +9,6 @@ metadata:
 ---
 
 # JS Analyzer — JavaScript Security Analysis
-
-## When to use
-
-Activate this skill when the user:
-- wants to analyze JavaScript files from a target web application
-- asks to find endpoints, API routes, or hidden parameters in JS bundles
-- wants to hunt for secrets, API keys, or credentials in JS source
-- asks to test for DOM XSS, prototype pollution, or postMessage vulnerabilities
-- wants to deobfuscate or extract source maps from minified JS
-- asks about client-side logic flaws, authorization bypass, or insecure storage
-- mentions webpack, React, Angular, Vue, Next.js, or similar JS frameworks
-- says things like "analyze the JS", "map the API", "find secrets in the bundle", or "check for client-side vulns"
-- pastes a URL to a `.js` file or a JavaScript snippet to review
-
----
 
 JS files are often the most information-rich attack surface in a web application. A thorough JS review routinely yields: hidden API endpoints, hardcoded secrets, client-side authorization logic to bypass, insecure postMessage handlers, and vulnerable third-party libraries.
 

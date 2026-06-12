@@ -1,6 +1,6 @@
 ---
 name: economist-attack
-description: Offensive strategy skill that prioritizes high-impact attack paths and avoids wasting effort on low-yield surfaces.
+description: Weighs each attack path's effort against its likely impact to find the most important weakness with the least wasted effort, pursuing high-value surfaces first. Shapes the order in which you test, not what you test. Use it whenever you are doing offensive testing and need to decide where to focus: it compares effort against impact, goes after high-value surfaces first, and checks in with you when a finding lands or a surface goes dry.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -9,15 +9,6 @@ metadata:
 ---
 
 # Economist Attack — Offensive Strategy Mindset
-
-## When to use
-
-- When doing any offensive security engagement and deciding where to focus effort
-- When the attack surface is large and not everything can be tested with equal depth
-- When the goal is maximum impact from available time and effort
-- Works standalone or alongside an offensive mindset skill like redmind
-
----
 
 ## The Economic Lens
 

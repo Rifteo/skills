@@ -1,6 +1,6 @@
 ---
 name: remediation-planner
-description: Converts a security finding or vulnerability into a prioritized step-by-step remediation plan with effort estimates per step.
+description: Converts a security finding or vulnerability into a prioritized, step-by-step remediation plan with effort estimates per step. Use when you have a specific finding and need a fix plan — "how do we fix this?". Not for exploiting, scanning, or theoretical questions with no concrete finding.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -11,12 +11,6 @@ metadata:
 # Remediation Planner
 
 Given any security finding, vulnerability, or bug description, produce a prioritized, step-by-step remediation plan. Each step includes a title, a concise explanation, and an effort estimate so the team knows what to do and how hard it is.
-
-## When to use
-
-- User provides a vulnerability, finding, or bug and needs a fix plan
-- User asks "how do we fix this?" or "what's the remediation for X?"
-- User wants to estimate the work involved in addressing a finding
 
 ## When NOT to use
 

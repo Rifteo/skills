@@ -1,6 +1,6 @@
 ---
 name: scope-grill
-description: Interviews the user about a pentest or audit engagement before any testing begins — captures target, scope, rules of engagement, auth, and deliverables into a structured brief
+description: Interviews the user about a pentest or audit engagement before any testing begins — capturing target, scope, rules of engagement, auth, and deliverables into a structured brief. Use when starting an engagement that isn't yet scoped, or when a target is described without scope, authorization, or deliverables.
 license: MIT
 metadata:
   version: "1.0.0"
@@ -13,12 +13,6 @@ metadata:
 Before any testing begins, interview the user to build a complete engagement brief. An untested assumption about scope or authorization invalidates findings and creates legal risk.
 
 Ask one question at a time. Wait for the answer before moving on. Provide a recommended answer or example for each question.
-
-## When to Use
-
-- User says "start a pentest", "begin an engagement", "test this target"
-- User describes a target without mentioning scope, authorization, or deliverables
-- User wants to structure an engagement before diving in
 
 ## Question Sequence
 
