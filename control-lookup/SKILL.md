@@ -1,4 +1,4 @@
-﻿---
+---
 name: control-lookup
 description: Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and OWASP (Top 10 / ASVS) — returns the full control card, cross-framework mappings with confidence level, related controls, and testing hints. Use when you have a control ID, a cross-framework mapping question, or a plain-language search for the control covering a topic (e.g. MFA, patch management).
 license: MIT

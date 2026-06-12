@@ -1,4 +1,4 @@
-﻿---
+---
 name: scope-grill
 description: Interviews the user about a pentest or audit engagement before any testing begins — capturing target, scope, rules of engagement, auth, and deliverables into a structured brief. Use when starting an engagement that isn't yet scoped, or when a target is described without scope, authorization, or deliverables.
 license: MIT

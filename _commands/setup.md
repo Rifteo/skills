@@ -1,4 +1,4 @@
-﻿Audit the current Rifteo installation and configuration on this machine, then give exact setup steps for anything missing.
+Audit the current Rifteo installation and configuration on this machine, then give exact setup steps for anything missing.
 
 ## Step 1 — Check installed skills
 

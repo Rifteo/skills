@@ -1,4 +1,4 @@
-﻿# Contributing to Rifteo agent skills
+# Contributing to Rifteo agent skills
 
 ## Adding a skill
 

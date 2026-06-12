@@ -1,4 +1,4 @@
-﻿---
+---
 name: ssrf-hunter
 description: Complete SSRF detection and exploitation methodology — injection point discovery, cloud metadata theft (AWS/GCP/Azure), internal network enumeration, protocol handler abuse, filter bypass techniques, blind SSRF via OOB, and report structure. Use when testing a parameter that fetches a URL or server-side resource, probing cloud metadata or internal services, or chaining blind SSRF via out-of-band.
 metadata:

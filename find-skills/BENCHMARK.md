@@ -1,4 +1,4 @@
-﻿---
+---
 skill: find-skills
 tested-on: claude-sonnet-4-6
 date: 2026-05-22

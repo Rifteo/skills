@@ -1,4 +1,4 @@
-﻿---
+---
 name: remediation-planner
 description: Converts a security finding or vulnerability into a prioritized, step-by-step remediation plan with effort estimates per step. Use when you have a specific finding and need a fix plan — "how do we fix this?". Not for exploiting, scanning, or theoretical questions with no concrete finding.
 license: MIT

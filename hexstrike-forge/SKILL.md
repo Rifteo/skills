@@ -1,4 +1,4 @@
-﻿---
+---
 name: hexstrike-forge
 description: Full HexStrike engagement workflow — sequences the right tools for your target type, kills false positives, and forges confirmed findings into a professional report. Use when the HexStrike MCP is active and you want a structured engagement, or you have raw HexStrike output to turn into findings.
 license: MIT

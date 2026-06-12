@@ -1,4 +1,4 @@
-﻿---
+---
 name: redmind
 description: Red team mindset that shifts the agent to offensive security thinking across any target or engagement type. Use whenever the objective is offensive — finding what can be broken, bypassed, or abused, or assessing a target from an attacker's perspective — regardless of how the request is phrased.
 license: MIT

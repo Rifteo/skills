@@ -1,4 +1,4 @@
-﻿---
+---
 name: less-aggressive-attack
 description: Tests for vulnerabilities, but less aggressively — read-only where possible, confirming a flaw without exercising its full impact or causing damage, following a strict set of safety rules. Not the default. Use it whenever the user wants the testing to stay cautious and non-destructive, or when the target is sensitive enough that an aggressive action could do real harm — in any context, Do not use it when the user wants a full, aggressive test, or on isolated labs, sandboxes, and CTFs where destruction is expected.
 license: MIT

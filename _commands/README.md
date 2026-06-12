@@ -1,4 +1,4 @@
-﻿# Rifteo Slash Commands
+# Rifteo Slash Commands
 
 Slash commands for Claude Code that invoke Rifteo workflows directly from the prompt.
 

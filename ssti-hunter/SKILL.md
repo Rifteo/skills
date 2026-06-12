@@ -1,4 +1,4 @@
-﻿---
+---
 name: ssti-hunter
 description: Complete SSTI detection and exploitation methodology — engine fingerprinting, RCE payloads per engine (Jinja2, Twig, FreeMarker, Velocity, Mako, ERB, EJS, Pebble, Thymeleaf, Smarty, Pug, Handlebars, Nunjucks), sandbox escapes, blind detection, and report structure. Use when a parameter may be evaluated server-side ({{7*7}} returns 49), a stack trace names a template engine, or you're escalating SSTI to RCE.
 license: MIT

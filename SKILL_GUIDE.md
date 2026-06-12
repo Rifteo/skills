@@ -1,4 +1,4 @@
-﻿# Skill Structure Guide
+# Skill Structure Guide
 
 A complete reference for creating Rifteo agent skills.
 

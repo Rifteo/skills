@@ -1,4 +1,4 @@
-﻿---
+---
 name: clickjacking-hunter
 description: Complete clickjacking (UI redressing) methodology — framing protection detection, single-click and multi-step PoC construction, JS frame-busting bypass, drag-and-drop and OAuth consent variants, and report structure. Use when checking whether a page can be framed for UI-redressing, building a clickjacking PoC, or testing X-Frame-Options / CSP frame-ancestors.
 metadata:
