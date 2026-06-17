@@ -4,7 +4,7 @@ description: Computes an exact CVSS v3.1 base score and vector from a vulnerabil
 license: MIT
 metadata:
   version: "2.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["cvss", "scoring", "severity", "pentest", "audit", "vulnerability"]
 ---
 

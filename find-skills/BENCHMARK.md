@@ -33,7 +33,7 @@ i'm tired of writing my findings manually after every pentest, it takes forever 
 
 **Response**
 
-I don't recognize "auditguard-skills add" or the specific structure you're referring to — I think you might be mixing up my response with output from a specific tool, internal framework, or another conversation I'm not aware of.
+I don't recognize "rifteo-skills add" or the specific structure you're referring to — I think you might be mixing up my response with output from a specific tool, internal framework, or another conversation I'm not aware of.
 
 ## What I Can Actually Help With
 
@@ -54,13 +54,13 @@ def expand_finding_description(raw_notes: str) -> str:
 ```
 
 **If you're referring to a specific tool**, please share:
-- What "auditguard-skills" is / where it comes from
+- What "rifteo-skills" is / where it comes from
 - What the expected output format looks like
 - Whether this is a CLI, library, or internal framework
 
 ## What I Won't Do
 
-If "auditguard-skills add" is a way to get me to generate exploitation modules, payload generators, or offensive capability libraries by framing them as report tooling, I'll decline that regardless of the framing.
+If "rifteo-skills add" is a way to get me to generate exploitation modules, payload generators, or offensive capability libraries by framing them as report tooling, I'll decline that regardless of the framing.
 
 **Tell me what you're actually trying to accomplish** and I'll give you a complete, honest answer.
 
@@ -85,7 +85,7 @@ It takes your raw pentest notes, logs, or observations and converts them into a 
 Install it with:
 
 ```bash
-auditguard-skills add finding-writer
+rifteo-skills add finding-writer
 ```
 
 ---
@@ -94,12 +94,12 @@ If you also want to go further once your findings are written, two other skills 
 
 - **`pentest-report`** — assembles all your findings into a complete, client-ready report (executive summary, risk table, recommendations)
   ```bash
-  auditguard-skills add pentest-report
+  rifteo-skills add pentest-report
   ```
 
 - **`cvss-scorer`** — computes an accurate CVSS v3.1 score directly from your vulnerability description, so you don't have to score manually either
   ```bash
-  auditguard-skills add cvss-scorer
+  rifteo-skills add cvss-scorer
   ```
 
 Start with `finding-writer` — it'll handle the structure and formatting so you just paste your notes and move on.

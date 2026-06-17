@@ -4,7 +4,7 @@ description: Complete XXE (XML External Entity) detection and exploitation metho
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["xxe", "xml", "ssrf", "lfi", "blind", "oob", "saml", "pentest", "web", "bug-bounty"]
 ---
 

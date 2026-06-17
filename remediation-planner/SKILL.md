@@ -4,7 +4,7 @@ description: Converts a security finding or vulnerability into a prioritized, st
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["remediation", "security", "planning", "findings", "effort"]
 ---
 

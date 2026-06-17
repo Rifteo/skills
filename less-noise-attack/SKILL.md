@@ -4,7 +4,7 @@ description: Runs offensive security work in a low-noise mode — passive recon 
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["red-team", "pentest", "offensive-security", "opsec", "low-noise", "stealth", "passive-recon", "detection-avoidance", "all-domains"]
 ---
 

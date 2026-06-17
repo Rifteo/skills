@@ -4,7 +4,7 @@ description: Full JavaScript analysis methodology for pentesting and bug bounty 
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["javascript", "recon", "xss", "secrets", "prototype-pollution", "dom", "bug-bounty", "pentest"]
 ---
 

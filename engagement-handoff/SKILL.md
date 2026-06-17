@@ -4,7 +4,7 @@ description: Documents the current state of an active pentest engagement so the 
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["pentest", "audit", "handoff", "engagement", "session"]
 ---
 

@@ -4,7 +4,7 @@ description: Weighs each attack path's effort against its likely impact to find 
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["red-team", "pentest", "offensive-security", "strategy", "prioritization", "attack-planning"]
 ---
 

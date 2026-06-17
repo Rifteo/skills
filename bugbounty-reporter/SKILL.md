@@ -4,7 +4,7 @@ description: Converts a confirmed bug bounty finding — raw notes, a request/re
 license: MIT
 metadata:
   version: "1.1.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["bug-bounty", "reporting", "h1", "bugcrowd", "intigriti", "pentest"]
 ---
 

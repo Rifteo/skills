@@ -4,7 +4,7 @@ description: Maps every entry point, component, and trust boundary of a target b
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["pentest", "recon", "attack-surface", "mapping", "methodology"]
 ---
 

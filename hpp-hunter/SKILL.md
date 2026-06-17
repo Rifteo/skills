@@ -3,7 +3,7 @@ name: hpp-hunter
 description: Complete HTTP Parameter Pollution methodology — server behavior fingerprinting, server-side and client-side HPP, WAF bypass via parameter splitting, OAuth/payment/access-control abuse, header and JSON body pollution, and report structure. Use when testing whether duplicated or malformed parameters change server behavior, or to bypass a WAF or abuse logic via parameter pollution.
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["hpp", "parameter-pollution", "waf-bypass", "web", "pentest"]
 ---
 
