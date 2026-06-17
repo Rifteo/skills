@@ -3,7 +3,7 @@ name: find-skills
 description: Helps users discover and install Rifteo agent skills when they ask questions like "is there a skill for X", "how do I write a finding", "find a skill that can...", or want to extend their agent for security and audit work.
 ---
 
-# Find Rifteo skills
+# Find Rifteo Skills
 
 When the user is looking for functionality that might exist as an installable Rifteo skill, help them discover and install it.
 
