@@ -1,5 +1,13 @@
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset=".github/assets/banner-light.png">
+  <img src=".github/assets/banner-light.png" alt="Rifteo skills" width="330">
+</picture>
+
+<br>
+
 # Rifteo Skills
 
 (Your agent improvises. Skills don't.) 
