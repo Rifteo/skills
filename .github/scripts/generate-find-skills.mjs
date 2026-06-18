@@ -35,7 +35,7 @@ function generate(skills) {
     '| Skill | What it does | Install |',
     '|---|---|---|',
     ...skills.map(s =>
-      `| \`${s.name}\` | ${s.description} | \`auditguard-skills add ${s.name}\` |`
+      `| \`${s.name}\` | ${s.description} | \`rifteo-skills add ${s.name}\` |`
     )
   ].join('\n')
 
@@ -45,12 +45,12 @@ function generate(skills) {
 
   return `---
 name: find-skills
-description: Helps users discover and install AuditGuard agent skills when they ask questions like "is there a skill for X", "how do I write a finding", "find a skill that can...", or want to extend their agent for security and audit work.
+description: Helps users discover and install Rifteo agent skills when they ask questions like "is there a skill for X", "how do I write a finding", "find a skill that can...", or want to extend their agent for security and audit work.
 ---
 
-# Find AuditGuard Skills
+# Find Rifteo Skills
 
-When the user is looking for functionality that might exist as an installable AuditGuard skill, help them discover and install it.
+When the user is looking for functionality that might exist as an installable Rifteo skill, help them discover and install it.
 
 ## Available Skills
 
@@ -60,22 +60,22 @@ ${table}
 
 **List all available skills:**
 \`\`\`bash
-auditguard-skills available
+rifteo-skills available
 \`\`\`
 
 **List what's already installed:**
 \`\`\`bash
-auditguard-skills list
+rifteo-skills list
 \`\`\`
 
 **Install a skill globally (available in all projects):**
 \`\`\`bash
-auditguard-skills add <skill-name> --global
+rifteo-skills add <skill-name> --global
 \`\`\`
 
 **Install for a specific agent:**
 \`\`\`bash
-auditguard-skills add <skill-name> --agent claude-code
+rifteo-skills add <skill-name> --agent claude-code
 \`\`\`
 
 ## Matching User Needs to Skills
@@ -88,7 +88,7 @@ ${matching}
 
 - Always show the install command so the user can act immediately
 - If no skill matches, offer to help directly using your own capabilities
-- If the user wants a skill that doesn't exist yet, point them to contribute at github.com/AuditGuard-Community/skills
+- If the user wants a skill that doesn't exist yet, point them to contribute at github.com/rifteo/skills
 `
 }
 

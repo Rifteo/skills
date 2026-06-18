@@ -4,7 +4,7 @@ description: Aggregates audit findings mapped to framework controls, classifies 
 license: MIT
 metadata:
   version: "0.0.1"
-  author: AuditGuard
+  author: Rifteo
   tags: ["compliance", "audit", "gap-analysis", "iso27001", "nist-csf", "pci-dss", "owasp"]
 ---
 

@@ -4,7 +4,7 @@ description: Looks up any control ID across ISO 27001, NIST CSF, PCI-DSS v4, and
 license: MIT
 metadata:
   version: "0.0.1"
-  author: AuditGuard
+  author: Rifteo
   tags: ["compliance", "controls", "framework-mapping", "iso27001", "nist-csf", "pci-dss", "owasp"]
 ---
 

@@ -4,7 +4,7 @@ description: Complete XSS testing methodology — reflected, stored, DOM-based, 
 license: MIT
 metadata:
   version: "0.0.1"
-  author: AuditGuard
+  author: Rifteo
   tags: ["pentest", "xss", "web", "csp-bypass", "dom-clobbering", "waf-evasion", "bug-bounty"]
 ---
 

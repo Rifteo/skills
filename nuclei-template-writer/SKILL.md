@@ -4,7 +4,7 @@ description: Converts a vulnerability description or HTTP request/response pair 
 license: MIT
 metadata:
   version: "0.0.1"
-  author: AuditGuard
+  author: Rifteo
   tags: ["nuclei", "automation", "scanner", "template", "pentest", "bug-bounty"]
 ---
 

@@ -4,7 +4,7 @@ description: Ultra-compressed response mode for cybersecurity contexts — strip
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["cybersecurity", "pentest", "audit", "mode", "communication"]
 ---
 

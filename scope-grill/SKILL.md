@@ -4,7 +4,7 @@ description: Interviews the user about a pentest or audit engagement before any 
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["pentest", "audit", "scope", "planning", "engagement"]
 ---
 

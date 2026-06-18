@@ -4,7 +4,7 @@ description: Red team mindset that shifts the agent to offensive security thinki
 license: MIT
 metadata:
   version: "1.1.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["red-team", "pentest", "offensive-security", "bug-bounty", "ctf", "mindset", "attack-simulation", "adversary-simulation"]
 ---
 

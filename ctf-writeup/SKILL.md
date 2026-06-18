@@ -4,7 +4,7 @@ description: Generates a clean, publishable CTF challenge writeup from solve not
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["ctf", "writeup", "hacking", "learning", "community"]
 ---
 

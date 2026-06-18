@@ -1,26 +1,18 @@
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset=".github/assets/banner-light.png">
-  <img src=".github/assets/banner-light.png" alt="AuditGuard Skills" width="330">
-</picture>
+# Rifteo Skills
 
-<br>
-
-**Your agent improvises. Skills don't.**
-
+(Your agent improvises. Skills don't.) 
 Install proven pentest methodologies into Claude Code, Gemini CLI, Codex, and 50+ other agents in one command.
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![npm](https://img.shields.io/badge/npm-coming%20soon-lightgrey)](https://www.npmjs.com/package/auditguard-skills)
-[![Skills](https://img.shields.io/badge/skills-28-brightgreen)](https://github.com/AuditGuard-Community/skills)
-[![Agents](https://img.shields.io/badge/agents-53-blue)](https://github.com/AuditGuard-Community/skills)
+[![npm](https://img.shields.io/badge/npm-coming%20soon-lightgrey)](https://www.npmjs.com/package/rifteo-skills)
+[![Skills](https://img.shields.io/badge/skills-28-brightgreen)](https://github.com/rifteo/skills)
+[![Agents](https://img.shields.io/badge/agents-53-blue)](https://github.com/rifteo/skills)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](SKILL_GUIDE.md)
 
 </div>
 
----
 
 ## The problem with AI agents and security work
 
@@ -28,7 +20,6 @@ Ask an agent to hunt for IDOR bugs. It will improvise. It misses verb inconsiste
 
 The agent is not dumb. It lacks a methodology.
 
----
 
 ## What a skill is
 
@@ -68,7 +59,7 @@ Each skill's full benchmark is in its `BENCHMARK.md`.
 ## Quickstart
 
 ```bash
-npx auditguard-skills add bugbounty-reporter
+npx rifteo-skills add bugbounty-reporter
 ```
 
 No account. No configuration. The CLI detects your installed agents automatically and puts the skill in the right place.
@@ -80,7 +71,7 @@ No account. No configuration. The CLI detects your installed agents automaticall
 ## Install
 
 ```bash
-git clone https://github.com/AuditGuard-Community/skills-cli
+git clone https://github.com/rifteo/skills-cli
 cd skills-cli
 npm link
 ```
@@ -91,37 +82,37 @@ npm link
 
 ```bash
 # Install a skill into all detected agents
-auditguard-skills add bugbounty-reporter
+rifteo-skills add bugbounty-reporter
 
 # Install into a specific agent
-auditguard-skills add bugbounty-reporter --agent claude-code
+rifteo-skills add bugbounty-reporter --agent claude-code
 
 # Install globally across all projects
-auditguard-skills add bugbounty-reporter --global
+rifteo-skills add bugbounty-reporter --global
 
 # Check which installed skills have a newer version available
-auditguard-skills outdated
+rifteo-skills outdated
 
 # Update all installed skills to their latest version
-auditguard-skills update
+rifteo-skills update
 
 # Browse all available skills
-auditguard-skills available
+rifteo-skills available
 
 # See what is installed
-auditguard-skills list
+rifteo-skills list
 
 # See which agents were detected on this machine
-auditguard-skills agents
+rifteo-skills agents
 
 # Remove a skill
-auditguard-skills remove bugbounty-reporter
+rifteo-skills remove bugbounty-reporter
 ```
 
 Not sure which skill to use? Install `find-skills` first:
 
 ```bash
-npx auditguard-skills add find-skills
+npx rifteo-skills add find-skills
 ```
 
 It reads your task and loads the right skill automatically.
@@ -207,16 +198,16 @@ Install a skill for Claude Code and you get five slash commands that work in eve
 
 | Command | What it does |
 |---|---|
-| `/auditguard:triage` | 7-question pre-submission gate. Outputs GO, KILL, or DOWNGRADE with evidence. |
-| `/auditguard:chain` | Given a confirmed finding, checks the signal table for companion bugs to escalate severity |
-| `/auditguard:report` | Writes a submission-ready bug bounty report: title, steps, PoC, impact, remediation |
-| `/auditguard:hunt` | Launches a structured 7-phase engagement workflow on a target |
-| `/auditguard:intel` | Pulls CVEs, GitHub advisories, and HackerOne hacktivity for any named technology |
-| `/auditguard:setup` | Audits your current AuditGuard install: shows which skills and commands are installed, checks context-mcp config, and gives exact setup steps for anything missing |
+| `/rifteo:triage` | 7-question pre-submission gate. Outputs GO, KILL, or DOWNGRADE with evidence. |
+| `/rifteo:chain` | Given a confirmed finding, checks the signal table for companion bugs to escalate severity |
+| `/rifteo:report` | Writes a submission-ready bug bounty report: title, steps, PoC, impact, remediation |
+| `/rifteo:hunt` | Launches a structured 7-phase engagement workflow on a target |
+| `/rifteo:intel` | Pulls CVEs, GitHub advisories, and HackerOne hacktivity for any named technology |
+| `/rifteo:setup` | Audits your current Rifteo install: shows which skills and commands are installed, checks context-mcp config, and gives exact setup steps for anything missing |
 
 ```bash
-auditguard-skills add bugbounty-reporter --agent claude-code
-# Install AuditGuard slash commands for Claude Code? [Y/n/never]
+rifteo-skills add bugbounty-reporter --agent claude-code
+# Install Rifteo slash commands for Claude Code? [Y/n/never]
 ```
 
 ---
@@ -260,7 +251,7 @@ The agent produces a complete, triage-ready report. First try.
 | Devin | `devin` |
 | Augment | `augment` |
 | Amp | `amp` |
-| + 39 more | run `auditguard-skills agents` to see all |
+| + 39 more | run `rifteo-skills agents` to see all |
 
 ---
 
@@ -281,13 +272,13 @@ Once merged, `find-skills` picks it up automatically and your skill is live for 
 
 ## Contexts
 
-Skills pair with [AuditGuard Contexts](https://github.com/AuditGuard-Community/contexts), engagement-specific knowledge bases for web app pentest, cloud audit, mobile pentest, and more. Load a context at the start of an engagement and the agent knows the full scope, methodology, and relevant skills before you ask the first question.
+Skills pair with [Rifteo Contexts](https://github.com/rifteo/contexts), engagement-specific knowledge bases for web app pentest, cloud audit, mobile pentest, and more. Load a context at the start of an engagement and the agent knows the full scope, methodology, and relevant skills before you ask the first question.
 
 ---
 
-## Part of AuditGuard
+## Part of Rifteo
 
-These skills work standalone with any agent and integrate natively with [AuditGuard](https://github.com/AuditGuard-Community), the pentest management platform built for security teams and consultancies.
+These skills work standalone with any agent and integrate natively with [Rifteo](https://github.com/rifteo), the pentest management platform built for security teams and consultancies.
 
 ---
 

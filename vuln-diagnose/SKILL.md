@@ -4,7 +4,7 @@ description: Builds a deterministic, reproducible proof-of-concept for a suspect
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["pentest", "exploit", "poc", "validation", "evidence"]
 ---
 

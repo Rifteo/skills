@@ -4,7 +4,7 @@ description: Complete open redirect detection and exploitation methodology — p
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["open-redirect", "oauth", "ssrf", "phishing", "bypass", "web", "pentest", "bug-bounty"]
 ---
 

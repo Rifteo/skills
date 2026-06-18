@@ -4,7 +4,7 @@ description: A final accuracy check for security work — it re-tests a conclusi
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["red-team", "offensive-security", "integrity", "verification", "confidence", "output-quality", "deadangle"]
 ---
 

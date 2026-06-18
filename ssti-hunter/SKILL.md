@@ -4,7 +4,7 @@ description: Complete SSTI detection and exploitation methodology — engine fin
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["ssti", "rce", "injection", "template", "web"]
 ---
 

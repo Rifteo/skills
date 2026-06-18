@@ -4,7 +4,7 @@ description: Tests for vulnerabilities, but less aggressively — read-only wher
 license: MIT
 metadata:
   version: "1.0.0"
-  author: AuditGuard
+  author: Rifteo
   tags: ["red-team", "pentest", "offensive-security", "safe-testing", "non-destructive", "engagement-safety", "all-domains"]
 ---
 
