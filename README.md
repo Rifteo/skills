@@ -1,15 +1,8 @@
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset=".github/assets/banner-light.png">
-  <img src=".github/assets/banner-light.png" alt="Rifteo skills" width="330">
-</picture>
+# Rifteo Skills
 
-<br>
-
-**Your agent improvises. Skills don't.**
-
+(Your agent improvises. Skills don't.) 
 Install proven pentest methodologies into Claude Code, Gemini CLI, Codex, and 50+ other agents in one command.
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
@@ -20,7 +13,6 @@ Install proven pentest methodologies into Claude Code, Gemini CLI, Codex, and 50
 
 </div>
 
----
 
 ## The problem with AI agents and security work
 
@@ -28,7 +20,6 @@ Ask an agent to hunt for IDOR bugs. It will improvise. It misses verb inconsiste
 
 The agent is not dumb. It lacks a methodology.
 
----
 
 ## What a skill is
 
