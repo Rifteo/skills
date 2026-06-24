@@ -14,7 +14,7 @@
 Install proven pentest methodologies into Claude Code, Gemini CLI, Codex, and 50+ other agents in one command.
 
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![npm](https://img.shields.io/badge/npm-coming%20soon-lightgrey)](https://www.npmjs.com/package/rifteo-skills)
+[![npm](https://img.shields.io/npm/v/%40rifteo%2Fskills)](https://www.npmjs.com/package/@rifteo/skills)
 [![Skills](https://img.shields.io/badge/skills-28-brightgreen)](https://github.com/rifteo/skills)
 [![Agents](https://img.shields.io/badge/agents-53-blue)](https://github.com/rifteo/skills)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](SKILL_GUIDE.md)
