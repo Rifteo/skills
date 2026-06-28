@@ -67,21 +67,18 @@ Each skill's full benchmark is in its `BENCHMARK.md`.
 ## Quickstart
 
 ```bash
-npx rifteo-skills add bugbounty-reporter
+npm install -g @rifteo/skills
+rifteo-skills add bugbounty-reporter
 ```
 
 No account. No configuration. The CLI detects your installed agents automatically and puts the skill in the right place.
-
-> npm publish coming soon. In the meantime: `git clone` + `npm link` (see Install below).
 
 ---
 
 ## Install
 
 ```bash
-git clone https://github.com/rifteo/skills-cli
-cd skills-cli
-npm link
+npm install -g @rifteo/skills
 ```
 
 ---
