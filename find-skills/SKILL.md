@@ -1,6 +1,6 @@
 ---
 name: find-skills
-description: Helps users discover and install Rifteo agent skills when they ask questions like "is there a skill for X", "how do I write a finding", "find a skill that can...", or want to extend their agent for security and audit work.
+description: Discover and install specialized Rifteo skills from the community ecosystem when users need extended audit capabilities. Trigger when the user asks "how do I audit X" or "find a skill for X", says "is there a skill for X", asks "can you check X" for a specialized audit capability, expresses interest in extending Rifteo capabilities, wants to search for audit templates or compliance workflows, or mentions wishing they had help with a specific compliance domain.
 ---
 
 # Find Rifteo Skills

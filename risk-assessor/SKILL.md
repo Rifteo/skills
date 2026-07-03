@@ -1,6 +1,6 @@
 ---
 name: risk-assessor
-description: Scores a vulnerability using likelihood × impact, CIA triad, CVSS correlation, and SLA-bound remediation urgency. Use when you need a risk rating and remediation urgency for a finding, beyond a raw CVSS score.
+description: Scores a vulnerability using likelihood × impact, CIA triad analysis, CVSS correlation, and SLA-bound remediation urgency. Trigger when the user describes a vulnerability and wants to know how serious it is, asks "what's the risk level?" or "how urgent is this to fix?", has a CVSS score but wants it contextualized with compensating controls and business impact, needs to assign a remediation SLA, or wants to document risk treatment (mitigate, accept, transfer, avoid).
 ---
 
 # Risk Assessor

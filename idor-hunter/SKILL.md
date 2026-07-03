@@ -1,6 +1,6 @@
 ---
 name: idor-hunter
-description: Systematic IDOR/BOLA detection methodology — recon, multi-account testing, bypass techniques, and report structure. Use when testing object references (IDs, UUIDs, usernames) for broken object-level authorization — accessing another user's data or actions.
+description: Systematic IDOR/BOLA detection methodology recon, multi-account testing, bypass techniques, and report structure. Trigger when the user asks to test authorization controls or object-level access restrictions, wants to hunt for IDOR or BOLA on an API or web app, needs a structured methodology for multi-account access testing, is doing a bug bounty or pentest and wants to maximize IDOR coverage, or asks if they can access another user's data or whether authorization is enforced server-side.
 ---
 
 # IDOR / BOLA Detection Skill

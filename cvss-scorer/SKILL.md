@@ -1,6 +1,6 @@
 ---
 name: cvss-scorer
-description: Computes an exact CVSS v3.1 base score and vector from a vulnerability description. Infers metrics from context, picks the most accurate score when info is sufficient, and asks one short question only when the ambiguity would change the severity level. Use when you need a CVSS v3.1 score or vector for a vulnerability. No noise, no tables, no formula dumps.
+description: Computes an exact CVSS v3.1 base score and vector from a vulnerability description infers metrics from context, asks one sharp question only when ambiguity would change the severity level. Trigger when the user needs a CVSS score for a vulnerability finding, is writing a bug bounty report or pentest finding needing a severity vector, says "score this" or "what's the CVSS?", or has a vulnerability description and wants a severity level.
 license: MIT
 metadata:
   version: "2.0.0"

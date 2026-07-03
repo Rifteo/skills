@@ -1,6 +1,6 @@
 ---
 name: less-noise-attack
-description: Runs offensive security work in a low-noise mode — passive recon first, minimal footprint, and only deliberate, targeted active actions that blend with legitimate traffic, so the engagement stays below detection thresholds. Not the default. Use it whenever the user wants to stay undetected, or when the target is monitored enough that tripping a WAF, SOC, or anomaly detector could get the engagement flagged and blocked mid-operation — in any context. Do not use it when speed and coverage matter more than stealth, or on isolated labs, sandboxes, and CTFs where detection is not a concern.
+description: Runs offensive work in a low-noise mode — passive recon first, minimal footprint, and only deliberate, targeted active actions that blend with legitimate traffic, so the engagement stays below detection thresholds. Not the default; activate only when the user explicitly signals stealth as the priority, e.g. "stay under the radar", "avoid the SOC", "be stealthy", "ghost mode", "don't trigger alerts", or "go quiet".
 license: MIT
 metadata:
   version: "1.0.0"

@@ -1,6 +1,6 @@
 ---
 name: redmind
-description: Red team mindset that shifts the agent to offensive security thinking across any target or engagement type. Use whenever the objective is offensive — finding what can be broken, bypassed, or abused, or assessing a target from an attacker's perspective — regardless of how the request is phrased.
+description: Red team mindset that shifts the agent to offensive security thinking across any target or engagement type. Trigger when the goal of the engagement is offensive (finding what can be broken, bypassed, or abused), the user wants to understand a target's security posture from an attacker's perspective, or the objective is to find vulnerabilities, simulate an attacker, or test whether controls hold under pressure.
 license: MIT
 metadata:
   version: "1.1.0"

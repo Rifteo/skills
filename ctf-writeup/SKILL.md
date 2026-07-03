@@ -1,6 +1,6 @@
 ---
 name: ctf-writeup
-description: Generates a clean, publishable CTF challenge writeup from solve notes — suitable for HTB, CTFtime, personal blogs, and team wikis. Use when you've solved a challenge and want your notes turned into a documented writeup.
+description: Generates a clean, publishable CTF challenge writeup from solve notes suitable for HTB, CTFtime, personal blogs, and team wikis. Trigger when the user solved a CTF challenge and wants to document it, says "write up this challenge", "generate a writeup", or "document my solve", or wants a record of solutions for their team's internal wiki.
 license: MIT
 metadata:
   version: "1.0.0"

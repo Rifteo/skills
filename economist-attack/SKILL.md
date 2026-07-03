@@ -1,6 +1,6 @@
 ---
 name: economist-attack
-description: Weighs each attack path's effort against its likely impact to find the most important weakness with the least wasted effort, pursuing high-value surfaces first. Shapes the order in which you test, not what you test. Use it whenever you are doing offensive testing and need to decide where to focus: it compares effort against impact, goes after high-value surfaces first, and checks in with you when a finding lands or a surface goes dry.
+description: Weighs each attack path's effort against its likely impact, pursuing the highest-value surfaces first to find the most important weakness with the least wasted effort it shapes the order you test in, not what you test. Trigger when doing any offensive security engagement and deciding where to focus effort, when the attack surface is large and not everything can be tested with equal depth, or when the goal is maximum impact from available time and effort. Works standalone or alongside a mindset skill like redmind.
 license: MIT
 metadata:
   version: "1.0.0"

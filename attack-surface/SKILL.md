@@ -1,6 +1,6 @@
 ---
 name: attack-surface
-description: Maps every entry point, component, and trust boundary of a target before testing begins — preventing missed coverage and prioritizing the highest-value attack paths. Use at the start of an engagement, once scope is set, when you have a target and need to decide where to begin or what to test.
+description: Maps every entry point, component, and trust boundary of a target before testing begins prevents missed coverage and prioritizes the highest-value attack paths. Trigger when the user provides a target and wants to know where to start, says "map the attack surface", "what should I test", or "where do I begin", or is starting any engagement after scope-grill is complete.
 license: MIT
 metadata:
   version: "1.0.0"
