@@ -1,6 +1,6 @@
 ---
 name: remediation-planner
-description: Converts a security finding or vulnerability into a prioritized, step-by-step remediation plan with effort estimates per step. Use when you have a specific finding and need a fix plan — "how do we fix this?". Not for exploiting, scanning, or theoretical questions with no concrete finding.
+description: Convert a security finding or vulnerability into a prioritized step-by-step remediation plan with effort estimates per step. Trigger when the user provides a vulnerability, finding, or bug needing a fix plan, asks "how do we fix this?" or "what's the remediation for X?", wants to estimate the work involved in addressing a finding, or needs a remediation roadmap to present to developers or stakeholders.
 license: MIT
 metadata:
   version: "1.0.0"

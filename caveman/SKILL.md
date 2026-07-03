@@ -1,6 +1,6 @@
 ---
 name: caveman
-description: Ultra-compressed response mode for cybersecurity contexts — strips filler while keeping CVEs, payloads, CVSS scores, and findings exact. User-triggered only (/caveman, "caveman mode", "be brief", "in short", "tl;dr", "straight to the point", "just the findings").
+description: Ultra-compressed response mode for cybersecurity contexts strips filler while keeping CVEs, payloads, CVSS scores, and findings exact. User-triggered only never self-activated. Trigger when the user explicitly says "/caveman", "caveman mode", "be brief", "tl;dr", "just the findings", "straight to the point", "keep it short", or similar explicit brevity requests.
 license: MIT
 metadata:
   version: "1.0.0"

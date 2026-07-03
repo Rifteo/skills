@@ -1,6 +1,6 @@
 ---
 name: deadangle
-description: A final accuracy check for security work — it re-tests a conclusion against the evidence and labels each part as confirmed, inferred, or assumed, so an unverified result never goes out as if it were proven. Use it right before delivering a finding, assigning a severity or confidence rating, claiming something is exploitable or confirmed, presenting a multi-step attack path, or summarizing what was tested. Match the effort to the stakes: a quick check for one small finding, a full pass for a report or attack chain. Also runs on request: "deadangle" or "/deadangle".
+description: A final accuracy check for offensive security work — it re-tests each conclusion against the evidence and labels every part confirmed, inferred, or assumed, so an unverified result never goes out as if it were proven. Trigger when the user says "deadangle" or "/deadangle", before delivering a finding/vulnerability conclusion/attack path, after completing recon and summarizing coverage, before presenting a multi-step attack chain, before assigning severity/impact/confidence to anything, or before using language like "this is vulnerable" or "I confirmed".
 license: MIT
 metadata:
   version: "1.0.0"

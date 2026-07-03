@@ -1,6 +1,6 @@
 ---
 name: xxe-phantom
-description: Complete XXE (XML External Entity) detection and exploitation methodology — classic file read, blind OOB exfiltration, XInclude, SVG/DOCX/SAML vectors, WAF bypass, SSRF chaining, and report structure. Use when an endpoint accepts XML (Content-Type application/xml, or SVG/DOCX/SAML/SOAP input) and you want to read files, probe internal services, or chain to SSRF.
+description: An XXE detection and exploitation methodology engine. Triggered when testing for XML injection, interacting with XML content-types/endpoints, or processing XML-based file uploads (SVG, DOCX, SAML, SOAP). Facilitates classic file reads, blind OOB exfiltration, WAF bypasses, and SSRF chaining. Includes report structuring.
 license: MIT
 metadata:
   version: "1.0.0"

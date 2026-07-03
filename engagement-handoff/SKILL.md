@@ -1,6 +1,6 @@
 ---
 name: engagement-handoff
-description: Documents the current state of an active pentest engagement so the next session can continue without losing context — findings, coverage, next steps, and open threads. Use when an engagement needs to pause and resume later: a handoff, saving progress, end of a testing day, or a context window getting long. Not for the final client report (use pentest-report).
+description: Documents the current state of an active pentest engagement so the next agent session can continue without losing context, covering findings, coverage, next steps, and open threads. Trigger when the user says "handoff", "save progress", "pick this up next session", or "summarize the engagement", when the context window is getting long and work needs to continue in a fresh session, or at the end of a testing day or shift change.
 license: MIT
 metadata:
   version: "1.0.0"

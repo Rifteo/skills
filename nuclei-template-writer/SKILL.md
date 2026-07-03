@@ -1,6 +1,6 @@
 ---
 name: nuclei-template-writer
-description: Converts a vulnerability description or HTTP request/response pair into a ready-to-run Nuclei YAML template — handles auth strategies, matcher selection, OOB detection, and multi-step flows. Use when you want to automate detection of a finding across other targets or build a personal template library.
+description: Convert a vulnerability description or HTTP request/response pair into a ready-to-run Nuclei YAML template handles auth strategies, matcher selection, OOB detection, and multi-step flows. Trigger when the user found a vulnerability and wants to automate detection on other targets, pastes an HTTP request/response and asks for a Nuclei template, says "write a nuclei template for this" or "automate this finding", or wants to build a personal template library from bug bounty findings.
 license: MIT
 metadata:
   version: "0.0.1"

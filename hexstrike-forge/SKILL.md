@@ -1,6 +1,6 @@
 ---
 name: hexstrike-forge
-description: Full HexStrike engagement workflow — sequences the right tools for your target type, kills false positives, and forges confirmed findings into a professional report. Use when the HexStrike MCP is active and you want a structured engagement, or you have raw HexStrike output to turn into findings.
+description: A 5-phase structured pentest methodology for the hexstrike-ai MCP server, covering passive recon through finding delivery with triage gates, parallel execution, and tool failure recovery.
 license: MIT
 metadata:
   version: "1.2.0"
