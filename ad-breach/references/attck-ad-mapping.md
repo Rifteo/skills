@@ -1,6 +1,6 @@
 # MITRE ATT&CK Mapping for Active Directory Findings
 
-Reference for tagging AD Recon findings to MITRE ATT&CK for Enterprise techniques, with severity context and remediation guidance. Use this to fill the ATT&CK column in Phase 8 report tables.
+Reference for tagging AD Breach findings to MITRE ATT&CK for Enterprise techniques, with severity context and remediation guidance. Use this to fill the ATT&CK column in Phase 9 report tables.
 
 ---
 

@@ -1,6 +1,6 @@
 # AD Attack Pattern Reference
 
-Command and pattern reference for every attack primitive used across `ad-recon`'s phases. Grouped by category with tool syntax, expected output, and severity guidance. Pair with `attck-ad-mapping.md` for ATT&CK tagging.
+Command and pattern reference for every attack primitive used across `ad-breach`'s phases. Grouped by category with tool syntax, expected output, and severity guidance. Pair with `attck-ad-mapping.md` for ATT&CK tagging.
 
 ---
 

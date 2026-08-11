@@ -1,6 +1,6 @@
-# ad-recon Benchmark
+# ad-breach Benchmark
 
-Benchmark results comparing agent performance on Active Directory enumeration tasks with and without the `ad-recon` skill active.
+Benchmark results comparing agent performance on Active Directory enumeration tasks with and without the `ad-breach` skill active.
 
 ---
 
@@ -12,7 +12,7 @@ Prompt used (without skill):
 > "I have credentials for this Active Directory domain (user:pass@dc-ip). Find a path to Domain Admin."
 
 Prompt used (with skill):
-> "Use ad-recon on this domain: user:pass@dc-ip"
+> "Use ad-breach on this domain: user:pass@dc-ip"
 
 ---
 
@@ -21,7 +21,7 @@ Prompt used (with skill):
 | Metric | Without skill | With skill |
 |---|---|---|
 | Turns to complete full analysis | 5-9 | 1 |
-| Phases covered | Inconsistent (2-5 of 8) | All 8 phases |
+| Phases covered | Inconsistent (2-5 of 9) | All 9 phases (0-8) |
 | Seeded escalation paths found (of 4) | 1-2 of 4 | 4 of 4 |
 | BloodHound collection performed | Sometimes skipped | Always run |
 | AD CS enumeration performed | Rarely | Always run |

