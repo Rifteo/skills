@@ -54,7 +54,7 @@ Prompt used (with skill):
 
 **Password pattern hypothesis:** Before full password spray, test organization-specific patterns on DA/admin accounts. Pattern: `OrgName@YearFounded` (e.g., test years 2000-2015). Single well-guessed password is faster than spray and avoids lockout.
 
-**GenericAll on protected groups:** When discovered on Domain Admins, Enterprise Admins, or similar protected objects, exploit via LDAP group member modification (Phase 4.2). Remote ACL tools may miss these due to caching/filtering — always cross-verify with DC console `Get-Acl` on real engagements.
+**GenericAll on protected groups:** When discovered on Domain Admins, Enterprise Admins, or similar protected objects, exploit via LDAP group member modification (Phase 4.2). Remote ACL tools may miss these due to caching/filtering: always cross-verify with DC console `Get-Acl` on real engagements.
 
 **Attack chain validation:** Kerberoastable service account → GenericAll on privileged group → LDAP group membership modification → member becomes DA → DCSync entire NTDS. Full domain compromise in 4 steps.
 

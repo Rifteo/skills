@@ -69,7 +69,7 @@ c.modify("CN=Domain Admins,CN=Users,DC=...,DC=...", {'member': [(MODIFY_ADD, ["C
 ```
 3. **Verify immediately** via remote LDAP (not local AD: provider, which may cache)
 4. Once in the group, DCSync the entire NTDS
-5. For **persistence** (if you need the ACE to last beyond SDProp), grant the ACE on `AdminSDHolder` itself — SDProp will propagate it down instead of erasing it
+5. For **persistence** (if you need the ACE to last beyond SDProp), grant the ACE on `AdminSDHolder` itself: SDProp will propagate it down instead of erasing it
 
 **Detection gap:** Remote ACL inspection tools (impacket's `dacledit.py`, PowerView.py) may miss `GenericAll` ACEs on protected objects due to LDAP caching or filtering behavior. Always verify critical findings with a direct AD: provider read on the DC itself if possible. Cross-check with PowerShell's `Get-Acl "AD:\..."` on the DC to confirm.
 

