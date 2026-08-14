@@ -287,4 +287,4 @@ These skills work standalone with any agent and integrate natively with [Rifteo]
 
 ---
 
-MIT License
+MIT License 
